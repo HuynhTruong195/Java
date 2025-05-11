@@ -1,0 +1,530 @@
+🧠 Java là gì?
+Java là một ngôn ngữ lập trình hướng đối tượng, đa nền tảng, mạnh mẽ và phổ biến toàn cầu.
+
+Được dùng để phát triển:
+✅ Ứng dụng web (Spring, JSP)
+✅ Phần mềm desktop (Swing, JavaFX)
+✅ Ứng dụng Android
+✅ Hệ thống backend doanh nghiệp
+
+🔹 1. Đặc điểm nổi bật của Java
+Đặc điểm	Giải thích đơn giản
+    Đa nền tảng	Viết một lần, chạy mọi nơi (Write once, run anywhere)
+    Hướng đối tượng	Mọi thứ đều là đối tượng → dễ tổ chức code
+    Bảo mật cao	Chạy trong máy ảo (JVM) → tránh lỗi hệ thống
+    Thư viện phong phú	Có sẵn rất nhiều thư viện (collections, IO, network...)
+    Đa luồng (multithreading)	Xử lý nhiều việc cùng lúc hiệu quả
+
+🔹 2. Cấu trúc chương trình Java cơ bản
+
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello, world!");
+        }
+    }
+
+Thành phần	Vai trò
+    class	Mỗi chương trình Java phải có ít nhất một class
+    main method	Điểm bắt đầu chương trình
+    System.out.println()	In ra màn hình
+
+🔹 3. Kiến thức nền tảng Java cần học
+
+✅ A. Biến và Kiểu dữ liệu
+
+    int age = 20;
+    String name = "Anna";
+    boolean isStudent = true;
+
+✅ B. Câu lệnh điều kiện
+
+    if (age > 18) {
+    System.out.println("Adult");
+    } else {
+    System.out.println("Teenager");
+    }
+
+✅ C. Vòng lặp
+
+    for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+    }
+
+✅ D. Mảng
+
+    int[] scores = {90, 85, 70};
+    System.out.println(scores[1]); // 85
+
+✅ E. Hàm (method)
+
+    public static int sum(int a, int b) {
+    return a + b;
+
+    }
+🔹 4. Hướng đối tượng (OOP) trong Java
+
+     tính chất quan trọng:
+
+Tính chất	            Giải thích
+Encapsulation	    Đóng gói dữ liệu và hành vi
+Inheritance	        Kế thừa từ class cha
+Polymorphism	    Đa hình: một hàm có nhiều cách dùng
+Abstraction	        Trừu tượng: ẩn chi tiết không cần thiết
+
+📌 Ví dụ đơn giản:
+
+    class Animal {
+        void speak() {
+            System.out.println("Animal speaks");
+        }
+    }
+
+    class Dog extends Animal {
+        void speak() {
+            System.out.println("Dog barks");
+        }
+    }
+
+
+    ////////////// JDK, JRE , JVM /////////////
+✅ 1. JVM – Java Virtual Machine (Máy ảo Java)
+➤ Là gì?
+    JVM là máy ảo giúp chạy chương trình Java.
+
+    🔹 Chức năng:
+    Chạy mã bytecode (.class) đã được biên dịch từ mã Java (.java).
+
+    Quản lý bộ nhớ, dọn rác (Garbage Collector).
+
+    Đảm bảo Java chạy giống nhau trên mọi hệ điều hành.
+
+🧠 Ví dụ:
+Khi bạn chạy chương trình Java:
+
+    java HelloWorld
+    → JVM là thành phần thực sự thực thi file HelloWorld.class.
+
+✅ 2. JRE – Java Runtime Environment
+➤ Là gì?
+    JRE là môi trường chạy Java — gồm:
+
+    JVM
+
+    Thư viện Java chuẩn (API: java.util, java.io, v.v.)
+
+    🔹 Chức năng:
+    Cho phép chạy các chương trình Java đã biên dịch.
+
+    Không chứa trình biên dịch — chỉ để chạy, không để viết/mã hóa.
+
+📦 Gồm những gì?
+    JVM ✅
+
+    Core Libraries ✅
+
+    File cấu hình runtime ✅
+
+🧠 Khi nào dùng?
+    Nếu bạn chỉ muốn chạy ứng dụng Java (người dùng cuối), thì JRE là đủ.
+
+✅ 3. JDK – Java Development Kit
+➤ Là gì?
+    JDK là bộ công cụ phát triển Java.
+
+    🔹 Chức năng:
+    Dùng để viết, biên dịch và chạy chương trình Java.
+
+📦 Gồm những gì?
+Thành phần              	Vai trò
+JVM	                     Để chạy chương trình
+JRE                    	Để hỗ trợ runtime
+javac	                Trình biên dịch .java → .class
+javadoc, jar, jdb...	Các công cụ phát triển khác
+
+🧱 Minh họa thực tế:
+    Giả sử bạn có chương trình HelloWorld.java:
+
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello Java!");
+        }
+    }
+    ✅ Khi bạn:
+    javac HelloWorld.java  // Biên dịch (JDK)
+    java HelloWorld        // Chạy (JRE → JVM)
+
+📌 Kết luận:
+🛠 JDK: Dành cho lập trình viên – để viết và chạy code
+
+⚙ JRE: Dành cho người dùng – để chạy chương trình Java
+
+💻 JVM: Máy ảo – nơi chương trình Java thực sự chạy
+
+
+/////////////////// BIẾN VÀ DỮ LIỆU ////////////////
+
+✅ 1. Biến là gì?
+Biến (Variable) là vùng nhớ dùng để lưu trữ giá trị mà chương trình có thể thay đổi trong quá trình thực thi.
+
+🔹 Cú pháp khai báo biến:
+
+    kiểu_dữ_liệu tên_biến = giá_trị;
+🔹 Ví dụ:
+
+    int age = 25;
+    String name = "John";
+    boolean isStudent = true;
+
+✅ 2. Các loại biến trong Java
+Loại biến	                Phạm vi sử dụng	                              Đặc điểm
+Biến cục bộ	        Trong phương thức, vòng lặp...	                Phải gán giá trị trước khi dùng
+Biến instance        Khai báo trong class, ngoài method	             Gắn với từng đối tượng
+Biến static           Khai báo trong class với từ khóa static	    Thuộc về class, không thuộc riêng đối tượng nào
+
+✅ 3. Kiểu dữ liệu trong Java
+Java có 2 nhóm chính:
+
+🟢 A. Kiểu dữ liệu nguyên thủy (Primitive)
+    Kiểu	    Kích thước	    Giá trị đại diện
+    int	        4 byte	        Số nguyên (1, 2, 100)
+    float	    4 byte	    Số thực (3.14f)
+    double	    8 byte	    Số thực chính xác cao
+    char	    2 byte	    Ký tự đơn ('a', 'A')
+    boolean	    1 bit   	true / false
+    byte	    1 byte	    Số nhỏ (-128 đến 127)
+    short	    2 byte  	Số nguyên nhỏ
+    long	    8 byte	    Số nguyên lớn
+
+📌 Ví dụ:
+
+    int age = 20;
+    double price = 99.5;
+    char grade = 'A';
+    boolean passed = true;
+
+🔵 B. Kiểu tham chiếu (Reference)
+Là kiểu dữ liệu đại diện cho đối tượng hoặc mảng:
+
+    Kiểu dữ liệu	Mô tả
+    String	Chuỗi ký tự ("Hello")
+    Array	Mảng các phần tử
+    Class, Object	Đối tượng
+
+📌 Ví dụ:
+
+    String name = "Alice";
+    int[] numbers = {1, 2, 3, 4};
+
+✅ 4. Ép kiểu dữ liệu
+
+   🔸 Ép kiểu tự động (implicit), kiểu ngầm định
+   
+ ép kiểu dữ liệu kích thước Lớn sang dữ liệu kích thước nhỏ hơn.
+ vd :
+    short sh = 100;
+    int i = 10000;
+    int intValue = sh; KHÔNG GÂY RA LỖI DO TỪ LỚN VỀ NHỎ HỢP LỆ
+vd2:
+   int x = 10;
+    double y = x; 
+     Tự động ép kiểu int sang double //: 10.0
+
+   
+     🔸 Ép kiểu tường minh (explicit):
+ ép kiểu dữ liệu nhỏ sang dữ liệu kích thước  lớn hơn. gây lỗi, tràn dữ liệu
+ vd: 
+ short shortValue = (short) i;
+
+ vd2:
+     double d = 9.8;
+    int i = (int) d; 
+     Tự động ép kiểu double sang int // Kết quả: 9
+ 
+✅ 5. Quy tắc đặt tên biến
+    Bắt đầu bằng chữ cái, _ (gạch dưới), hoặc ký tự $
+
+    Không bắt đầu bằng số
+
+    Dùng camelCase: studentName, totalScore
+
+    Không được trùng với từ khóa (int, class, return,...)
+
+✅ Tổng kết nhanh:
+
+    Thành phần              	Mô tả
+    Biến	                Dùng để lưu trữ dữ liệu
+    Kiểu dữ liệu             Quy định dạng giá trị biến có thể nhận
+    Kiểu nguyên thủy    	int, float, boolean, char...
+    Kiểu tham chiếu	            String, Array, Class, ObjecT
+
+
+
+    ///////////QUẢN LÝ BỘ NHỚ TRONG JAVA /////////////
+
+✅ 1. Bộ nhớ trong Java được chia làm 2 vùng chính:
+🔹 A. Stack Memory (Bộ nhớ ngăn xếp)
+    Chứa biến cục bộ, lời gọi hàm (method).
+
+    Mỗi lần gọi một method → một frame được đẩy vào Stack.
+
+    Sau khi method chạy xong → frame đó bị xóa khỏi Stack.
+
+    Nhanh và tự động giải phóng.
+
+📌 Ví dụ:
+
+    public void sum() {
+    int a = 5;  // nằm trong Stack
+    }
+
+🔹 B. Heap Memory (Bộ nhớ vùng nhớ động)
+    Chứa đối tượng và biến instance (non-static).
+
+    Được cấp phát bằng từ khóa new.
+
+    Phân phối chậm hơn Stack, nhưng linh hoạt hơn.
+
+    Được quản lý bởi Garbage Collector.
+
+📌 Ví dụ:
+
+    Student s = new Student();  // Đối tượng Student nằm trong Heap
+
+
+
+ 🔹 NGOÀI RA CÒN CÓ Code Segment và Data Segment
+    Code Segment:
+
+Đinh nghĩa:
+
+    Code Segment là nơi lưu trữ mã lệnh của chương trình, hay còn gọi là tập hợp các câu lệnh mà CPU thực thi.
+
+Trong Java:
+
+    Code Segment tương ứng với Method Area trong JVM (Java Virtual Machine).
+    Chức năng:
+    Lưu thông tin về các class đã được tải (metadata).
+    Lưu trữ mã bytecode của các phương thức.
+    Chứa constant pool (bảng hằng số, ví dụ các chuỗi String không thay đổi).
+    Ví dụ: Khi bạn khai báo final int counter = 0;, biến counter được lưu trong vùng Method Area.
+    
+Data Segment:
+    Định nghĩa:
+
+    Data Segment chứa các biến toàn cục và các biến tĩnh (static), được cấp phát khi chương trình chạy và tồn tại suốt vòng đời của chương trình.
+ Trong Java:
+
+    Biến tĩnh (static) và hằng số (final static) được lưu trong Method Area.
+    Constant pool của mỗi lớp chứa các giá trị hằng được sử dụng trong chương trình, ví dụ chuỗi "Hello" hoặc số 3.14.
+
+
+✅ 2. Bộ nhớ Method Area & MetaSpace (Java 8+)
+
+    Method Area (trước Java 8): chứa thông tin về class (biến static, method, constructor, v.v.)
+
+    MetaSpace (từ Java 8): thay thế Method Area, nằm ngoài Heap, giúp quản lý class tốt hơn và mở rộng theo hệ điều hành.
+
+
+✅ 3. Garbage Collector (GC) – Bộ gom rác
+    Là cơ chế tự động xóa đối tượng không còn sử dụng trong Heap để tránh rò rỉ bộ nhớ.
+
+    Không cần tự free() như trong C/C++.
+
+    GC sẽ chạy khi:
+
+    Bộ nhớ gần đầy
+
+    Hệ thống rảnh
+
+    Lập trình viên gọi System.gc() (chỉ là gợi ý, không bắt buộc JVM thực hiện)
+
+📌 GC sẽ thu gom đối tượng nào?
+
+Đối tượng không còn tham chiếu từ bất kỳ biến nào nữa.
+
+🔸 Ví dụ:
+
+    Student s1 = new Student();  // s1 tham chiếu đối tượng Student
+    s1 = null;  // không còn tham chiếu → GC sẽ xóa
+
+
+✅ 4. Cách sử dụng bộ nhớ hiệu quả
+    Cách làm	                                        Mục đích
+    Dùng biến cục bộ thay vì toàn cục	        Giải phóng nhanh hơn (Stack vs Heap)
+    Tránh giữ tham chiếu không cần thiết	        Giúp GC dọn rác đúng lúc
+    Đóng file, stream sau khi dùng	            Giải phóng tài nguyên hệ thống
+    Dùng try-with-resources	                Tự động đóng stream, connection, etc.
+
+✅ Tổng kết:
+    Vùng nhớ	        Dùng để lưu gì?	                     Giải phóng như thế nào?
+    Stack       	Biến cục bộ, lời gọi hàm	             Tự động khi hàm kết thúc
+    Heap	        Đối tượng, biến instance (new)	          Bởi Garbage Collector (GC)
+    MetaSpace   	Thông tin về class, static fields	        Tự quản lý, mở rộng theo OS
+
+
+
+///////////// CÁC TOÁN TỬ TRONG JAVA ///////////
+
+✅ 1. Toán tử số học (Arithmetic Operators)
+
+    Toán tử     	Ý nghĩa	        Ví dụ (a = 10, b = 3)	    Kết quả
+    +	            Cộng	            a + b	                    13
+    -	            Trừ	                a - b	                    7
+    *	            Nhân	            a * b	                    30
+    /	            Chia	            a / b	                     3
+    %	        Chia lấy dư         	a % b	                     1
+
+✅ 2. Toán tử gán (Assignment Operators)
+
+    Toán tử	        Ý nghĩa	        Ví dụ	        Tương đương với
+    =	            Gán	            a = 5	        Gán giá trị
+    +=	        Cộng rồi gán	    a += 2	        a = a + 2
+    -=	        Trừ rồi gán     	a -= 2	        a = a - 2
+    *=      	Nhân rồi gán	    a *= 3          a = a * 3
+    /=	        Chia rồi gán	    a /= 2	        a = a / 2
+    %=	        Lấy dư rồi gán	    a %= 2      	a = a % 2
+
+✅ 3. Toán tử so sánh (Relational Operators)
+    Toán tử	        Ý nghĩa	        Ví dụ	        Kết quả
+    ==	            So sánh bằng	a == b	        false
+    !=                Khác nhau	    a != b	        true
+    >	                Lớn hơn	     a > b	        true
+    <	                Nhỏ hơn	    a < b	        false
+    >=	         Lớn hơn hoặc bằng	  a >= b	    true
+    <=	          Nhỏ hơn hoặc bằng	   a <= b	    false
+
+✅ 4. Toán tử logic (Logical Operators)
+
+    Toán tử	        Ý nghĩa	        Ví dụ   	    Kết quả
+    &&          	AND – Và	(a > 5 && b < 5)	true
+    ||		                            ||	        OR – Hoặc
+    !	          NOT – Phủ định	!(a > b)	    false
+
+
+✅ 5. Toán tử tăng/giảm (Increment/Decrement)
+
+    Toán tử	      Ý nghĩa	        Ví dụ       	Kết quả
+    ++a	          Tăng trước	      ++a	        11
+    a++	            Tăng sau	        a++	        10 (rồi thành 11)
+    --a	            Giảm trước	        --a	         9
+    a--	            Giảm sau	        a--	        10 (rồi thành 9)
+
+✅ 6. Toán tử điều kiện 3 ngôi (Ternary Operator)
+
+    String result = (a > b) ? "a Lớn hơn b" : "a Không lớn hơn b";
+    Nếu điều kiện đúng → lấy giá trị trước :
+
+    Nếu sai → lấy giá trị sau :
+
+✅ 7. Toán tử bit (ít dùng cho người mới)
+
+    Toán tử       Mô tả
+    &	        AND bit
+    `	        `
+    ^	        XOR bit
+    ~	        NOT bit
+    <<	        Dịch trái
+    >>	        Dịch phải
+
+
+✅ 8. Toán tử instanceof
+Dùng để kiểm tra một đối tượng có thuộc kiểu class nào không.
+
+    if (obj instanceof String) {
+        System.out.println("Là chuỗi");
+    }
+
+
+✅ Tổng kết:
+    Nhóm toán tử	                   Công dụng
+    Số học	                    Tính toán (+, -, *, /, %)
+    Gán	                        Gán và tính nhanh (+=, -=...)
+    So sánh	                    So sánh điều kiện (==, !=, >...)
+    Logic	                    Kết hợp điều kiện (&&,
+    Tăng/Giảm	                Tự động tăng hoặc giảm biến
+    3 ngôi	                    If/else ngắn gọn
+    Bit                     	Xử lý ở mức bit (ít dùng)
+    instanceof	                Kiểm tra kiểu dữ liệu đối tượng
+
+
+
+
+    ////// NHẬP/ XUẤT TRONG JAVA
+ ✅ 1. Nhập xuất từ bàn phím (console)
+🔹 Nhập (input) bằng Scanner   
+
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in); // tạo đối tượng Scanner
+
+            System.out.print("Nhập tên của bạn: ");
+            String name = scanner.nextLine(); // đọc chuỗi
+
+            System.out.print("Nhập tuổi của bạn: ");
+            int age = scanner.nextInt(); // đọc số nguyên
+
+            System.out.println("Xin chào " + name + ", bạn " + age + " tuổi.");
+        }
+    }
+
+✅ Một số hàm trong Scanner:
+
+    Phương thức	                Công dụng
+    nextLine()	        Nhập cả dòng (chuỗi)
+    next()	                Nhập 1 từ (ngừng khi gặp khoảng trắng)
+    nextInt()	            Nhập số nguyên
+    nextDouble()	        Nhập số thực
+    hasNextInt()	    Kiểm tra xem còn dữ liệu để đọc không
+
+✅ 2. Xuất (output) ra màn hình
+
+    Dùng System.out.print() hoặc System.out.println()
+
+    System.out.print("Hello");      // không xuống dòng
+    System.out.println(" world!");  // có xuống dòng
+
+có thể dùng printf() để định dạng:
+
+    System.out.printf("Tuổi bạn là %d\n", 20);       // %d: số nguyên
+    System.out.printf("Điểm: %.2f", 9.2456);         // %f: số thực, .2 là 2 chữ số thập phân
+
+
+    VỚI CÁC ĐỊNH DẠNG KIỂU DỮ LIỆU
+    int - %d
+    float - %f
+    String - %s      vd thêm đấu - sẽ căn trái + sẽ căn phải. nếu thêm số ô chiếm thì thêm 10 nếu muốn chiếm 10 ô . vd %-10 // căn theo lề trái và 10 ký tự
+    char - %c
+    boolean - %b
+
+
+ ///   BÀI TOÁN ỨNG DỤNG TÍNH CHU VI VÀ DIỆN TÍCH VỚI INPUT NHẬP TỪ BÀN PHÍM ///
+
+ import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+    // nhập chiều dài và chiều  rộng từ bàn phím
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Nhập chiều dài hình chữ nhật");
+            // khai báo biến hứng input ng dùng nhập
+            double chieuDai =  sc.nextDouble();
+            System.out.println("Nhập chiều rộng hình chữ nhật");
+            double chieuRong =  sc.nextDouble();
+
+            //Tính diện tích
+            double dienTich = chieuDai * chieuRong;
+            //Tính chu vi
+            double chuVi = 2*(chieuDai+chieuRong);
+
+            //In ra màn hình
+            System.out.printf("chiều dài: %.2f và chiều Rộng : %.2f\n", chieuDai, chieuRong);
+            System.out.printf("Diện tích là : %.2f , Chu vi là : %.2f", dienTich, chuVi);
+
+
+        }
+    }
+
+
+
