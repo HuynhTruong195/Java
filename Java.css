@@ -497,7 +497,7 @@ có thể dùng printf() để định dạng:
     String - %s      vd thêm đấu - sẽ căn trái + sẽ căn phải. nếu thêm số ô chiếm thì thêm 10 nếu muốn chiếm 10 ô . vd %-10 // căn theo lề trái và 10 ký tự
     char - %c
     boolean - %b
-
+    double - %f
 
  ///   BÀI TOÁN ỨNG DỤNG TÍNH CHU VI VÀ DIỆN TÍCH VỚI INPUT NHẬP TỪ BÀN PHÍM ///
 
@@ -527,4 +527,144 @@ có thể dùng printf() để định dạng:
     }
 
 
+//// CÂU LỆNH ĐIỀU KHIỂN///
 
+✅1. Câu lệnh rẽ nhánh (if / else , switch / case)
+    if, else if, else
+    VD:
+        int age = 18;
+    if (age >= 18) {
+        System.out.println("Đủ tuổi.");
+    } else {
+        System.out.println("Chưa đủ tuổi.");
+    }
+
+    switch / case 
+    VD:
+    int day = 3;
+    switch (day) {
+        case 1:
+            System.out.println("Thứ Hai");
+            break;
+        case 2:
+            System.out.println("Thứ Ba");
+            break;
+        default:
+            System.out.println("Không biết ngày nào");
+    }
+
+✅2.  Câu lệnh lặp (for, while, do-while)
+
+    for: 
+        for (int i = 0; i < 5; i++) {
+        System.out.println("Lần " + i);
+    }
+
+    while: 
+        int i = 0;
+    while (i < 5) {
+        System.out.println("Lần " + i);
+        i++;
+    }
+
+    do-while:
+        int i = 0;
+    do {
+        System.out.println("Lần " + i);
+        i++;
+    } while (i < 5);
+
+    for-each: 
+
+     String [] fruits = {"apple","orange","banana"};
+        for(String fruit: fruits){
+            System.out.println(fruit);
+
+✅3. Câu lệnh nhảy (break, continue, return)
+
+    break – thoát khỏi vòng lặp hoặc switch
+
+        for (int i = 0; i < 10; i++) {
+        if (i == 5) break;
+        System.out.println(i);
+    }
+
+    continue – bỏ qua vòng lặp hiện tại
+
+        for (int i = 0; i < 5; i++) {
+        if (i == 2) continue;
+        System.out.println(i);
+    }
+
+    return – trả giá trị về từ phương thức
+
+        public int add(int a, int b) {
+        return a + b;
+    }
+
+    vd:
+    
+    public static void printArray() {
+        for (int i = 0; i <= 20; i++) {
+            if (i==15){
+                return;
+            }
+            System.out.printf("%d ",i);
+        }
+    }
+
+✅4. Try...Catch
+Trong JavaScript, try...catch là một cấu trúc dùng để bắt lỗi (error handling). Khi một đoạn mã trong try gặp lỗi, chương trình sẽ không bị dừng lại, mà sẽ chuyển sang catch để xử lý lỗi đó.
+
+🔹 Cấu trúc cơ bản:
+        try {
+        // Code có thể gây ra lỗi
+    } catch (ExceptionType e) {
+        // Code xử lý lỗi
+    }
+🔹 Ví dụ đơn giản:
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                int a = 10 / 0; // lỗi chia cho 0
+                System.out.println("Kết quả: " + a);
+            } catch (ArithmeticException e) {
+                System.out.println("Lỗi: " + e.getMessage());
+            }
+        }
+    }
+
+    Kết quả: Lỗi: / by zero
+
+🔹 Một số exception thường gặp trong Java:
+Exception                           	Mô tả
+ArithmeticException     	        Lỗi toán học, ví dụ chia cho 0
+NullPointerException	             Truy cập biến null
+ArrayIndexOutOfBoundsException	    Truy cập sai chỉ số mảng
+FileNotFoundException	            Không tìm thấy file
+IOException                     	Lỗi vào/ra
+NumberFormatException	            Lỗi khi chuyển chuỗi thành số
+
+
+BÀI TẬP 01-SS3
+LỖI SO SÁNH
+    System.out.println("Nhập giới tính (1: Nam, 0: Nữ");
+            String gender = sc.nextLine();
+            if (gender == "1") {
+                gender = "Nam";
+            } else {
+                gender = "Nữ";
+            }
+❌ Lỗi bạn đang gặp: Bạn đang gặp một lỗi rất phổ biến trong Java: so sánh chuỗi (String) bằng toán tử == thay vì dùng .equals().
+Toán tử == trong Java so sánh địa chỉ ô nhớ, không phải nội dung chuỗi. Do đó, mặc dù bạn nhập "1", nó không chắc giống "1" mà bạn viết trong code (vì khác địa chỉ ô nhớ), nên điều kiện bị sai → rơi vào else.
+✅ Cách sửa đúng:
+if (gender.equals("1")) {
+    gender = "Nam";
+} else {
+    gender = "Nữ";
+}
+
+📌 Mẹo ghi nhớ:
+Dùng == để so sánh kiểu nguyên thủy (int, boolean, char...)
+
+Dùng .equals() để so sánh chuỗi hoặc đối tượng
