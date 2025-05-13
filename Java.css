@@ -668,3 +668,11 @@ if (gender.equals("1")) {
 Dùng == để so sánh kiểu nguyên thủy (int, boolean, char...)
 
 Dùng .equals() để so sánh chuỗi hoặc đối tượng
+
+
+vd2: 
+String a = new String("Hello");
+String b = new String("Hello");
+
+System.out.println(a == b);      // ❌ false (khác vùng nhớ)
+System.out.println(a.equals(b)); // ✅ true  (giống nội dung)
