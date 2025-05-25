@@ -1,0 +1,2680 @@
+🧠 Java là gì?
+Java là một ngôn ngữ lập trình hướng đối tượng, đa nền tảng, mạnh mẽ và phổ biến toàn cầu.
+
+Được dùng để phát triển:
+✅ Ứng dụng web (Spring, JSP)
+✅ Phần mềm desktop (Swing, JavaFX)
+✅ Ứng dụng Android
+✅ Hệ thống backend doanh nghiệp
+
+🔹 1. Đặc điểm nổi bật của Java
+Đặc điểm	Giải thích đơn giản
+    Đa nền tảng	Viết một lần, chạy mọi nơi (Write once, run anywhere)
+    Hướng đối tượng	Mọi thứ đều là đối tượng → dễ tổ chức code
+    Bảo mật cao	Chạy trong máy ảo (JVM) → tránh lỗi hệ thống
+    Thư viện phong phú	Có sẵn rất nhiều thư viện (collections, IO, network...)
+    Đa luồng (multithreading)	Xử lý nhiều việc cùng lúc hiệu quả
+
+🔹 2. Cấu trúc chương trình Java cơ bản
+
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello, world!");
+        }
+    }
+
+Thành phần	Vai trò
+    class	Mỗi chương trình Java phải có ít nhất một class
+    main method	Điểm bắt đầu chương trình
+    System.out.println()	In ra màn hình
+
+🔹 3. Kiến thức nền tảng Java cần học
+
+✅ A. Biến và Kiểu dữ liệu
+
+    int age = 20;
+    String name = "Anna";
+    boolean isStudent = true;
+
+✅ B. Câu lệnh điều kiện
+
+    if (age > 18) {
+    System.out.println("Adult");
+    } else {
+    System.out.println("Teenager");
+    }
+
+✅ C. Vòng lặp
+
+    for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+    }
+
+✅ D. Mảng
+
+    int[] scores = {90, 85, 70};
+    System.out.println(scores[1]); // 85
+
+✅ E. Hàm (method)
+
+    public static int sum(int a, int b) {
+    return a + b;
+
+    }
+🔹 4. Hướng đối tượng (OOP) trong Java
+
+     tính chất quan trọng:
+
+Tính chất	            Giải thích
+Encapsulation	    Đóng gói dữ liệu và hành vi
+Inheritance	        Kế thừa từ class cha
+Polymorphism	    Đa hình: một hàm có nhiều cách dùng
+Abstraction	        Trừu tượng: ẩn chi tiết không cần thiết
+
+📌 Ví dụ đơn giản:
+
+    class Animal {
+        void speak() {
+            System.out.println("Animal speaks");
+        }
+    }
+
+    class Dog extends Animal {
+        void speak() {
+            System.out.println("Dog barks");
+        }
+    }
+
+
+    ////////////// JDK, JRE , JVM /////////////
+✅ 1. JVM – Java Virtual Machine (Máy ảo Java)
+➤ Là gì?
+    JVM là máy ảo giúp chạy chương trình Java.
+
+    🔹 Chức năng:
+    Chạy mã bytecode (.class) đã được biên dịch từ mã Java (.java).
+
+    Quản lý bộ nhớ, dọn rác (Garbage Collector).
+
+    Đảm bảo Java chạy giống nhau trên mọi hệ điều hành.
+
+🧠 Ví dụ:
+Khi bạn chạy chương trình Java:
+
+    java HelloWorld
+    → JVM là thành phần thực sự thực thi file HelloWorld.class.
+
+✅ 2. JRE – Java Runtime Environment
+➤ Là gì?
+    JRE là môi trường chạy Java — gồm:
+
+    JVM
+
+    Thư viện Java chuẩn (API: java.util, java.io, v.v.)
+
+    🔹 Chức năng:
+    Cho phép chạy các chương trình Java đã biên dịch.
+
+    Không chứa trình biên dịch — chỉ để chạy, không để viết/mã hóa.
+
+📦 Gồm những gì?
+    JVM ✅
+
+    Core Libraries ✅
+
+    File cấu hình runtime ✅
+
+🧠 Khi nào dùng?
+    Nếu bạn chỉ muốn chạy ứng dụng Java (người dùng cuối), thì JRE là đủ.
+
+✅ 3. JDK – Java Development Kit
+➤ Là gì?
+    JDK là bộ công cụ phát triển Java.
+
+    🔹 Chức năng:
+    Dùng để viết, biên dịch và chạy chương trình Java.
+
+📦 Gồm những gì?
+Thành phần              	Vai trò
+JVM	                     Để chạy chương trình
+JRE                    	Để hỗ trợ runtime
+javac	                Trình biên dịch .java → .class
+javadoc, jar, jdb...	Các công cụ phát triển khác
+
+🧱 Minh họa thực tế:
+    Giả sử bạn có chương trình HelloWorld.java:
+
+    public class HelloWorld {
+        public static void main(String[] args) {
+            System.out.println("Hello Java!");
+        }
+    }
+    ✅ Khi bạn:
+    javac HelloWorld.java  // Biên dịch (JDK)
+    java HelloWorld        // Chạy (JRE → JVM)
+
+📌 Kết luận:
+🛠 JDK: Dành cho lập trình viên – để viết và chạy code
+
+⚙ JRE: Dành cho người dùng – để chạy chương trình Java
+
+💻 JVM: Máy ảo – nơi chương trình Java thực sự chạy
+
+
+/////////////////// BIẾN VÀ DỮ LIỆU ////////////////
+
+✅ 1. Biến là gì?
+Biến (Variable) là vùng nhớ dùng để lưu trữ giá trị mà chương trình có thể thay đổi trong quá trình thực thi.
+
+🔹 Cú pháp khai báo biến:
+
+    kiểu_dữ_liệu tên_biến = giá_trị;
+🔹 Ví dụ:
+
+    int age = 25;
+    String name = "John";
+    boolean isStudent = true;
+
+✅ 2. Các loại biến trong Java
+Loại biến	                Phạm vi sử dụng	                              Đặc điểm
+Biến cục bộ	        Trong phương thức, vòng lặp...	                Phải gán giá trị trước khi dùng
+Biến instance        Khai báo trong class, ngoài method	             Gắn với từng đối tượng
+Biến static           Khai báo trong class với từ khóa static	    Thuộc về class, không thuộc riêng đối tượng nào
+
+✅ 3. Kiểu dữ liệu trong Java
+Java có 2 nhóm chính:
+
+🟢 A. Kiểu dữ liệu nguyên thủy (Primitive)
+    Kiểu	    Kích thước	    Giá trị đại diện
+    int	        4 byte	        Số nguyên (1, 2, 100)
+    float	    4 byte	    Số thực (3.14f)
+    double	    8 byte	    Số thực chính xác cao -2^63 -> 2^63-1
+    char	    2 byte	    Ký tự đơn ('a', 'A')
+    boolean	    1 bit   	true / false
+    byte	    1 byte	    Số nhỏ (-128 đến 127)
+    short	    2 byte  	Số nguyên nhỏ
+    long	    8 byte	    Số nguyên lớn
+
+📌 Ví dụ:
+
+    int age = 20;
+    double price = 99.5;
+    char grade = 'A';
+    boolean passed = true;
+
+🔵 B. Kiểu tham chiếu (Reference)
+Là kiểu dữ liệu đại diện cho đối tượng hoặc mảng:
+
+    Kiểu dữ liệu	Mô tả
+    String	Chuỗi ký tự ("Hello")
+    Array	Mảng các phần tử
+    Class, Object	Đối tượng
+
+📌 Ví dụ:
+
+    String name = "Alice";
+    int[] numbers = {1, 2, 3, 4};
+
+✅ 4. Ép kiểu dữ liệu
+
+   🔸 Ép kiểu tự động (implicit), kiểu ngầm định
+   
+ ép kiểu dữ liệu kích thước Lớn sang dữ liệu kích thước nhỏ hơn.
+ vd :
+    short sh = 100;
+    int i = 10000;
+    int intValue = sh; KHÔNG GÂY RA LỖI DO TỪ LỚN VỀ NHỎ HỢP LỆ
+vd2:
+   int x = 10;
+    double y = x; 
+     Tự động ép kiểu int sang double //: 10.0
+
+   
+     🔸 Ép kiểu tường minh (explicit):
+ ép kiểu dữ liệu nhỏ sang dữ liệu kích thước  lớn hơn. gây lỗi, tràn dữ liệu
+ vd: 
+ short shortValue = (short) i;
+
+ vd2:
+     double d = 9.8;
+    int i = (int) d; 
+     Tự động ép kiểu double sang int // Kết quả: 9
+ 
+✅ 5. Quy tắc đặt tên biến
+    Bắt đầu bằng chữ cái, _ (gạch dưới), hoặc ký tự $
+
+    Không bắt đầu bằng số
+
+    Dùng camelCase: studentName, totalScore
+
+    Không được trùng với từ khóa (int, class, return,...)
+
+✅ Tổng kết nhanh:
+
+    Thành phần              	Mô tả
+    Biến	                Dùng để lưu trữ dữ liệu
+    Kiểu dữ liệu             Quy định dạng giá trị biến có thể nhận
+    Kiểu nguyên thủy    	int, float, boolean, char...
+    Kiểu tham chiếu	            String, Array, Class, ObjecT
+
+
+
+    ///////////QUẢN LÝ BỘ NHỚ TRONG JAVA /////////////
+
+✅ 1. Bộ nhớ trong Java được chia làm 2 vùng chính:
+🔹 A. Stack Memory (Bộ nhớ ngăn xếp)
+    Chứa biến cục bộ, lời gọi hàm (method).
+
+    Mỗi lần gọi một method → một frame được đẩy vào Stack.
+
+    Sau khi method chạy xong → frame đó bị xóa khỏi Stack.
+
+    Nhanh và tự động giải phóng.
+
+📌 Ví dụ:
+
+    public void sum() {
+    int a = 5;  // nằm trong Stack
+    }
+
+🔹 B. Heap Memory (Bộ nhớ vùng nhớ động)
+    Chứa đối tượng và biến instance (non-static).
+
+    Được cấp phát bằng từ khóa new.
+
+    Phân phối chậm hơn Stack, nhưng linh hoạt hơn.
+
+    Được quản lý bởi Garbage Collector.
+
+📌 Ví dụ:
+
+    Student s = new Student();  // Đối tượng Student nằm trong Heap
+
+
+
+ 🔹 NGOÀI RA CÒN CÓ Code Segment và Data Segment
+    Code Segment:
+
+Đinh nghĩa:
+
+    Code Segment là nơi lưu trữ mã lệnh của chương trình, hay còn gọi là tập hợp các câu lệnh mà CPU thực thi.
+
+Trong Java:
+
+    Code Segment tương ứng với Method Area trong JVM (Java Virtual Machine).
+    Chức năng:
+    Lưu thông tin về các class đã được tải (metadata).
+    Lưu trữ mã bytecode của các phương thức.
+    Chứa constant pool (bảng hằng số, ví dụ các chuỗi String không thay đổi).
+    Ví dụ: Khi bạn khai báo final int counter = 0;, biến counter được lưu trong vùng Method Area.
+    
+Data Segment:
+    Định nghĩa:
+
+    Data Segment chứa các biến toàn cục và các biến tĩnh (static), được cấp phát khi chương trình chạy và tồn tại suốt vòng đời của chương trình.
+ Trong Java:
+
+    Biến tĩnh (static) và hằng số (final static) được lưu trong Method Area.
+    Constant pool của mỗi lớp chứa các giá trị hằng được sử dụng trong chương trình, ví dụ chuỗi "Hello" hoặc số 3.14.
+
+
+✅ 2. Bộ nhớ Method Area & MetaSpace (Java 8+)
+
+    Method Area (trước Java 8): chứa thông tin về class (biến static, method, constructor, v.v.)
+
+    MetaSpace (từ Java 8): thay thế Method Area, nằm ngoài Heap, giúp quản lý class tốt hơn và mở rộng theo hệ điều hành.
+
+
+✅ 3. Garbage Collector (GC) – Bộ gom rác
+    Là cơ chế tự động xóa đối tượng không còn sử dụng trong Heap để tránh rò rỉ bộ nhớ.
+
+    Không cần tự free() như trong C/C++.
+
+    GC sẽ chạy khi:
+
+    Bộ nhớ gần đầy
+
+    Hệ thống rảnh
+
+    Lập trình viên gọi System.gc() (chỉ là gợi ý, không bắt buộc JVM thực hiện)
+
+📌 GC sẽ thu gom đối tượng nào?
+
+Đối tượng không còn tham chiếu từ bất kỳ biến nào nữa.
+
+🔸 Ví dụ:
+
+    Student s1 = new Student();  // s1 tham chiếu đối tượng Student
+    s1 = null;  // không còn tham chiếu → GC sẽ xóa
+
+
+✅ 4. Cách sử dụng bộ nhớ hiệu quả
+    Cách làm	                                        Mục đích
+    Dùng biến cục bộ thay vì toàn cục	        Giải phóng nhanh hơn (Stack vs Heap)
+    Tránh giữ tham chiếu không cần thiết	        Giúp GC dọn rác đúng lúc
+    Đóng file, stream sau khi dùng	            Giải phóng tài nguyên hệ thống
+    Dùng try-with-resources	                Tự động đóng stream, connection, etc.
+
+✅ Tổng kết:
+    Vùng nhớ	        Dùng để lưu gì?	                     Giải phóng như thế nào?
+    Stack       	Biến cục bộ, lời gọi hàm	             Tự động khi hàm kết thúc
+    Heap	        Đối tượng, biến instance (new)	          Bởi Garbage Collector (GC)
+    MetaSpace   	Thông tin về class, static fields	        Tự quản lý, mở rộng theo OS
+
+
+
+///////////// CÁC TOÁN TỬ TRONG JAVA ///////////
+
+✅ 1. Toán tử số học (Arithmetic Operators)
+
+    Toán tử     	Ý nghĩa	        Ví dụ (a = 10, b = 3)	    Kết quả
+    +	            Cộng	            a + b	                    13
+    -	            Trừ	                a - b	                    7
+    *	            Nhân	            a * b	                    30
+    /	            Chia	            a / b	                     3
+    %	        Chia lấy dư         	a % b	                     1
+
+✅ 2. Toán tử gán (Assignment Operators)
+
+    Toán tử	        Ý nghĩa	        Ví dụ	        Tương đương với
+    =	            Gán	            a = 5	        Gán giá trị
+    +=	        Cộng rồi gán	    a += 2	        a = a + 2
+    -=	        Trừ rồi gán     	a -= 2	        a = a - 2
+    *=      	Nhân rồi gán	    a *= 3          a = a * 3
+    /=	        Chia rồi gán	    a /= 2	        a = a / 2
+    %=	        Lấy dư rồi gán	    a %= 2      	a = a % 2
+
+✅ 3. Toán tử so sánh (Relational Operators)
+    Toán tử	        Ý nghĩa	        Ví dụ	        Kết quả
+    ==	            So sánh bằng	a == b	        false
+    !=                Khác nhau	    a != b	        true
+    >	                Lớn hơn	     a > b	        true
+    <	                Nhỏ hơn	    a < b	        false
+    >=	         Lớn hơn hoặc bằng	  a >= b	    true
+    <=	          Nhỏ hơn hoặc bằng	   a <= b	    false
+
+✅ 4. Toán tử logic (Logical Operators)
+
+    Toán tử	        Ý nghĩa	        Ví dụ   	    Kết quả
+    &&          	AND – Và	(a > 5 && b < 5)	true
+    ||		                            ||	        OR – Hoặc
+    !	          NOT – Phủ định	!(a > b)	    false
+
+
+✅ 5. Toán tử tăng/giảm (Increment/Decrement)
+
+    Toán tử	      Ý nghĩa	        Ví dụ       	Kết quả
+    ++a	          Tăng trước	      ++a	        11
+    a++	            Tăng sau	        a++	        10 (rồi thành 11)
+    --a	            Giảm trước	        --a	         9
+    a--	            Giảm sau	        a--	        10 (rồi thành 9)
+
+✅ 6. Toán tử điều kiện 3 ngôi (Ternary Operator)
+
+    String result = (a > b) ? "a Lớn hơn b" : "a Không lớn hơn b";
+    Nếu điều kiện đúng → lấy giá trị trước :
+
+    Nếu sai → lấy giá trị sau :
+
+✅ 7. Toán tử bit (ít dùng cho người mới)
+
+    Toán tử       Mô tả
+    &	        AND bit
+    `	        `
+    ^	        XOR bit
+    ~	        NOT bit
+    <<	        Dịch trái
+    >>	        Dịch phải
+
+
+✅ 8. Toán tử instanceof
+Dùng để kiểm tra một đối tượng có thuộc kiểu class nào không.
+
+    if (obj instanceof String) {
+        System.out.println("Là chuỗi");
+    }
+
+
+✅ Tổng kết:
+    Nhóm toán tử	                   Công dụng
+    Số học	                    Tính toán (+, -, *, /, %)
+    Gán	                        Gán và tính nhanh (+=, -=...)
+    So sánh	                    So sánh điều kiện (==, !=, >...)
+    Logic	                    Kết hợp điều kiện (&&,
+    Tăng/Giảm	                Tự động tăng hoặc giảm biến
+    3 ngôi	                    If/else ngắn gọn
+    Bit                     	Xử lý ở mức bit (ít dùng)
+    instanceof	                Kiểm tra kiểu dữ liệu đối tượng
+
+
+
+
+    ////// NHẬP/ XUẤT TRONG JAVA
+ ✅ 1. Nhập xuất từ bàn phím (console)
+🔹 Nhập (input) bằng Scanner   
+
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in); // tạo đối tượng Scanner
+
+            System.out.print("Nhập tên của bạn: ");
+            String name = scanner.nextLine(); // đọc chuỗi
+
+            System.out.print("Nhập tuổi của bạn: ");
+            int age = scanner.nextInt(); // đọc số nguyên
+
+            System.out.println("Xin chào " + name + ", bạn " + age + " tuổi.");
+        }
+    }
+
+✅ Một số hàm trong Scanner:
+
+    Phương thức	                Công dụng
+    nextLine()	        Nhập cả dòng (chuỗi)
+    next()	                Nhập 1 từ (ngừng khi gặp khoảng trắng)
+    nextInt()	            Nhập số nguyên
+    nextDouble()	        Nhập số thực
+    hasNextInt()	    Kiểm tra xem còn dữ liệu để đọc không
+
+✅ 2. Xuất (output) ra màn hình
+
+    Dùng System.out.print() hoặc System.out.println()
+
+    System.out.print("Hello");      // không xuống dòng
+    System.out.println(" world!");  // có xuống dòng
+
+có thể dùng printf() để định dạng:
+
+    System.out.printf("Tuổi bạn là %d\n", 20);       // %d: số nguyên
+    System.out.printf("Điểm: %.2f", 9.2456);         // %f: số thực, .2 là 2 chữ số thập phân
+
+
+    VỚI CÁC ĐỊNH DẠNG KIỂU DỮ LIỆU
+    int - %d
+    float - %f
+    String - %s      vd thêm đấu - sẽ căn trái + sẽ căn phải. nếu thêm số ô chiếm thì thêm 10 nếu muốn chiếm 10 ô . vd %-10 // căn theo lề trái và 10 ký tự
+    char - %c
+    boolean - %b
+    double - %f
+
+ ///   BÀI TOÁN ỨNG DỤNG TÍNH CHU VI VÀ DIỆN TÍCH VỚI INPUT NHẬP TỪ BÀN PHÍM ///
+
+ import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+    // nhập chiều dài và chiều  rộng từ bàn phím
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Nhập chiều dài hình chữ nhật");
+            // khai báo biến hứng input ng dùng nhập
+            double chieuDai =  sc.nextDouble();
+            System.out.println("Nhập chiều rộng hình chữ nhật");
+            double chieuRong =  sc.nextDouble();
+
+            //Tính diện tích
+            double dienTich = chieuDai * chieuRong;
+            //Tính chu vi
+            double chuVi = 2*(chieuDai+chieuRong);
+
+            //In ra màn hình
+            System.out.printf("chiều dài: %.2f và chiều Rộng : %.2f\n", chieuDai, chieuRong);
+            System.out.printf("Diện tích là : %.2f , Chu vi là : %.2f", dienTich, chuVi);
+
+
+        }
+    }
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+//// CÂU LỆNH ĐIỀU KHIỂN///
+
+✅1. Câu lệnh rẽ nhánh (if / else , switch / case)
+    if, else if, else
+    VD:
+        int age = 18;
+    if (age >= 18) {
+        System.out.println("Đủ tuổi.");
+    } else {
+        System.out.println("Chưa đủ tuổi.");
+    }
+
+    switch / case 
+    VD:
+    int day = 3;
+    switch (day) {
+        case 1:
+            System.out.println("Thứ Hai");
+            break;
+        case 2:
+            System.out.println("Thứ Ba");
+            break;
+        default:
+            System.out.println("Không biết ngày nào");
+    }
+
+✅2.  Câu lệnh lặp (for, while, do-while)
+
+    for: 
+        for (int i = 0; i < 5; i++) {
+        System.out.println("Lần " + i);
+    }
+
+    while: 
+        int i = 0;
+    while (i < 5) {
+        System.out.println("Lần " + i);
+        i++;
+    }
+
+    do-while:
+        int i = 0;
+    do {
+        System.out.println("Lần " + i);
+        i++;
+    } while (i < 5);
+
+    for-each: 
+
+     String [] fruits = {"apple","orange","banana"};
+        for(String fruit: fruits){
+            System.out.println(fruit);
+
+✅3. Câu lệnh nhảy (break, continue, return)
+
+    break – thoát khỏi vòng lặp hoặc switch
+
+        for (int i = 0; i < 10; i++) {
+        if (i == 5) break;
+        System.out.println(i);
+    }
+
+    continue – bỏ qua vòng lặp hiện tại
+
+        for (int i = 0; i < 5; i++) {
+        if (i == 2) continue;
+        System.out.println(i);
+    }
+
+    return – trả giá trị về từ phương thức
+
+        public int add(int a, int b) {
+        return a + b;
+    }
+
+    vd:
+    
+    public static void printArray() {
+        for (int i = 0; i <= 20; i++) {
+            if (i==15){
+                return;
+            }
+            System.out.printf("%d ",i);
+        }
+    }
+
+✅4. Try...Catch
+Trong JavaScript, try...catch là một cấu trúc dùng để bắt lỗi (error handling). Khi một đoạn mã trong try gặp lỗi, chương trình sẽ không bị dừng lại, mà sẽ chuyển sang catch để xử lý lỗi đó.
+
+🔹 Cấu trúc cơ bản:
+        try {
+        // Code có thể gây ra lỗi
+    } catch (ExceptionType e) {
+        // Code xử lý lỗi
+    }
+🔹 Ví dụ đơn giản:
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                int a = 10 / 0; // lỗi chia cho 0
+                System.out.println("Kết quả: " + a);
+            } catch (ArithmeticException e) {
+                System.out.println("Lỗi: " + e.getMessage());
+            }
+        }
+    }
+
+    Kết quả: Lỗi: / by zero
+
+🔹 Một số exception thường gặp trong Java:
+Exception                           	Mô tả
+ArithmeticException     	        Lỗi toán học, ví dụ chia cho 0
+NullPointerException	             Truy cập biến null
+ArrayIndexOutOfBoundsException	    Truy cập sai chỉ số mảng
+FileNotFoundException	            Không tìm thấy file
+IOException                     	Lỗi vào/ra
+NumberFormatException	            Lỗi khi chuyển chuỗi thành số
+
+
+BÀI TẬP 01-SS3
+LỖI SO SÁNH
+    System.out.println("Nhập giới tính (1: Nam, 0: Nữ");
+            String gender = sc.nextLine();
+            if (gender == "1") {
+                gender = "Nam";
+            } else {
+                gender = "Nữ";
+            }
+❌ Lỗi bạn đang gặp: Bạn đang gặp một lỗi rất phổ biến trong Java: so sánh chuỗi (String) bằng toán tử == thay vì dùng .equals().
+Toán tử == trong Java so sánh địa chỉ ô nhớ, không phải nội dung chuỗi. Do đó, mặc dù bạn nhập "1", nó không chắc giống "1" mà bạn viết trong code (vì khác địa chỉ ô nhớ), nên điều kiện bị sai → rơi vào else.
+✅ Cách sửa đúng:
+if (gender.equals("1")) {
+    gender = "Nam";
+} else {
+    gender = "Nữ";
+}
+
+📌 Mẹo ghi nhớ:
+Dùng == để so sánh kiểu nguyên thủy (int, boolean, char...)
+
+Dùng .equals() để so sánh chuỗi hoặc đối tượng
+
+vd2: 
+String a = new String("Hello");
+String b = new String("Hello");
+
+System.out.println(a == b);      // ❌ false (khác vùng nhớ)
+System.out.println(a.equals(b)); // ✅ true  (giống nội dung)
+
+
+CÁCH IN ĐỊNH DẠNG TIỀN VD 50,000
+
+System.out.printf("Đơn giá: %,10.2f ",price);
+dấu , là cứ 3 số thì dùng ,
+số 10 là 10 ký tự
+.2 là sau dấu . thì lấy thêm 2 số vd 10.00
+
+in ra ký tự % trong prinf thì dùng 2 lần %% vd 10%%
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+//////////// MẢNG Array ///////////////
+
+🔷 KHÁI QUÁT CHUNG VỀ MẢNG TRONG JAVA
+1. Mảng (Array) là gì?
+
+Mảng là một tập hợp các phần tử có cùng kiểu dữ liệu (int, String, boolean, v.v.), được lưu trữ liên tục trong bộ nhớ.
+
+Mỗi phần tử trong mảng được truy cập thông qua chỉ số (index), bắt đầu từ 0.
+
+2. Cách khai báo mảng trong Java
+
+Java hỗ trợ 3 cách khai báo mảng:
+
+    ✅ Cách 1: Khai báo không gán giá trị
+
+    int [] numbers;
+    String [] names;
+
+    ✅ Cách 2: Khai báo mảng, khởi tạo kích thước:
+    int [] numbers = new int[5];  mảng kiểu int có 5 phần tử
+    String [] names = new String[3]; mảg kiểu string có 3 phần tử
+
+ Khởi tạo mảng 1 chiều hoặc 2 chiều:
+    int[] numbers = new int[5]; // mảng 1 chiều
+    int[][] matrix = new int[3][3]; // mảng 2 chiều
+Khởi tạo thông qua vòng lặp: có thể dùng vòng lặp khi chưa biết giá trị của các phần tử
+
+int [] numbers = new int[5];
+for (int i = 0; i < numbers.length; i++) {
+    numbers[i]= i + 1;  gán giá trị cho từng phần tử trong mảng
+}
+
+
+3. Cách truy cập phần tử của mảng qua chỉ số (index):
+
+int [] numbers = new int[5];
+numbers[0] = 5; gán giá trị 5 cho phần tử đầu tiên của mảng numbers
+numbers[2] = 10; gán giá trị 10 cho phần tử có index 3 của mảng 
+
+4. 🔁 Duyệt mảng bằng vòng lặp for và for-each
+
+    for (int i = 0; i < numbers.length; i++) {
+        System.out.println(numbers[i]);
+    }
+
+    // for-each
+    for (int num : numbers) {
+        System.out.println(num);
+    }
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+ 🆗🆗🆗🆗🆗  SỰ KHÁC BIỆT DỄ HIỂU CỦA FOR VÀ FOR.EACH
+
+    NẾU CẦN THAO TÁC VỚI VỊ TRÍ INDEX THÌ DÙNG VÒNG LẶP FOR, VÌ NÓ LẤY ĐC VỊ TRÍ THỨ I . CÒN CHỈ CẦN DUYỆT QUA DANH SÁCH MẢNG ĐỂ IN RA THÌ DÙNG FOREACH
+
+  🆗🆗🆗🆗🆗
+
+
+5. Các điểm lưu ý:
+
+  + Kích thước cố định: 
+    kíck thước của mảng không thể thay đổi khi đc tạo ra. dùng Arraylist nếu muốn thay đổi kích thước, hoặc tạo 1 mảng ảo có kích thước lớn hơn r gán lại cho mảng cũ
+
+    Vd:
+     🆗🆗   THÊM PHẦN TỬ VÀO MẢNG
+         // Mảng ban đầu
+        int[] oldArray = {1, 2, 3};
+
+        // Tạo mảng mới lớn hơn 1 đơn vị
+        int[] newArray = new int[oldArray.length + 1];
+
+        // Sao chép dữ liệu từ mảng cũ sang mảng mới
+        for (int i = 0; i < oldArray.length; i++) {
+            newArray[i] = oldArray[i];
+        }
+
+        // Gán phần tử mới vào cuối mảng
+        newArray[newArray.length - 1] = 99;
+
+        // In mảng mới
+        for (int num : newArray) {
+            System.out.print(num + " ");
+
+
+    + giá trị mặc định khi khởi tạo nhưng không gán giá trị:
+            - int : 0
+            - String: null
+            - object: null
+            - boolean: false
+            - double: 0.0
+
+    🆗🆗 THÊM PHẦN TỬ VÀO VỊ TRÍ BẤT KÌ:
+    int [] oldArr = {1,2,3};
+    int newElement = 99;
+    int position = 1; // vị trí muốn thêm vào
+
+    int [] newArr = new int[oldArr.length + 1];
+    for (int i = 0; i < position; i++){
+     //✅ Sao chép phần tử từ oldArr sang newArr trước vị trí chèn
+        newArr[i] = oldArr[i];
+    }
+    newArr[position] = newElement;
+
+    // ✅ Chép các phần tử còn lại sau vị trí vừa chèn
+    for(int i = position; i < oldArr.length -1; i++){
+        newArr[i+1]  = oldArr[i];  // Dịch sang phải 1 vị trí trong newArr để tráh bị ghi đề giá trị khi thêm
+    }
+    
+
+    🆗🆗 XÓA PHẦN TỬ Ở VỊ TRÍ BẤT KÌ:
+
+    int [] oldArr = {1,2,3};
+    int deleteIndex = 2;
+
+    int [] newArr = new Int[oldArr.length -1]; //vì xóa sẽ giảm đi 1 phần tử
+    for ( int = 0, j = 0; i < oldArr.length, i++){
+        if (i != deleteIndex){
+            newArr[j++] = oldArr[i];
+        }
+    }
+
+🔴🔴🔴CÁCH TỐI ƯU NHẤT LÀ DÙNG ARRAYLIST🔴🔴🔴
+
+  🧩 Ví dụ: Thêm và Xóa phần tử với ArrayList  
+
+import java.util.ArrayList;
+    // Khởi tạo ArrayList và thêm dữ liệu ban đầu
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+
+        System.out.println("Ban đầu: " + numbers);  // [1, 2, 3]
+
+        // 🟢 Thêm phần tử vào vị trí bất kỳ
+        numbers.add(1, 99); // Thêm 99 vào vị trí index = 1
+        System.out.println("Sau khi thêm 99 vào vị trí 1: " + numbers); // [1, 99, 2, 3]
+
+        // 🔴 Xóa phần tử tại vị trí bất kỳ
+        numbers.remove(2); // Xóa phần tử tại index = 2 (là số 2)
+        System.out.println("Sau khi xóa phần tử ở vị trí 2: " + numbers); // [1, 99, 3]
+
+        // ✅ Xóa phần tử theo giá trị
+        numbers.remove(Integer.valueOf(99)); // Xóa phần tử có giá trị 99
+        System.out.println("Sau khi xóa giá trị 99: " + numbers); // [1, 3]
+
+  
+  🎯 Ghi nhớ cú pháp ArrayList hữu ích:
+    Mục đích	                         Câu lệnh
+
+    Thêm vào cuối	                list.add(element)
+    Thêm vào vị trí bất kỳ	        list.add(index, element)
+    Xóa theo vị trí             	list.remove(index)
+    Xóa theo giá trị	        list.remove(Integer.valueOf(giá_trị))
+    Lấy phần tử	                    list.get(index)
+    Thay đổi phần tử	            list.set(index, newValue)
+
+
+
+6. 🧱 Tư duy giải thuật (algorithmic thinking)
+
+    Đặt câu hỏi:
+
+    Đầu vào là gì?
+
+    Mục tiêu (đầu ra) là gì?
+
+    Cần duyệt qua bao nhiêu lần?
+
+    Cần lưu trạng thái gì (biến đếm, tổng, max...)?
+
+7. 🧰 Sử dụng Arrays trong Java (thư viện hỗ trợ):
+
+import java.util.Arrays; 
+
+int[] arr = {5, 3, 8, 1};
+Arrays.sort(arr); // sắp xếp tăng dần
+System.out.println(Arrays.toString(arr));  //1,3,5,8
+
+note: khi KHÔNG chuyển sang string để in ra thì giá trị in ra chỉ là chuỗi hascode của object arr
+    System.out.println(arr); // [I@1a2b3c4  
+    [I nghĩa là "mảng các số nguyên (int[])".
+    @1a2b3c4 là hashcode của object arr trong bộ nhớ 
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+=======CÁC THUẬT TOÁN THƯỜNG GẶP TRONG MẢNG ========
+
+✅1. TÌM SỐ LỚN NHẤT
+int[] numbers = {4,2,5,1,6,3}; 
+ int max = numnbers[0]; lấy vị trí đầu tiên để so sánh luôn
+ for (int i = 1; i < numbers.length; i++){
+    if(numbers[i] > max){
+        max = numbers[i];
+    }
+ }
+
+
+✅🔹 2. Tính tổng các phần tử trong mảng
+
+ int[] ar = {1, 2, 3, 4, 5}; // Khai báo mảng số nguyên
+        int sum = 0; // Biến lưu tổng
+
+        for (int i = 0; i < ar.length; i++) {
+            sum += ar[i]; // Cộng từng phần tử vào tổng
+        }
+
+✅🔹 3. Tìm số lượng số chẵn trong mảng
+    int[] ar = {1, 4, 7, 10, 15}; // Mảng đầu vào
+        int count = 0; // Đếm số chẵn
+
+        for (int i = 0; i < ar.length; i++) {
+            if (ar[i] % 2 == 0) {
+                count++; // Nếu chia hết cho 2 thì là số chẵn
+            }
+        }   
+
+✅🔹 4. Đảo ngược mảng (reverse array)
+
+     int[] ar = {1, 2, 3, 4, 5}; // Mảng ban đầu
+        int n = ar.length;
+
+        // Đảo mảng bằng cách đổi chỗ phần tử đầu và cuối
+        for (int i = 0; i < n / 2; i++) {
+            int temp = ar[i];                 // Lưu tạm phần tử ở vị trí i vào biến temp
+            ar[i] = ar[n - 1 - i];            // Gán phần tử từ cuối mảng (vị trí n-1-i) vào vị trí i
+            ar[n - 1 - i] = temp;             // Gán lại phần tử temp (ban đầu ở vị trí i) vào vị trí cuối
+
+            Không chỉ dùng n - 1, vì i sẽ tăng sau mỗi vòng → ta cần lùi dần vị trí từ cuối về đầu → đó là lý do cần - i.
+
+
+
+            🌀 Vòng 1: i = 0
+        temp = ar[0] = 1
+
+        ar[0] = ar[5 - 1 - 0] = ar[4] = 5
+
+        ar[4] = temp = 1
+        👉 Mảng thành: {5, 2, 3, 4, 1}
+
+        🌀 Vòng 2: i = 1
+        temp = ar[1] = 2
+
+        ar[1] = ar[5 - 1 - 1] = ar[3] = 4
+
+        ar[3] = temp = 2
+        👉 Mảng thành: {5, 4, 3, 2, 1}
+
+
+        }
+
+        // In mảng sau khi đảo
+        for (int num : ar) {
+            System.out.print(num + " ");
+        }
+
+
+✅🔹 5. Tìm kiếm tuyến tính (Linear Search)
+        Duyệt qua từng phần tử từ đầu đến cuối
+        Dễ viết, nhưng chậm với mảng lớn
+
+          int[] ar = {10, 20, 30, 40, 50};
+        int key = 30; // Giá trị cần tìm
+
+        for (int i = 0; i < ar.length; i++){
+            if (ar[i] == key){
+            System.out.print("Tìm thấy key tại vị trí" + i);
+            break;
+            } else {
+            System.out.print("Không tìm thấy giá trị");
+            }
+        }
+
+
+    📌📌📌THUẬT TOÁN TÌM KIẾM TUYẾN TÍNH📌📌📌
+
+        int [] numbers = {1,2,3,4,5,6,7,8,9,10};
+        //tìm số 10. khi đó sẽ trả về vị trí, tạo biến index để lưu vị trí đó
+      int index =  linearSearch(numbers,5); //gọi hàm tìm kiếm
+        System.out.println("Vị trí index: "+index);
+    }
+    //THUẬT TOOÁN TÌM KIẾM TUYẾN TÍNH
+    public static int linearSearch (int[] arr, int searchValue){
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == searchValue){
+                //trả về vị trí tìm được
+                return i;
+            }
+        }
+        //kết thúc mà không có giá trị trả về
+        return -1;
+
+
+
+👉 Tìm kiếm nhị phân (Binary Search):
+
+         Yêu cầu mảng đã sắp xếp
+        So sánh với phần tử ở giữa → chia đôi vùng tìm → tiếp tục
+        Rất nhanh (độ phức tạp O(log n))
+
+   
+  📌📌📌THUẬT TOÁN TÌM KIẾM NHỊ PHÂN binary 📌📌📌
+
+     int [] numbers = {1,2,3,4,5,6,7,8,9,10}; YÊU CẦU MẢNG ĐÃ ĐC SẮP XẾP
+
+    int index=  binarySearch(numbers, 4); //GỌI HÀM ĐỂ TÌM VÀ TẠO BIẾN INDEX LƯU GIÁ TRỊ TÌM ĐC
+        System.out.println("index: " + index);
+    }
+
+    public static int binarySearch(int[] arr,int searchValue){
+        int left = 0;
+        int right = arr.length-1;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if(arr[mid]==searchValue){
+                return mid;
+            }else if(arr[mid]>searchValue){
+                right = mid-1; //cập nhật lại biến right 
+            }else{
+                left = mid+1;
+            }
+        }
+        return -1;
+
+🧠 Giải thích đơn giản lại:
+    while (left <= right) {
+        int mid = (left + right) / 2;
+    Bạn lấy phần tử giữa mảng (mid).
+
+    So sánh arr[mid] với searchValue (giá trị cần tìm):
+
+    ✅ Trường hợp 1: arr[mid] == searchValue
+    👉 Đã tìm thấy → return mid.
+
+    ✅ Trường hợp 2: arr[mid] > searchValue
+    👉 Giá trị cần tìm nhỏ hơn, nên nó phải nằm bên trái.
+    👉 Cập nhật right = mid - 1 để thu hẹp về bên trái.
+
+    ✅ Trường hợp 3: arr[mid] < searchValue
+    👉 Giá trị cần tìm lớn hơn, nên nó phải nằm bên phải.
+    👉 Cập nhật left = mid + 1 để thu hẹp về bên phải.
+
+    ✅ Kết luận:
+    Điều kiện while (left <= right) đảm bảo vòng lặp tiếp tục khi còn phạm vi để tìm.
+
+    Cách cập nhật left và right giúp ta chia đôi mảng mỗi lần, tìm kiếm cực nhanh.
+
+
+
+🧠🧠🧠🧠🧠Tóm gọn cho 2 phương thức tìm kiếm binary và linear
+
+  👉  Tìm tất cả các giá trị giống nhau → dùng Linear Search (tuyến tính).
+
+  👉  Tìm một giá trị đầu tiên tìm thấy (trong mảng đã sắp xếp) → dùng Binary Search (nhị phân, chia để trị, nhanh hơn).
+
+📝 Ghi nhớ thêm:
+
+    Linear Search: đơn giản, không cần mảng sắp xếp.
+
+    Binary Search: nhanh, nhưng phải sắp xếp mảng trước.
+
+
+
+✅🔹 6. Sắp xếp theo thứ tự tăng dần bằng hàm có sẵn của Java là Arrays.sort()
+    import java.util.Arrays;
+
+          int[] numbers = {5, 2, 9, 1, 3};
+
+        // Sắp xếp mảng tăng dần
+        Arrays.sort(numbers);
+
+        // In mảng sau khi sắp xếp
+        System.out.println("Mảng sau khi sắp xếp:");
+        for (int num : numbers) {
+            System.out.print(num + " ");
+        }
+
+        🗂 Áp dụng với mảng khác:
+    🔤 Mảng chuỗi:
+    String[] names = {"Nam", "An", "Bình", "Hà"};
+    Arrays.sort(names); // Sắp xếp theo thứ tự bảng chữ cái
+
+    🔢 Mảng số thực:
+    double[] prices = {19.9, 5.5, 12.0};
+    Arrays.sort(prices); // Kết quả: 5.5, 12.0, 19.9
+
+
+
+✅🔹 7. Sắp xếp mảng tăng dần (Bubble Sort đơn giản)
+    int[] arr = {5, 3, 8, 1, 2};
+
+        // Sắp xếp bằng thuật toán nổi bọt (bubble sort)
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+         // Đổi chỗ nếu phần tử trước lớn hơn phần tử sau
+                int temp = arr[j];        // Lưu tạm phần tử trước (vị trí j)
+                arr[j] = arr[j + 1];       // Gán phần tử sau (vị trí j+1) vào vị trí j
+                arr[j + 1] = temp;        // Gán lại giá trị tạm vào vị trí j+1 → hoàn tất hoán đổi
+                }
+            }
+        }
+
+        // In mảng sau khi sắp xếp
+        for (int num : ar) {
+            System.out.print(num + " ");
+        }
+
+
+
+
+✅🔹 8. XẾP TRỰC TIẾP BẰNG Selection Sort (Sắp xếp chọn trực tiếp)
+        
+        int[] ar = {5, 3, 1};
+        int n = ar.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i; // Giả sử phần tử i là nhỏ nhất
+
+            // Tìm vị trí phần tử nhỏ nhất từ i+1 đến cuối
+            for (int j = i + 1; j < n; j++) {
+                if (ar[j] < ar[minIndex]) {
+                    minIndex = j; // Cập nhật vị trí phần tử nhỏ nhất
+                }
+            }
+
+            // Đổi chỗ phần tử nhỏ nhất với phần tử ở vị trí i
+            int temp = ar[i];
+            ar[i] = ar[minIndex];
+            ar[minIndex] = temp;
+        }
+        
+
+✅🔹 9 sắp xếp chèn Insertion Sort
+
+
+ int[] arr = {5, 3, 1, 4, 2};  // Mảng ban đầu chưa sắp xếp
+
+        // Duyệt qua từng phần tử từ vị trí thứ 1 (vì phần tử đầu tiên đã "được coi là sắp xếp")
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];     // Lưu giá trị hiện tại cần chèn
+            int j = i - 1;
+
+            // Dịch các phần tử lớn hơn key sang phải
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];  // Dịch phần tử sang phải
+                j--;                  // Lùi về để so sánh tiếp
+            }
+
+            // Chèn key vào đúng vị trí đã tìm được
+            arr[j + 1] = key;
+        }
+
+        // In kết quả
+  System.out.println("Mảng sau khi sắp xếp (Insertion Sort): " + Arrays.toString(arr));
+
+
+
+🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰🧰
+
+ MẢNG & THUẬT TOÁN JAVA
+│
+├── 1. Khái niệm mảng
+│   ├── Mảng 1 chiều
+│   └── Mảng 2 chiều
+│
+├── 2. Khai báo & khởi tạo
+│   ├── new int[5]
+│   └── int[] arr = {1, 2, 3}
+│
+├── 3. Truy cập phần tử
+│   ├── arr[0] = 10
+│   └── System.out.println(arr[i])
+│
+├── 4. Duyệt mảng
+│   ├── Vòng lặp for
+│   └── Vòng lặp for-each
+│
+├── 5. Thuật toán cơ bản
+│   ├── Tìm max / min
+│   ├── Tính tổng / trung bình
+│   ├── Đếm phần tử thỏa mãn
+│   ├── Tìm kiếm
+│   │   ├── Tuyến tính (Linear search)
+│   │   └── Nhị phân (Binary search)
+│   └── Sắp xếp
+│       ├── Bubble Sort
+│       └── Selection Sort
+│
+├── 6. Thư viện Arrays
+│   ├── Arrays.sort(arr)
+│   ├── Arrays.toString(arr)
+│   └── Arrays.copyOf(arr, newLength)
+│
+└── 7. Tư duy giải thuật
+    ├── Xác định đầu vào / đầu ra
+    ├── Duyệt mảng bao nhiêu lần?
+    ├── Biến lưu trạng thái (tổng, đếm, max...)
+    └── Viết giả mã (pseudo-code) trước khi code
+
+
+    🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+    🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+    🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+    MẢNG 2 CHIỀU HOẶC ĐA CHIỀU
+
+✅1. Mảng 2 chiều
+ int [][] arr;
+ int [][] arr = new int[3][4]; // 3 hàng 4 cột
+ int [][] arr = {{1,2,3,4},{5,6,7,8},{9,10,11,12}}; //khai báo và gán giá trị
+
+ 🔁DUYỆT MẢNG 2 CHIỀU (for lồng nhau)
+
+    for (int i = 0; i < arr.length; i++) {             // duyệt từng hàng
+        for (int j = 0; j < arr[i].length; j++) {      // duyệt từng cột
+            System.out.print(arr[i][j] + " ");
+        }
+        System.out.println();  // xuống dòng sau mỗi hàng
+    }
+
+ 🧠  HOẶC DÙNG FOR-EACH:
+
+    for (int[] row : arr) {
+        for (int value : row) {
+            System.out.println(value);
+        }
+    }
+
+
+✅2. Mảng 3 chiều
+int [][][] arr;
+int [][][] arr = {
+                { {1,2}, {3,4} },
+                 { {5,6},{7,8} }
+                };
+        int value = arr[1][0][1];
+// cập phần tử tại lớp thứ 2, dòng thứ 1, cột thứ 2 kết quả: 6
+
+     🔁DUYỆT MẢNG 3 CHIỀU (for lồng nhau)
+
+for (int i = 0; i < arr.length; i++) {               // duyệt khối
+    for (int j = 0; j < arr[i].length; j++) {        // duyệt hàng trong khối
+        for (int k = 0; k < arr[i][j].length; k++) { // duyệt cột trong hàng
+            System.out.println("arr[" + i + "][" + j + "][" + k + "] = " + arr[i][j][k]);
+        }
+    }
+}
+
+🧠  HOẶC DÙNG FOR-EACH:
+
+ for (int[][] block : arr) {             // Duyệt qua từng khối
+    for (int[] row : block) {           // Duyệt từng hàng trong khối
+        for (int value : row) {         // Duyệt từng phần tử trong hàng
+            System.out.print(value + " ");
+        }
+        System.out.println(); // Xuống dòng sau mỗi hàng
+    }
+    System.out.println("-----"); // Phân cách giữa các khối
+}
+
+
+☑️ for-each giúp mã ngắn gọn và dễ đọc hơn, nhưng bạn không lấy được chỉ số index trong từng cấp.
+
+LƯU Ý: arr.length là số HÀNG
+        arr[i].length là số CỘT của hàng thứ i
+
+
+
+✅. MẢNG KHÔNG ĐỀU JAGGED ARRAY
+ 
+    int[][] jagged = new int[3][];  // Khởi tạo mảng 2 chiều có 3 hàng (chưa gán cột)
+
+    jagged[0] = new int[2];         // Hàng 0 có 2 cột
+    jagged[1] = new int[3];         // Hàng 1 có 3 cột
+    jagged[2] = new int[1];         // Hàng 2 có 1 cột
+
+    📥 Ví dụ gán và in giá trị:
+
+    int count = 1;
+        for (int i = 0; i < jagged.length; i++) {
+            for (int j = 0; j < jagged[i].length; j++) {
+                jagged[i][j] = count++;
+            }
+        }
+
+    // In mảng
+        for (int[] row : jagged) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+
+    .
+
+📥 1. Sử dụng mảng không đều Khi các hàng có số lượng phần tử khác nhau
+Ví dụ:
+
+    Học sinh	Số môn học
+    A	            3 môn
+    B	            5 môn
+    C           	2 môn
+
+int[][] diem = new int[3][];
+diem[0] = new int[3]; // Học sinh A học 3 môn
+diem[1] = new int[5]; // Học sinh B học 5 môn
+diem[2] = new int[2]; // Học sinh C học 2 môn
+📌 Không thể dùng int[3][5] (mảng đều) vì sẽ lãng phí bộ nhớ cho các ô không dùng.
+
+📥2. Khi xử lý dữ liệu không đồng nhất
+Ví dụ: lưu số lượng bài viết mỗi ngày trên 1 tuần, nhưng mỗi ngày lại có số bài khác nhau.
+    String[][] baiViet = new String[7][];
+    baiViet[0] = new String[] {"A", "B"};     // Thứ 2 có 2 bài
+    baiViet[1] = new String[] {"C"};          // Thứ 3 có 1 bài
+    baiViet[2] = new String[] {"D", "E", "F"}; // Thứ 4 có 3 bài
+    // ...
+
+
+📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥
+
+📥📥📥📥📥📥📥 //// BÀI TOÁN TỔNG HỢP ///📥📥📥📥📥📥
+
+📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥📥
+
+import java.util.Scanner;
+
+    public static void main(String[] args) {
+
+//        Nhập điểm cho N học sinh
+//        Tìm điểm cao nhất, thấp nhất
+//        Tìm kiếm xem có học sinh nào đạt điểm X không
+//        Sắp xếp điểm theo thứ tự tăng dần
+
+        int[] diem = new int[100];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhập số học sinh");
+        int students = sc.nextInt();
+        for (int i = 0; i < students; i++) {
+            //nhập điểm cho từng học sinh
+            System.out.println("Nhập Điểm: ");
+            diem[i] = sc.nextInt();
+        }
+    }
+
+    // hàm tìm điểm cao nhất
+
+    public static int findMax(int[] max, int diemValue) {
+        int maxValue = max[0];
+        for (int i = 1; i < diemValue; i++) {
+            if (max[i] > maxValue) {
+                maxValue = max[i];
+            }
+        }
+        return maxValue;
+    }
+
+    //hàm tìm kiếm học sinh nào đạt điểm X
+
+    public static int finddiemX(int[] diem, int diemX) {
+        for (int i = 1; i < diem.length; i++) {
+            if (diem[i] == diemX) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //hàm Sắp xếp điểm theo thứ tự tăng dần/giảm dần
+     public static void selectionSort(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (array[j] > array[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            // Hoán đổi phần tử lớn nhất với phần tử đầu tiên chưa được sắp xếp
+            int temp = array[maxIndex];
+            array[maxIndex] = array[i];
+            array[i] = temp;
+    }
+
+    🔍 Từng bước diễn giải dễ hiểu:
+    Giả định rằng phần tử ở vị trí i là lớn nhất trong đoạn chưa sắp xếp.
+    maxValue = i;
+    Dò tìm trong các phần tử từ i + 1 đến hết mảng:
+    So sánh từng phần tử arr[j] với arr[maxValue].
+    Nếu arr[j] lớn hơn, cập nhật maxValue = j.
+    Sau vòng lặp trong:
+    Bạn đã biết vị trí maxValue là phần tử lớn nhất trong phần chưa sắp xếp.
+    Hoán đổi phần tử này với arr[i] để đưa phần tử lớn nhất về đúng chỗ (đầu đoạn chưa sắp xếp).
+    Tiếp tục vòng i++ để xử lý đoạn tiếp theo.
+
+}
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+    CHUỖI (String) VÀ REGEX (biểu thức chính quy)
+
+    🔹 Phần 1: Chuỗi trong Java
+Chuỗi là tập hợp các ký tự, được biểu diễn bằng lớp String trong Java.
+
+📌 Ví dụ cơ bảnpublic class StringExample {
+    public static void main(String[] args) {
+        String name = "Học Java";  // Khai báo chuỗi name và gán giá trị "Học Java"
+        
+        System.out.println(name);  // In ra chuỗi
+        System.out.println(name.length());  // Trả về độ dài của chuỗi: 8 ký tự
+        System.out.println(name.toUpperCase());  // Viết hoa toàn bộ chuỗi: "HỌC JAVA"
+        System.out.println(name.toLowerCase());  // Viết thường toàn bộ chuỗi: "học java"
+        System.out.println(name.contains("Java"));  // Kiểm tra chuỗi có chứa "Java" không: true
+        System.out.println(name.charAt(2));  // Lấy ký tự ở vị trí thứ 2: 'c'
+    }
+}
+
+ 📌   Quan hệ giữa char và String
+Một chuỗi là tập hợp nhiều ký tự char
+Bạn có thể lấy từng ký tự trong chuỗi bằng cách dùng phương thức charAt():
+    String name = "Java";
+    char first = name.charAt(0); //J
+
+
+
+  📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 
+   Một số phương thức phổ biến của String:
+   📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 📌 * 
+
+  * length(): Trả về độ dài của chuỗi.
+    String str = "Hello";
+    int length = str.length(); //5
+
+ * charAt(int index): Trả về ký tự tại vị trí chỉ định.
+    String str = "Hello";
+    char ch = str.charAt(1); //'e'
+
+* substring(int start, int end): Trả về một phần chuỗi từ vị trí start đến end.
+    String str = "Hello";
+String subStr = str.substring(0,3); // 'Hel'
+
+* equals(String other): So sánh 2 chuỗi xem chúng có giống nhau không.
+    String str = "Hello";
+boolean equa = str.equals("Java"); //false
+
+📌 Ví dụ về khai báo và khởi tạo String trong Java:
+
+  String greeting = "Hello World!";
+    String name = new String("Java");
+
+    //các phương thức
+        System.out.println("greeting: " +greeting);
+        System.out.println("name: " +name);
+        System.out.println("first character of name: " +name.charAt(0));
+
+String name = "Học Java";  // Khai báo chuỗi name và gán giá trị "Học Java"
+        
+        System.out.println(name);  // In ra chuỗi
+
+        System.out.println(name.length());  // Trả về độ dài của chuỗi: 8 ký tự
+        System.out.println(name.toUpperCase());  // Viết hoa toàn bộ chuỗi: "HỌC JAVA"
+        System.out.println(name.toLowerCase());  // Viết thường toàn bộ chuỗi: "học java"
+        System.out.println(name.contains("Java"));  // Kiểm tra chuỗi có chứa "Java" không: true
+        System.out.println(name.charAt(2));  // Lấy ký tự ở vị trí thứ 2: 'c'
+
+String str = "Hello Java";
+System.out.println(str.indexOf("Java"));  //7
+System.out.println(str.replace('J','C'));  //"Hello Cava"
+System.out.println(str.contains("Java"));  //true ; kiểm tra có chưa chuỗi con được truyền vào không
+
+System.out.println(str.equalsIgnoreCase('java'));  //true ; so sánh chuỗi mà không xét đến sự khác biệt giữa chữ hoa và chữ thường.
+ String str2 = "Hello";
+System.out.println(str.equals(str2));  //false ; so sánh giá trị bên trong chuỗi
+
+String arr = "Hello Java! Java is fun!";
+System.out.println(str.lastIndexOf("Java"));  //19 ; tìm kiếm vị trí xuất hiện cuối cùng của một chuỗi con trong chuỗi.
+
+
+
+
+
+
+[[[Lưu ý khi sử dụng String:
+Chú ý về hiệu suất: Vì String là đối tượng bất biến, việc thay đổi nhiều lần giá trị của String có thể gây tốn kém tài nguyên, đặc biệt trong các vòng lặp lớn. Trong trường hợp này, bạn có thể sử dụng lớp StringBuilder hoặc StringBuffer để tăng hiệu suất khi thay đổi chuỗi.
+
+👉StringBuilder và StringBuffer (mutable strings)
+    String là immutable
+ 
+CẢ 2 ĐỀU KHÔNG TẠO RA MẢNG MỚI MÀ THAO TÁC TRỰC TIẾP TRÊN MẢNG GỐC NÊN SẼ LÀM THAY ĐỔI MẢNG GỐC
+NGƯỢC LẠI STRING SẼ KHÔNG LÀM THAY ĐỔI MẢNG GỐC. NÓ TẠO RA MẢNG MỚI R THAO TÁC TRÊN ĐÓ
+
+    📌 Ví dụ StringBuilder::
+     StringBuilder sb = new StringBuilder("Hello");
+        
+        sb.append(" Java");            // Nối chuỗi
+        sb.insert(5, ",");             // Chèn "," tại vị trí 5
+        sb.replace(6, 10, " World");   // Thay thế từ vị trí 6 đến 10
+        sb.delete(11, 16);             // Xoá từ vị trí 11 đến 16
+        sb.reverse();                  // Đảo ngược chuỗi
+
+        System.out.println(sb);        // In kết quả cuối
+
+    📌 Ví dụ StringBuffer:
+         StringBuffer sb = new StringBuffer("Xin chao");
+
+        sb.append(" cac ban");
+        sb.insert(8, " than men,");
+        sb.replace(0, 3, "Chao");
+        
+        System.out.println(sb);
+
+✅ Khi nào dùng cái nào?
+    🔹 Dùng **StringBuilder** khi bạn:
+    Thao tác nhiều với chuỗi trong một luồng
+    Ưu tiên hiệu suất nhanh hơn
+
+    🔸 Dùng **StringBuffer** khi:
+    Code chạy trong môi trường đa luồng (multi-threaded)
+    Cần tránh xung đột khi các luồng truy cập cùng dữ liệu
+        
+    🧠✅ String có gì khác?
+    String s = "Hello";
+    s.concat(" World");  // Không làm thay đổi chuỗi s
+    System.out.println(s);  // Vẫn là "Hello"
+→ Vì String là immutable, nên concat() không thay đổi chuỗi gốc, mà tạo ra chuỗi mới.
+
+
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+ Phần 2: Regex (Biểu thức chính quy)
+Regex giúp kiểm tra, tìm kiếm, hoặc thay thế chuỗi dựa theo một mẫu ký tự cụ thể.
+
+🔍 Một số mẫu thường dùng:
+    Mẫu Regex           	Ý nghĩa
+    .	            Bất kỳ 1 ký tự nào
+    \d	            Một chữ số (0–9)
+    \w	            Một ký tự chữ hoặc số
+    \s	            Một khoảng trắng
+    *	            Lặp lại 0 hoặc nhiều lần
+    +	            Lặp lại 1 hoặc nhiều lần
+    ?	            Lặp lại 0 hoặc 1 lần
+    [abc]	        Một trong các ký tự a, b, hoặc c
+    [^abc]	        Ký tự không phải a, b, hoặc c
+    a{3}	        a lặp lại đúng 3 lần
+
+Trong Java, phải dùng \\ thay vì \ vì Java dùng \ để thoát ký tự (escaping).
+
+📌 Ví dụ Regex kiểm tra số điện thoại 10 chữ số:
+
+    import java.util.regex.*;
+
+    public class RegexExample {
+        public static void main(String[] args) {
+            String phone = "0987654321";  // Chuỗi cần kiểm tra
+
+         // Tạo mẫu regex: phải bắt đầu (^) và kết thúc ($) với 10 chữ số (\d{10})
+            String pattern = "^\\d{10}$";  
+
+         // Dùng Pattern để biên dịch mẫu
+            Pattern p = Pattern.compile(pattern);  
+
+         // Dùng Matcher để kiểm tra chuỗi có khớp với mẫu không
+            Matcher m = p.matcher(phone);  
+
+         // In kết quả: true nếu khớp, false nếu không
+            System.out.println(m.matches());  // Kết quả: true
+        }
+
+        HOẶC CÓ THỂ VIẾT GỌN HƠN 
+
+        boolean isValid = Pattern.matches(pattern, phone);
+        tuy nhiên không tối ưu khi kiểm tra nhiều lần
+
+    }
+
+📌 Ví dụ Regex kiểm tra email đơn giản:
+    public class EmailRegex {
+        public static void main(String[] args) {
+            String email = "tennguoidung@gmail.com";
+
+            // Mẫu đơn giản: bắt đầu bằng chữ, có @, có tên miền
+            String pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$";
+
+            boolean isMatch = email.matches(pattern);  // matches là phương thức có sẵn trong String
+
+            System.out.println(isMatch);  // true nếu email hợp lệ
+        }
+    }
+
+    VIẾT  GỌN: 
+    boolean isValid = Pattern.matches(pattern, email);
+    
+
+// KIẾM TRA TRONG GIÁ TRỊ NHẬP VÀO LẤY RA CÁC EMAIL
+
+    String input = "Hello World email truong@gmail.com hoặc nam@gmail.com";
+        String regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}"; 
+
+        //Lưu ý không có dấu ^ và $ vì  Regex này chỉ khớp nếu toàn bộ input là 1 email
+        đang tìm email nằm trong 1 chuỗi dài, như "Hello World email truong@gmail.com...".
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            System.out.println("Các email tìm được: " + matcher.group());
+ 
+            Các email tìm được: truong@gmail.com
+            Các email tìm được: nam@gmail.com   
+
+
+            //kiểm tra sdt
+              String number = "0123456789";
+        String regex = "^[0][0-9]{9}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher =pattern.matcher(number);
+        System.out.println(matcher.find());
+        //true
+
+
+        //kiểm tra đầu vào mặc định SV2025
+        String studentCode = "SV2025abCDE";
+        String regex = "^SV2025[a-zA-Z]{5}$";
+        boolean flag = studentCode.matches(regex);
+        System.out.println(flag);
+        //true
+
+
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+OOP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG (object Oriented Programming)
+
+Lập trình hướng đối tượng (Object-Oriented Programming – OOP) là cách viết chương trình dựa trên các đối tượng thay vì chỉ sử dụng lệnh (như trong lập trình tuyến tính). Mô hình hóa thế giới thực tế vào thế giới ảo, máy tính
+
+4 đặc trưng chính của OOP trong Java:
+Tính đóng gói (Encapsulation)
+→ Giấu dữ liệu bên trong đối tượng, chỉ cho phép truy cập qua các phương thức.
+✅ Giúp bảo vệ dữ liệu, kiểm soát truy cập.
+
+Tính kế thừa (Inheritance)
+→ Cho phép lớp con kế thừa thuộc tính và phương thức từ lớp cha.
+✅ Tái sử dụng mã, mở rộng chương trình dễ dàng.
+
+Tính đa hình (Polymorphism)
+→ Một hành động có thể thực hiện theo nhiều cách khác nhau (ví dụ: cùng tên phương thức nhưng hoạt động khác nhau tùy lớp).
+✅ Linh hoạt trong thiết kế.
+
+Tính trừu tượng (Abstraction)
+→ Che giấu chi tiết, chỉ cung cấp những gì cần thiết.
+✅ Giúp đơn giản hóa chương trình và tập trung vào chức năng chính.
+
+            Ví dụ ngắn gọn:
+
+            // Lớp cha (class) - Mô tả chung về Động vật
+class Animal {
+    void speak() {
+        System.out.println("Animal speaks");
+    }
+}
+
+// Lớp con kế thừa từ Animal
+class Dog extends Animal {
+    @Override
+    void speak() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();  // Đa hình: biến kiểu Animal nhưng là đối tượng Dog
+        a.speak();             // Kết quả: "Dog barks"
+    }
+}
+
+
+
+vd khác : 
+public class Student 
+{
+    String name;
+    int age;
+
+    void sayHello()
+    {
+        System.out.println("Hello " + name);
+    }
+}
+
+
+
+public class Main {
+    public static void man(String [] args){
+        Student s1 = new Student();
+        s1.name = "Hoa";
+        s1.age = 20;
+        s1.sayHello();    //Hello Hoa
+    }
+}
+
+
+
+
+Tại sao nên dùng OOP
+Giúp chương trình dễ quản lý hơn vì chia nhỏ thành các phần (đối tượng)
+Tái sử dụng mã dễ dàng bằng cách tạo nhiều đối tượng từ một lớp
+Gần gũi với thế giới thực – ta mô tả các "vật" trong chương trình như mô tả ngoài đời
+
+
+
+🧠🧠🧠🧠4 TÍNH CHẤT CỦA OOP 🧠🧠🧠🧠
+
+✅ 1. Tính đóng gói (Encapsulation)
+Định nghĩa:
+    Là cơ chế giấu thông tin nội bộ của đối tượng và chỉ cho phép truy cập thông qua các phương thức công khai (getter, setter). Biến thường được để là private.
+
+Mục đích:
+
+    Bảo vệ dữ liệu.
+
+    Hạn chế việc truy cập và thay đổi dữ liệu không hợp lệ.
+
+Ví dụ:
+   public class Person {
+    private String name; // chỉ được truy cập bên trong lớp
+    private int age;
+    // Getter - lấy giá trị
+    public String getName() 
+    {
+        return name;
+    }
+
+    // Setter - đặt giá trị
+    public void setName(String newName) 
+    {
+        name = newName;
+    }
+
+    public int getAge()
+    {
+        return age;
+    }
+
+    public void setAge(int newAge)
+    {
+        if(newAge >= 0){
+            age = newAge;
+        }
+    }
+}
+
+
+Giải thích:
+    Biến name và age được đóng gói lại, chỉ có thể truy cập thông qua getName() và setName() → giúp kiểm soát tốt hơn việc thao tác dữ liệu.
+
+
+
+✅ 2. Tính kế thừa (Inheritance)
+Định nghĩa:
+    Là cơ chế lớp con kế thừa thuộc tính và phương thức từ lớp cha.
+
+Mục đích:
+
+    Tái sử dụng mã.
+
+    Giảm trùng lặp.
+
+    Dễ mở rộng, bảo trì.
+
+    Ví dụ:
+#Animal.java
+
+    public class Animal 
+    {
+        void eat()
+        {
+            System.out.println("Animal eát food");
+        }
+
+    }
+
+#Dog.java
+    public class Dog extends Animal 
+    {
+        void bark()
+        {
+            System.out.println("Dog barks");
+        }
+    }
+
+Giải thích:
+    Lớp Dog kế thừa phương thức eat() từ Animal, đồng thời bổ sung thêm phương thức riêng là bark().
+
+
+✅ 3. Tính đa hình (Polymorphism)
+Định nghĩa:
+    Là khả năng một đối tượng có thể có nhiều hình thức – ví dụ cùng tên phương thức nhưng có thể hoạt động khác nhau.
+    Có 2 loại đa hình:
+
+    Compile-time (Overloading) – Nhiều phương thức cùng tên nhưng khác tham số.
+    Runtime (Overriding) – Ghi đè phương thức từ lớp cha ở lớp con.
+
+    Ví dụ Overriding (runtime):
+    
+    class Animal 
+    {
+        void sound() 
+        {
+            System.out.println("Animal makes sound");
+        }
+}
+
+class Cat extends Animal
+     {
+        @Override
+      void sound() 
+      {
+        System.out.println("Cat meows");
+     }
+}
+Giải thích:
+Cùng phương thức sound(), nhưng khi gọi bằng Cat, hành vi được ghi đè để in ra "Cat meows".
+
+✅ 4. Tính trừu tượng (Abstraction)
+Định nghĩa:
+    Là quá trình ẩn chi tiết hiện thực, chỉ cung cấp những gì cần thiết cho người dùng.
+
+    Có 2 cách trừu tượng trong Java:
+
+    Abstract class (lớp trừu tượng)
+
+    Interface   (giao diện)
+
+ Mục đích:
+
+    Tập trung vào cái “làm gì” chứ không phải “làm như thế nào”.
+
+    Dễ mở rộng, bảo trì.
+
+    Ví dụ:
+
+    abstract class Shape {
+     abstract void draw(); // không có phần thân- chỉ khai báo
+    }
+
+    class Circle extends Shape
+    {
+        @Override
+        void draw()
+         {
+            System.out.println(Draw a circle");
+        }
+    }
+    Người dùng chỉ quan tâm đến việc "vẽ hình", không cần biết bên trong draw() làm gì
+
+
+
+🧠🧠🧠🧠4 BỔ TỪ CHÍNH TRONG JAVA 🧠🧠🧠🧠
+
+1. Private: 
+    Chỉ truy cập được trong cùng lớp. Tăng cường bảo mật, k cho truy cập từ bên ngoài
+    Thường dùng để ẩn dữ liệu, kết hợp thông qua getter và setter.
+
+    public class MyClass {
+        private int age;
+
+        public MyClass(int age){
+            this.age = age;
+        }
+    }
+
+2. (Mặc định - package-private)
+    Nếu không khai báo bộ tử nào, Java mặc định là package-private.
+    Chỉ có thể truy cập trong cùng một package.
+
+        class MyClass {
+            int age; //mặc địh là package-private
+        }
+
+3. protected
+Truy cập được trong:
+    Cùng package
+    Lớp con ở khác package
+vd:
+    class Animal {
+    protected void speak() {
+        System.out.println("Animal sound");
+        }
+    }
+
+    class Dog extends Animal {
+        void test() {
+            speak(); // Được phép vì Dog kế thừa từ Animal
+        }
+    }
+
+4. public
+ Các thành phần được khai báo là public có thể truy cập từ bất kỳ đâu trong chương trình.
+Thường dùng cho class chính, phương thức chính, hay các API công khai.
+public class Student {
+    public String name;
+
+    public void sayHello() {
+        System.out.println("Hello!");
+    }
+}
+
+✅ Tóm tắt dễ nhớ
+Modifier	Trong lớp	Trong package	Lớp con khác package	Bên ngoài
+public      	✅	        ✅	            ✅	                ✅
+protected	    ✅	        ✅	            ✅	                ❌
+default	        ✅	        ✅	            ❌	                ❌
+private	        ✅	        ❌	            ❌	                ❌
+
+
+
+
+🧠🧠🧠🧠CÁC METHOD PHƯƠNG THỨC🧠🧠🧠🧠
+
+
+
+✅ Tổng quan về phương thức trong Java
+    method (phương thức) là một tập hợp các câu lệnh thực hiện một chức năng cụ thể.
+    Phương thức giúp chia nhỏ chương trình, tái sử dụng mã và làm cho mã dễ đọc hơn.
+    ✅🔹 Cú pháp chung:
+[access_modifier] [returnType] methodName([parameters]) {
+    // Khối lệnh
+}
+access_modifier - Từ khóa phạm vi như public, private,...
+returnType - Kiểu giá trị trả về (int, String, void,...)
+methodName - Tên phương thức (viết theo camelCase)
+parameters - Danh sách tham số truyền vào (có thể rỗng)
+
+VD: 
+#MathUtil
+ public class MathUtil {
+    //phương thức không trả về
+    public void sayHello(){
+        System.out.println("Hello");
+    }
+
+    //phương thức trả về kết quả 
+    public int add(int a,int b){
+        return a + b;
+    }
+ }
+
+ ✅Cách gọi phương thức:
+#Main
+public class Main {
+    public static void main(String[] args){
+        MathUtil m = new MathUtil();
+    m.sayHelllo();              //gọi phương thức void
+    int result = m.add(5,3);    //gọi phương thức có trả về
+    System.out.println(result); //in ra kết quả của phương thức
+    }
+}
+
+✅ Kiểu trả về – void và các kiểu khác
+void: phương thức không trả về giá trị nào
+Các kiểu như int, String, double…: phương thức trả về giá trị tương ứng với kiểu đó
+ 
+
+✅ Tham số và đối số
+Tham số (parameter): biến được khai báo trong dấu ngoặc tròn khi định nghĩa phương thức
+Đối số (argument): giá trị thực tế được truyền vào khi gọi phương thức
+
+VD:
+1. Không trả về, không có tham số
+public void sayHello() {
+    System.out.println("Hello!");
+}
+
+2. Trả về giá trị, có tham số
+
+public int square(int x) {
+    return x * x;
+}
+
+3. Phương thức tĩnh (static)
+
+public static void printInfo() {
+    System.out.println("This is a static method.");
+}
+📌 Gọi mà không cần tạo đối tượng:
+
+ClassName.printInfo();
+
+4. Phương thức ghi đè (@Override)
+
+class Animal {
+    void speak() {
+        System.out.println("Animal speaks");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void speak() {
+        System.out.println("Dog barks");
+    }
+}
+
+
+5. Tham số và đối số
+
+
+public void greet(String name) //name là tham số
+{
+    System.out.println("Hi" + name);
+}
+greet("Linh");  // "Linh" là đối số
+
+
+
+🧠🧠🧠🧠Class và từ khóa this🧠🧠🧠🧠
+
+
+
+
+✅ 1. Lớp (Class) trong Java
+🔹 Định nghĩa:
+Lớp là một khuôn mẫu (template) để tạo ra các đối tượng (objects). Nó mô tả các thuộc tính (biến) và hành vi (phương thức) của một đối tượng.
+
+🔹 Cú pháp lớp:
+public class TenLop {
+    // Thuộc tính (variables)
+    String name;
+    int age;
+
+    // Phương thức (method)
+    void sayHello() {
+        System.out.println("Hello, I am " + name);
+    }
+}
+
+🔹 Tạo và sử dụng đối tượng từ lớp:
+public class Main {
+    public static void main(String[] args) {
+        TenLop sv = new TenLop();  // Tạo đối tượng
+        sv.name = "An";
+        sv.sayHello();             // Gọi phương thức
+    }
+}
+
+
+✅ 2. Từ khóa this trong Java
+🔹 this là gì?
+Từ khóa this đại diện cho đối tượng hiện tại – tức là đối tượng đang thực thi phương thức đó.
+
+🔹 Công dụng chính của this:
+1. Phân biệt giữa biến instance và biến tham số:
+    public class Student {
+    String name;
+
+    public void setName(String name) {
+        this.name = name;  // this.name là biến của đối tượng, name là tham số
+    }
+}
+👉 Nếu không dùng this, Java sẽ bị "nhầm" vì tên biến trùng nhau.
+
+2. Gọi phương thức khác trong cùng lớp:
+    public void introduce() {
+        this.sayHello();  // hoặc chỉ cần sayHello();
+    }
+
+3. Truyền chính đối tượng hiện tại làm tham số:
+    public void printSelf(Student s) {
+        System.out.println(s.name);
+    }
+
+    public void test() {
+        printSelf(this); // truyền chính đối tượng hiện tại
+    }
+
+ 4. Gọi constructor khác trong cùng lớp:
+
+ public class Student {
+    String name;
+    int age;
+
+    public Student() {
+        this("No name", 0); // Gọi constructor khác
+    }
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+             ✅ Tóm tắt this dễ nhớ:
+
+    Mục đích sử dụng	        Cách dùng
+    Phân biệt biến	        this.name = name;
+    Gọi phương thức	        this.sayHello();
+    Truyền chính nó     	someMethod(this);
+    Gọi constructor         khác	this(…);
+
+
+VÍ DỤ MINH HOẠT ĐẦY ĐỦ
+ public class Student 
+ {
+    //thuộc tính
+    private String name;
+    private int age;
+
+    //Contructor
+    public Student(String name, int age)
+    {
+        this.name = name; //sử dụng từ khóa this
+        this.age = age;
+    }
+
+    //Getter
+    public String getName(){ return name;}
+ 
+    //Setter
+    public void setName(){this.name = name;}
+
+    //Phương thức hiển thị thông tin
+    public void displayInfo(){System.out.println("Name: "+ name + ", Age: " + age;)}
+
+    //Main method để kiểm trac
+    public static void main(String[] args)
+    {
+        Student student = new Student("John",20);
+        student.displayInfo(); //gọi phương thức
+    }
+}
+
+KÉT QUẢ: Name: John, Age: 20
+
+
+
+
+🧠🧠🧠🧠Class Diagram - Biểu đồ lớp🧠🧠🧠🧠
+
+✅ 1. Class Diagram là gì?
+    Class Diagram (biểu đồ lớp) là một loại sơ đồ UML (Unified Modeling Language) dùng để mô tả:
+
+    Các lớp trong hệ thống phần mềm
+
+    Thuộc tính (biến) và phương thức (method) của lớp
+
+    Mối quan hệ giữa các lớp (kế thừa, kết hợp, phụ thuộc...)
+
+✅ 2. Cấu trúc của một Class Diagram đơn giản
+Mỗi lớp được mô tả bằng một hình chữ nhật chia làm 3 phần:
+
++---------------------+
+|      ClassName      |  ← tên lớp
++---------------------+
+| - attribute1: Type  |  ← thuộc tính (biến)
+| + attribute2: Type  |  
++---------------------+
+| + method1(): Type   |  ← phương thức (method)
+| - method2(): void   |
++---------------------+
+
+📌 Ký hiệu:
+
++ = public
+
+- = private
+
+# = protected
+
+
+✅ 3. Ví dụ thực tế dễ hình dung – Lớp Person
+
+🔹 Mã Java:
+    public class Person 
+    {
+        private String name;
+        private int age;
+
+        public String getName() { return name; }
+        public void setName(String name) { this.name = name; }
+
+        public int getAge() { return age; }
+        public void setAge(int age) { this.age = age; }
+    }
+
+🔹 Class Diagram tương ứng:
+
++-------------------------+
+|        Person           |
++-------------------------+
+| - name: String          |
+| - age: int              |
++-------------------------+
+| + getName(): String     |
+| + setName(String): void |
+| + getAge(): int         |
+| + setAge(int): void     |
++-------------------------+
+
+
+✅ Tình huống thực tế:
+🔹 Mã Java đơn giản:
+public class Car
+ {
+    private String brand;
+    private int year;
+
+    public void start() {
+        System.out.println("Car is starting...");
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    
+}
+
+🔹 Class Diagram tương ứng:
+
++-------------+
+|    Car      |
++-------------+
+| - brand: String
+| - year: int
++-------------+
+| + start(): void
+| + setBrand(String): void
+| + getBrand(): String
++-------------+
+
+
+
+🧠🧠🧠🧠Object - Đối tượng🧠🧠🧠🧠
+
+    Trong Java (và lập trình hướng đối tượng nói chung), đối tượng (object) là thực thể cụ thể được tạo ra từ một lớp (class).
+
+🧠 Lớp = khuôn mẫu,
+🧱 Đối tượng = sản phẩm từ khuôn mẫu đó
+
+    🔹 Một đối tượng gồm có:
+    Thành phần	             Mô tả	                             Ví dụ trong đời sống
+    Thuộc tính      Dữ liệu, đặc điểm của đối tượng 	        màu, hãng xe, năm sản xuất
+    Hành vi     	Những việc đối tượng có thể làm	            chạy, dừng, bóp còi
+
+✅🔹1. Khai báo đối tượng
+
+    Cpublic class Car {
+    String brand;
+    int year;
+
+    void start() {
+        System.out.println("Car is starting...");
+    }
+}
+
+
+✅🔹 2. Tạo đối tượng từ lớp:
+    public class Main {
+        public static void main(String[] args) {
+            Car myCar = new Car();         // Tạo đối tượng
+            myCar.brand = "Toyota";        // Gán giá trị thuộc tính
+            myCar.year = 2020;
+            myCar.start();                 // Gọi phương thức
+        }
+    }
+
+    📌Có thể tạo nhiều đối tượng từ một lớp.
+    Car car1 = new Car();
+    Car car2 = new Car();
+👉 car1 và car2 là hai đối tượng khác nhau, có thể có dữ liệu khác nhau.
+
+
+
+✅🔹3. Constructor mặc định và constructor tùy chỉnh
+     1. Constructor là gì?
+    Constructor là một phương thức đặc biệt trong lớp Java dùng để tạo và khởi tạo đối tượng.
+    Nó có cùng tên với tên lớp, và không có kiểu trả về (kể cả void).
+
+✅ 2. Có mấy loại constructor?
+             Loại	                                        Mô tả
+    🔹 Constructor mặc định	          Không có tham số, do bạn viết hoặc Java tự tạo
+    🔹 Constructor tùy chỉnh	        Có tham số để khởi tạo theo giá trị người dùng    
+
+✅ 3. Ví dụ: Constructor mặc định & tùy chỉnh
+
+    public class Car {
+    String brand;
+    int year;
+
+    // Constructor mặc định
+    public Car() {
+        brand = "Unknown";
+        year = 2000;
+    }
+
+    // Constructor tùy chỉnh
+    public Car(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
+
+    public void display() {
+        System.out.println("Brand: " + brand + ", Year: " + year);
+    }
+}
+
+✅ 4. Sử dụng trong main
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car();  // Gọi constructor mặc định
+        Car car2 = new Car("Toyota", 2022);  // Gọi constructor tùy chỉnh
+
+        car1.display();  // Output: Brand: Unknown, Year: 2000
+        car2.display();  // Output: Brand: Toyota, Year: 2022
+    }
+}
+
+
+//SỰ KHÁC NHAU GIỮ VIỆC GỌI HÀM CÓ STATIC VÀ KHÔNG CÓ
+
+✅ Ví dụ minh họa
+public class Calculator {
+    
+    // Phương thức static – không cần đối tượng
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Phương thức không static – cần đối tượng để gọi
+    public int multiply(int a, int b) {
+        return a * b;
+    }
+}
+
+    ✅ Gọi trong main()
+
+    public class Main {
+    public static void main(String[] args) {
+
+        // GỌI HÀM STATIC – GỌI TRỰC TIẾP QUA TÊN LỚP
+        int sum = Calculator.add(3, 4);
+        System.out.println("Tổng = " + sum);  // Output: Tổng = 7
+
+        // GỌI HÀM KHÔNG STATIC – CẦN TẠO ĐỐI TƯỢNG
+        Calculator calc = new Calculator();   // tạo đối tượng
+        int product = calc.multiply(3, 4);
+        System.out.println("Tích = " + product);  // Output: Tích = 12
+    }
+}
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠OVERRIDE VÀ OVERLOADING🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+✅ Override (Ghi đè)
+Ghi đè lại phương thức của lớp cha trong lớp con để thay đổi cách hoạt động của nó.
+
+Cùng tên hàm
+
+Cùng tham số (số lượng và kiểu)
+
+Khác nội dung
+
+Dùng trong kế thừa
+
+Có thể dùng @Override để báo cho trình biên dịch biết
+
+    🧠 Ví dụ:
+    class Animal {
+        void speak() {
+            System.out.println("Animal sound");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void speak() {
+            System.out.println("Bark");
+        }
+    }
+
+✅ Overload (Nạp chồng)
+Viết nhiều phương thức cùng tên trong cùng 1 lớp, nhưng khác tham số.
+
+Cùng tên hàm
+
+Khác tham số (số lượng hoặc kiểu)
+
+Dùng trong cùng 1 lớp
+
+Không cần @Override
+
+    🧠 Ví dụ:
+    class Calculator {
+        int add(int a, int b) {
+            return a + b;
+        }
+
+        double add(double a, double b) {
+            return a + b;
+        }
+    }
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+    🧠STATIC VÀ FINAL🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+✅ static – thuộc về lớp, không thuộc riêng đối tượng
+Dùng để khai báo biến hoặc phương thức dùng chung cho tất cả các đối tượng.
+
+Không cần tạo đối tượng để truy cập.
+
+📌 Ví dụ:
+#Student.java
+
+public class Student {
+    static String school = "Dai Hoc ABC";  //BIẾN DÙNG CHUNG CHO TẤT CẢ SINH VIÊN
+    String name;
+
+    public Student (String name){
+        this.name = name;
+    }
+
+    public void show(){
+        System.out.println(name + " - " + school);
+    }
+
+    public static void showSchool(){
+        System.out.println(school);
+    }
+}
+
+#Main.jv
+public class Main {
+    public static void main(String[] args){
+        Student st1 = new Student("An");
+        Student st2 = new Student("Nam");
+
+        st1.show(); //An - Dai Hoc ABC
+        st2.show(); //Nam - Dai Hoc ABC
+
+        Student.showChool(); //gọi mà k cần tạo đối tượng
+    }
+}
+
+
+✅ final – không thể thay đổi sau khi gán
+
+final nghĩa là không thay đổi được sau khi đã gán. Dùng để tạo hằng số, phương thức không bị override, hoặc lớp không bị kế thừa
+
+Dùng final ở đâu?
+Biến (final variable): Gán giá trị 1 lần duy nhất
+Phương thức (final method): Không thể override trong lớp con
+Lớp (final class): Không thể bị kế thừa
+
+✅ Ví dụ minh họa từng trường hợp:
+🔹 1. Final với biến:
+public class Example {
+    final int MAX = 100;
+
+    public void change(){
+        MAX = 200;  ❌ lỗi – không thể thay đổi vì là final
+    }
+}
+
+🔹 2. Final với phương thức(method):
+
+class Cha {
+    final void xinChao(){
+        System.out.println("Chào từ lớp cha");
+    }
+}
+
+class Con extends Cha {
+    void xinChao(); ❌ lỗi không thể override (ghi đè) phương thức final
+}
+
+
+🔹 3. Final với lớp:
+final class Cha {
+    //code trong cha...
+}
+
+class Con extends Cha {} ❌ lỗi không thể kế thừa từ final
+
+
+Kết hợp sử dụng static và final
+Khi dùng cả hai, bạn sẽ tạo ra một hằng số cấp lớp:
+
+public class MathUtils {
+    public static final double PI = 3,14159;
+}
+
+
+
+
+✅ CÁCH NHỚ NGẮN GỌN:
+🔹 static:
+👉 “Dùng chung – không cần new để gọi”
+➡ Gọi trực tiếp qua tên lớp, không cần khởi tạo đối tượng.
+
+🔹 final:
+👉 “Gán rồi – không đổi nữa”
+➡ Biến không thể thay đổi giá trị sau khi gán.
+
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+    🧠TÍNH KẾ THỪA - Inheritance🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+🔁 Tính kế thừa (Inheritance)
+✅ 1. Định nghĩa:
+kế thừa là cơ chế cho phép một lớp con (subclass) kế thừa các thuộc tính (fields) và phương thức (methods) từ lớp cha (superclass).
+
+    ✅ Mục đích:
+    Tái sử dụng mã nguồn: Không cần viết lại code đã có.
+    Dễ bảo trì và mở rộng.
+
+2. 🧩 Từ khóa extends trong Java
+    ✅Công dụng:
+    Từ khóa extends được dùng để khai báo rằng một lớp kế thừa từ một lớp khác
+    ✅Cú pháp:
+
+    class Cha {
+        //các thuộc tính và phương thức
+    }
+
+    class Con extends Cha {
+        //kế thừa các thuộc tính, phương thức và có thể mở rộng
+    }
+
+Sau khi kế thừa, lớp con có thể:
+Dùng lại các biến và phương thức công khai (public/protected) từ lớp cha
+Viết thêm phương thức riêng
+Ghi đè (override) phương thức lớp cha nếu cần
+
+VD:
+
+    class Person {
+        void about(){
+            System.out.println("Tôi là một người");
+        }
+    }
+
+    class Student extends Person (){
+        void study(){
+        System.out.println("Tôi đang học Java");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args){
+            Student sv = new Student();
+            sv.about(); //gọi từ lớp cha
+            sv.study(); //gọi từ lớp con
+        }
+    }
+
+    KẾT QUẢ: Tôi là một người
+            Tôi đang học Java
+
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+🧠TỪ KHÓA SUPPER VÀ PHƯƠNG THỨC SUPPER🧠
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+
+ Từ khóa super trong Java
+✅ Mục đích:
+    super được dùng trong lớp con để:
+
+    Gọi constructor của lớp cha.
+
+    Gọi phương thức hoặc thuộc tính của lớp cha.
+
+    Phân biệt khi lớp con ghi đè phương thức hoặc trùng tên biến với lớp cha.
+
+ 🧩 1. Gọi constructor của lớp cha
+Khi lớp con kế thừa lớp cha, bạn có thể dùng super(...) để gọi constructor của lớp cha.
+Phương thức này phải được gọi trong constructor của lớp con và phải là câu lệnh đầu tiên trong constructor
+
+class Animal {
+    String name;
+
+    Animal(String name) {
+        this.name = name;
+    }
+}
+
+class Dog extends Animal {
+    Dog(String name) {
+        super(name); // Gọi constructor của lớp cha
+    }
+}
+
+
+🧩 2 . Sử dụng super để gọi phương thức của lớp cha:
+
+    class Animal {
+        void sound(){
+            System.out.println("Animail makes a sound");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void sound(){
+            supper.sound(); //gọi phương thức sound của lớp cha
+            System.out.println("Dog barks");
+        }
+    }
+
+    public class Test {
+        public static void main (String[] args){
+            Dog dog = new Dog(){
+                dog.sound();
+            }
+        }
+    }
+
+    KẾT QUẢ:  Animal makes a sound
+                Dog barks
+
+🧩 3. Sử dụng super để truy cập biến của lớp cha:
+
+    class Animal {
+        String name = "Animal";
+    }
+
+    class Dog extends Animal{
+        String name = "Dog";
+        void display(){
+            //truy cập biến name của lớp con
+            System.out.println("Name from subclass: " + name);
+
+            //truy cập biến name của lớp cha
+            System.out.println("Name from superclass: " + super.name);
+        }
+    }
+
+    public class Test{
+        public static void main(String[] args){
+            Dog dog = new Dog();
+            dog.display();
+        }
+    }
+
+    KẾT QUẢ: Name form subclass: Dog
+            Name form superclass: Animal
+
+
+  🧩 4. Truy cập biến lớp cha (nếu trùng tên)      
+  
+  class Animal {
+    String type = "Animal";
+}
+
+class Dog extends Animal {
+    String type = "Dog";
+
+    void printType() {
+        System.out.println(super.type); // In ra biến type của lớp cha
+        System.out.println(this.type);  // In ra biến type của lớp con
+    }
+}
+
+
+🔁 Tổng kết:
+Cách dùng	            Mô tả	                                    Ví dụ
+super()     	Gọi constructor của lớp cha	                      super(name);
+super.method()	Gọi phương thức của lớp cha	                     super.speak();
+super.variable	Truy cập biến lớp cha khi bị trùng tên	        super.type;
