@@ -1,0 +1,334 @@
+
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+            🆗🆗🆗🆗🆗  JAVA 8    🆗🆗🆗🆗🆗
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+
+Java 8, được phát hành vào tháng 3 năm 2014, là một trong những phiên bản quan trọng nhất trong lịch sử phát triển của Java. giới thiệu lập trình hàm (Functional Programming) vào Java. 
+
+✅ 1. Phương thức mặc định (Default method) và phương thức tĩnh (Static method) trong interface
+
+Khái niệm: Phương thức mặc định trong interface định nghĩa 1 hàm chung mà khi các class con kế thừa qua từ khóa implement KHÔNG bắt buộc phải ghi đè lại
+Lý do sử dụng: 
+    Duy trì khả năng tương thích ngược khi thêm phương thức mới vào interface
+    Cho phép cài đặt sẵn logic mà các lớp có thể tái sử dụng
+
+    Vd:
+    interface Car {
+    default void start() {
+        System.out.println("Starting...");
+        }
+    }
+
+    class Honda implements Car {}
+
+    public class Main {
+        public static void main(String[] args) {
+            Honda test = new Honda();
+            test.start();
+        }
+    }
+
+
+ ✅ 2. Phương thức tĩnh (Static method)
+
+ Được định nghĩa qua từ khóa static. Và CHỈ THUỘC VỀ  chính Interface , không phải các lớp con khi implement
+ Lý do sử dụng
+    Tổ chức các phương thức tiện ích liên quan trực tiếp đến interface
+    Tăng tính mô-đun và rõ ràng trong mã nguồn
+
+vd: 
+ interface Marth {
+    static int sum(int a, int b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int result = Marth.sum(5, 6);   //gọi trực tiếp qua Interface vì k có lớp con
+        System.out.println(result);     // 11
+    }
+}
+
+ ✅ 3. Functional Interface
+
+    Functional Interface là interface chỉ có duy nhất 1 PHƯƠNG THỨC TRỪU TƯỢNG trừ default hoặc static.
+    Nó dùng để làm "khuôn" cho lambda expression hoạt động.
+
+    📌 Ví dụ đơn giản:
+
+    @FunctionalInterface
+    interface MyPrinter {
+        void print(String message); // duy nhất 1 abstract method
+    }
+Chú thích: Java cung cấp annotation @FunctionalInterface để đánh dấu functional interface
+
+🧠 Giải thích:
+@FunctionalInterface: annotation giúp kiểm tra interface có đúng là "hàm chức năng" hay không.
+Interface này chỉ có 1 method duy nhất là print(String) → đủ điều kiện là functional interface.
+
+    🧪 Dùng Lambda với Functional Interface::
+    DÙNG LAMBDA ĐỂ TRIỂN KHAI PHƯƠNG THỨC CỦA INTERFACE METHOD VÌ NÓ ĐANG LÀ TRỪU TƯỢNG
+📌 Ví dụ cụ thể:
+👇 Interface truyền thống:
+    @FunctionalInterface
+    interface MyPrinter {
+        void print(String message); // phương thức trừu tượng duy nhất
+    }
+
+👇 Triển khai bằng class bình thường:   
+class ConsolePrinter implements MyPrinter {
+    public void print(String message) {
+        System.out.println("In: " + message);
+    }
+}
+
+👇 Triển khai bằng lambda:
+    MyPrinter printer = (msg) -> System.out.println("In: " + msg);
+    printer.print("Hello!"); // In: Hello
+
+
+    VD2:
+
+    public class LambdaWithInterface {
+    public static void main(String[] args) {
+        // Dùng lambda để "triển khai" method print của interface
+        MyPrinter printer = message -> System.out.println("In ra: " + message);
+
+        // Gọi hàm
+        printer.print("Xin chào Java 8!");
+    }
+}
+
+🧠 Giải thích dễ hiểu:
+Phần	                Ý nghĩa
+message -> ...	Hàm nhận 1 tham số (message) và thực hiện in ra
+printer.print(...)	Gọi hàm như bình thường
+
+
+
+✅ Một số functional interface có sẵn trong Java:
+
+Interface	         Mô tả	         Tham số	     rả về
+Runnable	    Chạy không có tham số	()	         void
+Consumer<T>	    Nhận vào, không trả về	T v          oid
+Function<T, R>	Nhận T, trả về R	     T	            R
+Predicate<T>	Nhận T, trả về boolean	 T	        boolean
+Supplier<T>	Không đầu vào, trả T	    ()	            T
+
+
+📌 Ví dụ cực đơn giản với Consumer<String>:
+
+    import java.util.function.Consumer;
+
+    public class ConsumerDemo {
+        public static void main(String[] args) {
+            Consumer<String> greeter = name -> System.out.println("Hello, " + name + "!");
+
+            greeter.accept("An");
+        }
+    }
+
+// Hello, An!
+
+
+
+🧱Lambda Expression (biểu thức hàm)
+❓ Là gì?
+Lambda là một cách viết hàm ngắn gọn mà không cần tạo lớp ẩn danh.
+ Được dùng khi bạn cần truyền một "đoạn xử lý" như tham số cho hàm khác.
+ ✅ Cú pháp cơ bản:
+    (parameters) -> expression
+
+Ví dụ:
+// Không dùng lambda
+Runnable r1 = new Runnable() {
+    public void run() {
+        System.out.println("Hello from normal way!");
+    }
+};
+
+// Dùng lambda
+Runnable r2 = () -> System.out.println("Hello from lambda!");
+
+
+📌 Ví dụ thực tế: sắp xếp danh sách
+
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.Collections;
+
+    public class LambdaExample {
+        public static void main(String[] args) {
+            List<String> names = Arrays.asList("An", "Bình", "Cường", "Ánh");
+
+            // Sắp xếp theo thứ tự bảng chữ cái, không dùng lambda
+            Collections.sort(names, new java.util.Comparator<String>() {
+                public int compare(String a, String b) {
+                    return a.compareTo(b);
+                }
+            });
+
+            // Với lambda: ngắn gọn hơn
+            Collections.sort(names, (a, b) -> a.compareTo(b));
+
+            System.out.println("Danh sách sau khi sắp xếp: " + names);
+        }
+    }
+
+ // [An, Bình, Cường, Ánh]
+
+
+ ✅Method references (Tham chiếu phương thức)
+🧠 1. Method Reference là gì?
+    Là cách viết rút gọn của lambda khi lambda chỉ đơn giản gọi 1 method đã có sẵn.
+Có 4 loại chính:
+    📌1. Static Method Reference
+    📌2. Instance Method Reference (đối tượng cụ thể)
+    📌3. Instance Method of Arbitrary Object (của class – không cụ thể)
+    📌4. Constructor Reference
+
+🧪  Ví dụ minh họa từng loại
+1. Static Method Reference
+    Cú pháp: ClassName::methodName
+
+    public static void main(String[] args) {
+          Consumer<String> print  = System.out::println;
+          print.accept("Hello Java");
+        }  --accept là phương thức có sẵn trong Consumer
+        //Hello Java
+
+      
+
+     public static void main(String[] args) {
+            Function<String, Integer> f1 = String::length;
+            System.out.println(f1.apply("Hello"));
+        } --apply là phương thức có sẵn trong Function
+
+        @FunctionalInterface
+    interface Calculator {
+        int compute(int a, int b);
+    }
+
+    class MathUtils {
+        public static int add(int x, int y) {
+            return x + y;
+        }
+    }
+
+    Calculator calc = MathUtils::add; // Tham chiếu static
+    System.out.println(calc.compute(3, 5)); // Output: 8
+
+
+
+2. Instance Method Reference - Tham chiếu đến phương thức của một đối tượng (Instance Method)
+    Cú pháp: objectName::methodName 
+
+    public class InstanceExample {
+        public void greet(String name) {
+            System.out.println("Hello, " + name);
+        }
+
+        public static void main(String[] args) {
+            InstanceExample obj = new InstanceExample();
+
+            Consumer<String> c = obj::greet; // method reference
+            c.accept("An");  // Output: Hello, An
+        }
+    }
+
+3. Tham chiếu đến phương thức của một lớp bất kỳ - Instance Method Reference 
+    Cú pháp: ClassName::methodName
+
+    List<String> names = Arrays.asList("an", "bình", "cường");
+    names.forEach(String::toUpperCase); // AN, BÌNH, CƯỜNG
+
+
+
+ 4. Constructor Reference - Tham chiếu đến Constructor
+ tạo object mới
+    Cú pháp: ClassName::new
+
+    public static void main(String[] args) {
+            Supplier<ArrayList<String>> supplier = ArrayList::new;
+
+            ArrayList<String> list = supplier.get(); // tạo mới 1 ArrayList
+            list.add("Java 8");
+            System.out.println(list); // [Java 8]
+        }
+
+        VD 2:
+
+    interface PersonFactory {
+    Person create(String name);
+    }
+
+    class Person {
+        String name;
+
+        public Person(String name) {
+            this.name = name;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            PersonFactory factory = Person::new; // Tham chiếu constructor
+            Person p = factory.create("Linh");
+            System.out.
+                    println(p.name); // Output: Linh
+        }
+    }
+
+
+
+
+
+✅ Functional Interface và Lambda trong thư viện java.util.function
+1️⃣ Predicate<T>
+🔹 Mục đích: kiểm tra điều kiện, trả về true hoặc false.
+🔹 Phương thức trừu tượng:
+    boolean test(T t);
+
+🔹 Ví dụ thực tế:
+
+    Predicate<String> isLongName = name -> name.length() > 5;
+
+    System.out.println(isLongName.test("Linh"));     // false
+    System.out.println(isLongName.test("Nguyễn"));   // true
+    🧠 Dùng nhiều trong .filter(...) của Stream.
+
+
+2️⃣ Consumer<T>
+🔹 Mục đích: thực hiện hành động KHÔNG trả về gì (void), thường là in, ghi log, lưu.
+🔹 Phương thức trừu tượng:
+    void accept(T t);
+
+🔹 Ví dụ thực tế:
+
+    Consumer<String> printer = msg -> System.out.println("In: " + msg);
+    printer.accept("Hello Java"); // Output: In: Hello Java
+    🧠 Dùng nhiều với .forEach(...) trong Stream.
+
+3️⃣ Supplier<T>
+🔹 Mục đích: cung cấp một giá trị mà không cần đầu vào.
+🔹 Phương thức trừu tượng:
+    T get();
+
+🔹 Ví dụ thực tế:
+
+    Supplier<Double> randomGenerator = () -> Math.random();
+    System.out.println("Số ngẫu nhiên: " + randomGenerator.get());
+    🧠 Dùng trong lazy loading, factory, sinh dữ liệu.
+
+4️⃣ Function<T, R>
+🔹 Mục đích: chuyển đổi từ kiểu T sang kiểu R.
+🔹 Phương thức trừu tượng:
+    R apply(T t);
+
+🔹 Ví dụ thực tế:
+
+    Function<String, Integer> toLength = s -> s.length();
+    System.out.println(toLength.apply("Hello")); // Output: 5
+    🧠 Dùng nhiều với .map(...) trong Stream để biến đổi dữ liệu.

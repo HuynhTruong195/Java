@@ -1,0 +1,743 @@
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+            GENERIC - COLLECTION EXCEPTION
+🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠🧠
+
+🧠 1. Generic là gì?
+
+Generic (tổng quát hóa) cho phép bạn định nghĩa các class, interface hoặc method mà kiểu dữ liệu (type) có thể là tham số.
+➤ Ví dụ dễ hiểu:
+Bạn muốn tạo một class Box chứa bất kỳ loại dữ liệu nào (Integer, String, Product, ...). Nếu không dùng generic, bạn phải viết nhiều class khác nhau. Với generic, bạn chỉ cần viết một class duy nhất và dùng kiểu T như sau:
+
+    public class Box<T> {
+    private T value;
+
+    public void set(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
+    }
+}
+
+✅ 2. Sử dụng Generic
+➤ Ví dụ:
+
+    public class Main {
+    public static void main(String[] args) {
+        Box<Integer> intBox = new Box<>();
+        intBox.set(123);
+        System.out.println(intBox.get());  // In ra: 123
+
+        Box<String> strBox = new Box<>();
+        strBox.set("Hello");
+        System.out.println(strBox.get());  // In ra: Hello
+    }
+}
+
+    👉 Ở đây:
+
+    Box<Integer> nghĩa là T sẽ được thay bằng Integer
+    Box<String> nghĩa là T được thay bằng String
+
+
+✅ 3. Generic với Method
+
+public class Utils {
+    public static <T> void printArray(T[] arr) {
+        for (T item : arr) {
+            System.out.println(item);
+        }
+    }
+}
+
+➤ Sử dụng:
+    public class Main {
+    public static void main(String[] args) {
+        Integer[] intArr = {1, 2, 3};
+        String[] strArr = {"A", "B", "C"};
+        
+        Utils.printArray(intArr);
+        Utils.printArray(strArr);
+        Vì static nên k cần tạo object mà gọi trực tiếp ở lớp luôn
+    }
+}
+
+🧰  Generic trong thực tế
+Trong thư viện Java có rất nhiều class dùng Generic, ví dụ:
+
+ArrayList<T> – Danh sách kiểu T
+
+HashMap<K, V> – Map với key kiểu K, value kiểu V
+
+Comparator<T> – So sánh kiểu T
+
+                     ✅ Tổng kết
+        Thuộc tính	                        Mô tả ngắn
+        T, E, K, V	         Ký hiệu thường dùng (Type, Element, Key, Value)
+        class Box<T>	                Generic class
+        <T> void methodName()       	Generic method
+        ArrayList<String>           Ví dụ class dùng generic
+
+
+✅ 4.  I. Generic trong Interface là gì?      
+🔸 I. Cú pháp cơ bản:
+    interface InterfaceName<T> {
+        void methodName(T value);
+    }
+Trong đó T là một tham số kiểu – bạn có thể dùng bất kỳ tên nào, thường là T, E, K, V, v.v.
+
+🔸 II. Ví dụ thực tế đơn giản:
+
+👨‍🏫 Ví dụ: Hộp chứa một giá trị bất kỳ
+    // Generic Interface
+    interface Container<T> {
+        void set(T item);
+        T get();
+    }
+
+👷‍♂️ Class triển khai (dùng Integer)
+    class IntegerContainer implements Container<Integer> {
+    private Integer item;
+
+    public void set(Integer item) {
+        this.item = item;
+    }
+
+    public Integer get() {
+        return item;
+    }
+}
+
+VD tổng quan: 
+
+#Box
+
+public interface Box<T>{
+    void display(T data);
+}
+
+#Generic
+public class Generic<T> implements Box<T>{
+    @Override
+    public void display(T data) {
+        System.out.println(data);
+    }
+}
+
+#Main
+public class Main {
+    public static void main(String[] args) {
+        Generic<String> obj =  new Generic<>();
+        obj.display("Hello");
+    }
+}
+
+
+
+🧠 2. Collection là gì?
+
+🔶I. Collection trong Java là một khuôn mẫu (framework) cung cấp các cấu trúc dữ liệu sẵn có như danh sách, tập hợp, hàng đợi,... để lưu trữ, xử lý dữ liệu hiệu quả hơn so với mảng.
+
+📦 Mọi thứ trong java.util.Collection là container để lưu trữ các đối tượng.
+
+🔶 II. Phân loại Collection Framework
+              Collection (Interface gốc)
+                |
+    ----------------------------
+    |           |              |
+  List        Set           Queue
+(ArrayList   (HashSet      (LinkedList,
+ LinkedList) TreeSet...)    PriorityQueue...)
+Ngoài ra còn có:
+
+Map<K, V> (dù không kế thừa Collection) là phần rất quan trọng để lưu dữ liệu theo cặp key-value (vd: HashMap, TreeMap...).
+
+
+🔶 III. Một số interface và class quan trọng
+
+    Interface           	Đặc điểm                    Các class tiêu biểu
+    List    	Dữ liệu có thứ tự, cho phép trùng	    ArrayList, LinkedList
+    Set     	Không cho phép phần tử trùng	    HashSet, TreeSet, LinkedHashSet
+    Queue	FIFO, thêm/xóa phần tử đầu/cuối     	LinkedList, PriorityQueue
+    Map	        Lưu dữ liệu theo key-value          	HashMap, TreeMap
+
+🔶 IV. Ví dụ đơn giản
+
+    1. List – giống mảng nhưng linh hoạt hơn
+        import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> names = new ArrayList<>();
+
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+
+        System.out.println(names.get(1)); // Bob
+        System.out.println(names.size()); // 3
+    }
+}
+
+    2. Set – không cho phép trùng
+
+    Set<Integer> numbers = new HashSet<>();
+    numbers.add(10);
+    numbers.add(20);
+    numbers.add(10); // Bị bỏ qua vì trùng
+
+    System.out.println(numbers); // [10, 20]
+
+    3. Map – lưu theo key-value
+
+    Map<String, Integer> ageMap = new HashMap<>();
+    ageMap.put("Alice", 25);
+    ageMap.put("Bob", 30);
+
+    System.out.println(ageMap.get("Alice")); // 25
+
+  🧠 VI. Một số thao tác phổ biến
+
+    List<String> list = new ArrayList<>();
+    list.add("a");
+    list.add("b");
+    list.remove("a");
+    list.contains("b"); // true
+    Collections.sort(list);
+
+    ✅ Tổng kết
+     Khi nào dùng gì?
+    Cần danh sách có thứ tự, cho phép trùng → List
+    Cần không trùng → Set
+    Cần thao tác hàng đợi → Queue
+    Cần ánh xạ key → value → Map
+
+ 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+Các phương thức cơ bản của Collection
+Một số phương thức thường được sử dụng trong Collection:
+
+Thêm phần tử:
+add(E e): Thêm một phần tử.
+Xóa phần tử:
+remove(Object o): Xóa phần tử được chỉ định.
+Duyệt phần tử:
+iterator(): Trả về một đối tượng Iterator để duyệt qua tập hợp.
+Kiểm tra phần tử:
+contains(Object o): Kiểm tra xem tập hợp có chứa phần tử không.
+Kích thước:
+size(): Trả về số phần tử hiện có trong tập hợp.
+
+
+VD TỔNG QUAN:
+
+✅ 1. List (ArrayList) – Cho phép phần tử trùng lặp, có thứ tự
+ArrayList<String> list = new ArrayList<>();
+list.add("Java");
+list.add("Python");
+list.add("Java");  // Trùng vẫn cho thêm
+System.out.println("List: " + list);
+
+📌 Kết quả in ra: List: [Java, Python, Java]
+
+🔹 Dùng khi bạn cần:
+Dữ liệu có thứ tự (index)
+Cho phép phần tử trùng
+Truy cập nhanh bằng chỉ số list.get(i)
+
+
+✅ 2. Set (HashSet) – Không cho phép trùng lặp, không có thứ tự
+HashSet<String> set = new HashSet<>();
+set.add("Java");
+set.add("Python");
+set.add("Java");  // Trùng => bị bỏ qua
+System.out.println("Set: " + set);
+
+📌 Kết quả in ra: Set: [Java, Python]  // Hoặc [Python, Java] – không đảm bảo thứ tự
+
+🔹 Dùng khi bạn cần:
+Lưu tập giá trị không trùng
+Không quan tâm thứ tự
+
+
+✅ 3. Map (HashMap) – Lưu theo cặp key -> value
+Map<Integer, String> map = new HashMap<>();
+map.put(1, "Java");
+map.put(2, "Python");
+map.put(1, "C++");  // Ghi đè key = 1
+System.out.println("Map: " + map);
+
+📌 Kết quả in ra: Map: {1=C++, 2=Python}
+
+🔹 Dùng khi bạn cần:
+
+Lưu dữ liệu theo khóa - giá trị (như ID → Tên, Mã → Nội dung)
+Không trùng key, trùng thì bị ghi đè
+
+
+vd thực tế với list Dùng Map<String, Product> – key là ID, tránh trùng lặp 
+🔸 Lớp Product:
+    public class Product {
+        String id;
+        String name;
+        double price;
+
+        public Product(String id, String name, double price) {
+            this.id = id;
+            this.name = name;
+            this.price = price;
+        }
+
+        @Override
+        public String toString() {
+            return id + " - " + name + " - " + price;
+        }
+    }
+
+
+🔸 Dùng HashMap trong main:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ProductMapExample {
+    public static void main(String[] args) {
+        Map<String, Product> productMap = new HashMap<>();
+
+        productMap.put("P01", new Product("P01", "Coffee", 25.0));
+        productMap.put("P02", new Product("P02", "Tea", 15.0));
+        productMap.put("P01", new Product("P01", "Espresso", 30.0));  // Ghi đè
+
+        for (String key : productMap.keySet()) {
+            System.out.println(productMap.get(key));
+        }
+    }
+}
+
+📌 Kết quả:
+    P01 - Espresso - 30.0
+    P02 - Tea - 15.0
+
+
+
+
+ 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+                    LIST VÀ ARRAYLIST
+  🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+
+✅ 1. List là gì?
+
+   =  List là một interface trong Java thuộc gói java.util
+    - List đại diện cho danh sách các phần tử có thứ tự, có thể chứa các phần tử trùng lặp
+    - Các phần tử trong List có thể được truy cập theo chỉ số (index) bắt đầu từ 0
+    - Các lớp triển khai List phổ biến:
+          +  ArrayList
+          + LinkedList
+          +  Vector
+          + Stack
+vd: 
+List<String> myList = new ArrayList<>();
+→ Ở đây bạn khai báo theo List, nhưng khởi tạo bằng ArrayList – vì List chỉ là giao diện, không thể new được.
+
+✅ 2. ArrayList là gì? 
+
+ArrayList là lớp triển khai phổ biến nhất của List, dựa trên mảng động (dynamic array)
+Nó tự động mở rộng kích thước khi thêm nhiều phần tử
+Truy cập phần tử rất nhanh (qua chỉ số), nhưng thêm/xóa ở giữa danh sách thì chậm hơn so với LinkedList
+
+    List<String> list = new ArrayList<>();
+
+ ✅ 3. Ví dụ đơn giản
+import java.util.List;
+import java.util.ArrayList;
+
+public class ListExample {
+    public static void main(String[] args) {
+        List<String> languages = new ArrayList<>();
+        languages.add("Java");
+        languages.add("Python");
+        languages.add("Java");  // Cho phép trùng
+
+        for (String lang : languages) {
+            System.out.println(lang);
+        }
+    }
+}
+🔸 Kết quả: Java Python Java
+
+
+✅Các phương thức phổ biến của ArrayList
+
+✅ 1. add(E element)
+Thêm phần tử vào cuối danh sách.
+    list.add("Java");
+
+✅ 2. add(int index, E element)
+Chèn phần tử vào vị trí cụ thể.
+    list.add(1, "Python");
+
+✅ 3. get(int index)
+Lấy phần tử tại chỉ số.
+    String value = list.get(0);
+
+✅ 4. set(int index, E element)
+Ghi đè phần tử tại vị trí chỉ định.
+    list.set(0, "C++");
+
+✅ 5. remove(int index)
+Xoá phần tử tại chỉ số.
+    list.remove(1);
+
+✅ 6. remove(Object o)
+Xoá phần tử đầu tiên tìm thấy có giá trị bằng o.
+    list.remove("Python");
+
+✅ 7. size()
+Trả về số phần tử trong danh sách.
+    int n = list.size();
+
+✅ 8. contains(Object o)
+Kiểm tra xem danh sách có chứa phần tử o không.
+    list.contains("Java");  // true/false
+
+✅ 9. isEmpty()
+Kiểm tra danh sách có rỗng không.
+    list.isEmpty();  // true/false
+
+✅ 10. clear()
+Xoá toàn bộ phần tử trong danh sách.
+    list.clear();
+
+✅ 11. indexOf(Object o)
+Trả về chỉ số đầu tiên tìm thấy phần tử, hoặc -1 nếu không có.
+    list.indexOf("Java");
+
+✅ 12. lastIndexOf(Object o)
+Trả về chỉ số cuối cùng xuất hiện phần tử.
+    list.lastIndexOf("Java");
+
+✅ 13. toArray()
+Chuyển ArrayList thành mảng.
+    String[] arr = list.toArray(new String[0]);
+
+✅✅duyệt danh sách:
+    for(String name : names){
+        System.out.println(name);
+    }
+
+Một số lưu ý khi sử dụng ArrayList
+ArrayList không đồng bộ (non-synchronized) → không an toàn khi dùng nhiều luồng
+Dễ bị lỗi IndexOutOfBoundsException nếu truy cập sai chỉ số.
+Khi cần thêm/xóa nhiều ở giữa danh sách, hãy cân nhắc dùng LinkedList
+
+✅ Ví dụ: Quản lý danh sách việc cần làm (To-Do List)
+import java.util.LinkedList;
+
+🔷 LinkedList là gì?
+LinkedList là một lớp cụ thể (class) triển khai List, Deque, Queue.
+Các phần tử liên kết với nhau theo dạng node (mỗi node chứa data + con trỏ đến node kế).
+Cấu trúc: danh sách liên kết đôi (doubly linked list).
+
+
+public class TodoList {
+    public static void main(String[] args) {
+        // Tạo một LinkedList chứa các chuỗi việc cần làm
+        LinkedList<String> tasks = new LinkedList<>();
+
+        // Thêm các công việc vào danh sách
+        tasks.add("Dậy sớm");
+        tasks.add("Tập thể dục");
+        tasks.add("Ăn sáng");
+        tasks.add("Đi làm");
+
+        System.out.println("Danh sách ban đầu:");
+        printList(tasks);
+
+        // Thêm 1 công việc ở đầu
+        tasks.addFirst("Mở mắt");  - thêm vào đầu danh sách
+        System.out.println("\nSau khi thêm vào đầu:");
+        printList(tasks);
+
+        // Chèn 1 công việc ở giữa (vị trí 2)
+        tasks.add(2, "Đánh răng");
+        System.out.println("\nSau khi thêm vào giữa:");
+        printList(tasks);
+
+        // Xóa công việc ở giữa (vị trí 3)
+        tasks.remove(3);
+        System.out.println("\nSau khi xóa ở giữa:");
+        printList(tasks);
+
+        // Xóa công việc cuối cùng
+        tasks.removeLast();   --Xóa phần tử cuối
+        System.out.println("\nSau khi xóa phần tử cuối:");
+        printList(tasks);
+    }
+
+    // Hàm in danh sách
+    public static void printList(LinkedList<String> list) {
+        for (String task : list) {
+            System.out.println("- " + task);
+        }
+    }
+}
+
+
+🧾 Kết quả (ví dụ đầu ra):
+
+Danh sách ban đầu:
+- Dậy sớm
+- Tập thể dục
+- Ăn sáng
+- Đi làm
+
+Sau khi thêm vào đầu:
+- Mở mắt
+- Dậy sớm
+- Tập thể dục
+- Ăn sáng
+- Đi làm
+
+Sau khi thêm vào giữa:
+- Mở mắt
+- Dậy sớm
+- Đánh răng
+- Tập thể dục
+- Ăn sáng
+- Đi làm
+
+Sau khi xóa ở giữa:
+- Mở mắt
+- Dậy sớm
+- Đánh răng
+- Ăn sáng
+- Đi làm
+
+Sau khi xóa phần tử cuối:
+- Mở mắt
+- Dậy sớm
+- Đánh răng
+- Ăn sáng
+
+📌 Kết luận
+Dùng ArrayList khi: cần truy cập theo chỉ số nhanh (ví dụ: danh sách sản phẩm).
+Dùng LinkedList khi: cần thêm/xóa nhiều ở đầu/cuối/giữa danh sách (ví dụ: hàng đợi, undo/redo).
+
+
+
+
+ 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+                   COMPARABLE VÀ COMPARATOR
+  🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+
+ ✅ 1. Comparable – Tự so sánh chính mình
+✔ Dùng khi:
+Bạn muốn mặc định sắp xếp theo một tiêu chí.
+
+So sánh ngay trong class đó.
+
+🧠 Cách dùng:
+Class cần sắp xếp implement Comparable<T>.
+
+Ghi đè hàm compareTo().
+
+📌 Ví dụ: Sắp xếp danh sách sản phẩm theo giá tăng dần
+
+ class Product implements Comparable<Product> {
+    String name;
+    double price;
+
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    //ghi đè hàm compareTo()
+    public int compareTo(Product other) {
+        return Double.compare(this.price, other.price);
+    }
+
+    public String toString() {
+        return name + ": " + price;
+    }
+}
+
+✅ Sử dụng:
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Product> list = new ArrayList<>();
+        list.add(new Product("Cà phê", 30000));
+        list.add(new Product("Trà sữa", 40000));
+        list.add(new Product("Sinh tố", 35000));
+
+        Collections.sort(list);  // dùng compareTo
+        for (Product p : list) System.out.println(p);
+    }
+}
+
+Vd khác: so sánh mặc định (theo tuổi)
+    class Student implements Comparable<Student> {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // So sánh mặc định theo tuổi
+    public int compareTo(Student other) {
+        return this.age - other.age; // tuổi tăng dần
+    }
+
+    public String toString() {
+        return name + " - " + age;
+    }
+}
+
+✅Sử dụng:
+    import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student("Nam", 20));
+        list.add(new Student("An", 18));
+        list.add(new Student("Bình", 22));
+
+        Collections.sort(list); // Dùng compareTo
+        for (Student s : list) System.out.println(s);
+    }
+}
+
+👉 Kết quả sẽ là:
+ An - 18  
+Nam - 20  
+Bình - 22
+
+
+
+✅ 2. Comparator – So sánh bên ngoài, linh hoạt
+✔ Dùng khi:
+Muốn sắp xếp theo nhiều cách khác nhau (theo tên, theo giá, v.v.)
+Không (hoặc không muốn) sửa class gốc.
+    int compare(T o1, T o2): So sánh hai đối tượng
+    Trả về số âm nếu o1 nhỏ hơn o2
+    Trả về số 0 nếu hai đối tượng bằng nhau
+    Trả về số dương nếu o1 lớn hơn o2
+
+📌 Ví dụ: Sắp xếp danh sách sản phẩm theo tên A-Z
+import java.util.*;
+
+class Product {
+    String name;
+    double price;
+
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String toString() {
+        return name + ": " + price;
+    }
+}
+
+✅ Sử dụng Comparator:
+public class Main {
+    public static void main(String[] args) {
+        List<Product> list = new ArrayList<>();
+        list.add(new Product("Cà phê", 30000));
+        list.add(new Product("Trà sữa", 40000));
+        list.add(new Product("Sinh tố", 35000));
+
+        // Sắp xếp theo tên
+        Collections.sort(list, new Comparator<Product>() {
+            public int compare(Product p1, Product p2) {
+                return p1.name.compareTo(p2.name);
+            }
+        });
+
+        for (Product p : list) System.out.println(p);
+    }
+}
+
+
+
+
+ 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+                   MAP VÀ HASHMAP
+  🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠 🧠
+
+ ✅ 1. Map là gì?
+    Map là cấu trúc dữ liệu lưu trữ theo cặp: key – value (khóa – giá trị).
+    Mỗi key là duy nhất và ánh xạ đến một value duy nhất
+    Không cho phép trùng key.
+    Rất hữu ích để tra cứu nhanh kiểu như: "mã sản phẩm → tên sản phẩm" hoặc "tên → tuổi".
+
+ Đặc điểm của Map
+Cặp Key-Value:
+    Key: Phải là duy nhất, không được trùng lặp
+    Value: Có thể trùng lặp
+    Ví dụ: Một HashMap có thể lưu trữ {"Alice": 25, "Bob": 30, "Alice": 35}. Trong trường hợp này, giá trị của khóa Alice sẽ bị ghi đè thành 35
+Không phải là một Collection:
+     dù Map nằm trong gói java.util, nó không kế thừa từ interface Collection. Do đó, Map không cung cấp các phương thức như add(), remove(), hay iterator()
+Hỗ trợ các thao tác cơ bản:
+    Thêm: Thêm cặp key-value bằng phương thức put(key, value)
+    Lấy: Lấy giá trị dựa trên key bằng phương thức get(key)
+    Xóa: Xóa phần tử bằng phương thức remove(key)
+    Kiểm tra tồn tại: Dùng các phương thức containsKey(key) và containsValue(value)
+Triển khai khác nhau cho các mục đích khác nhau:
+    HashMap: Nhanh (O(1) trung bình) nhưng không đảm bảo thứ tự
+    LinkedHashMap: Nhanh và duy trì thứ tự chèn
+    TreeMap: Chậm hơn (O(log n)) nhưng duy trì thứ tự tự nhiên hoặc tùy chỉnh
+Không cho phép key là null trong TreeMap:
+    HashMap và LinkedHashMap cho phép một key là null
+    TreeMap không cho phép key là null, vì nó cần sắp xếp các khóa
+Không đồng bộ hóa:
+    Các lớp như HashMap và LinkedHashMap không đồng bộ hóa. Nếu cần sử dụng trong môi trường đa luồng, bạn có thể sử dụng Collections.synchronizedMap() hoặc ConcurrentHashMap  
+
+   ✅ 2. HashMap là gì?
+HashMap là một trong những class phổ biến nhất để triển khai Map.
+Dùng bảng băm nên truy xuất rất nhanh (thường O(1)).
+
+✅ Cách dùng HashMap (cốt lõi)
+Mục đích	            Cách dùng
+Tạo             map	Map<String, String> map = new HashMap<>();
+Thêm phần tử	    map.put("a", "Apple");
+Lấy giá trị	        map.get("a"); // "Apple"
+Duyệt key/value	        dùng for (Map.Entry<K,V> entry : map.entrySet())
+--entrySet() là phương thức có sẵn trong map
+
+✅ Ví dụ đơn giản – tên người và tuổi:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<String, Integer> ageMap = new HashMap<>();
+
+        ageMap.put("An", 18);
+        ageMap.put("Bình", 20);
+        ageMap.put("Nam", 22);
+
+        System.out.println(ageMap.get("Bình")); // 👉 In ra 20
+
+        for (Map.Entry<String, Integer> entry : ageMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+    }
+}
+
+🔁 So sánh các cách duyệt Map:
+Cách duyệt      	Ưu điểm                 	Cú pháp
+entrySet()	Truy cập cả key và value	for (Map.Entry<K, V> entry : map.entrySet())
+keySet()	Chỉ duyệt key	            for (K key : map.keySet())
+values()	Chỉ duyệt value	            for (V val : map.values())
+
+
+ 
+
+ 
