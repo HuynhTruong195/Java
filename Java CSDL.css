@@ -1,0 +1,722 @@
+💡 1. CSDL là gì?
+Cơ sở dữ liệu (Database) là nơi lưu trữ dữ liệu có cấu trúc. Trong Java, thường dùng các hệ quản trị CSDL (DBMS) như:
+
+    MySQL
+
+    PostgreSQL
+
+    SQLite
+
+    Oracle Database
+
+    SQL Server
+
+💻 2. Java làm việc với CSDL như thế nào?
+Java sử dụng API JDBC (Java Database Connectivity) để kết nối và làm việc với cơ sở dữ liệu.
+
+✳️ JDBC là gì?
+JDBC là một API chuẩn cho phép Java tương tác với các CSDL quan hệ (RDBMS).
+
+🔗 3. Các bước kết nối CSDL với Java qua JDBC
+    1. Load Driver
+    2. Kết nối đến CSDL
+    3. Tạo Statement
+    4. Thực thi truy vấn (Query)
+    5. Xử lý kết quả
+    6. Đóng kết nối
+
+    Ví dụ kết nối MySQL:
+        import java.sql.*;
+
+public class DatabaseExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/ten_csdl";
+        String user = "root";
+        String password = "mat_khau";
+
+        try {
+            // 1. Nạp Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // 2. Kết nối CSDL
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            // 3. Tạo Statement
+            Statement stmt = conn.createStatement();
+
+            // 4. Thực thi truy vấn
+            ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+
+            // 5. Xử lý kết quả
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+            }
+
+            // 6. Đóng kết nối
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+📦 4. Các loại Statement
+    Loại	                            Mô tả
+    Statement	            Dùng cho truy vấn đơn giản
+    PreparedStatement	    Truy vấn có tham số, ngăn SQL Injection
+    CallableStatement	    Gọi stored procedure trong CSDL
+
+📚 5. Một số thư viện hỗ trợ ngoài JDBC
+Hibernate: ORM Framework giúp làm việc với CSDL như thao tác với đối tượng Java.
+JPA (Java Persistence API): Giao diện chuẩn cho ORM.
+Spring JDBC / Spring Data JPA: Tích hợp trong ứng dụng Spring, đơn giản hóa truy vấn.
+
+    ✅ Tóm lại
+    Thành phần	                Vai trò
+    JDBC	        API kết nối CSDL trong Java
+    Driver	        Kết nối với CSDL cụ thể
+    SQL	            Ngôn ngữ truy vấn
+    ORM	            Tự động ánh xạ đối tượng Java ↔ CSDL
+
+
+✅Các thành phần chính của một hệ CSDL
+    Dữ liệu: Được lưu trữ theo cấu trúc nhất định
+    Phần mềm quản trị: Là DBMS như đã nêu trên
+    Ngôn ngữ thao tác dữ liệu: Ngôn ngữ thường dùng nhất là SQL (Structured Query Language)
+    Người dùng: Gồm người dùng cuối, lập trình viên, quản trị viên hệ thống
+ 
+
+✅Ưu điểm của việc sử dụng CSDL
+    Giảm trùng lặp dữ liệu
+    Tăng tính nhất quán và toàn vẹn dữ liệu
+    Hỗ trợ truy cập đồng thời và hiệu quả
+    Tăng tính bảo mật
+    Dễ mở rộng và bảo trì
+
+
+🔰 1. Phân loại theo mô hình dữ liệu
+a. Cơ sở dữ liệu quan hệ (Relational Database - RDBMS)
+    Tổ chức theo bảng (table): hàng (row) và cột (column)
+
+    Ngôn ngữ truy vấn: SQL
+    Ví dụ: MySQL, PostgreSQL, Oracle, SQL Server
+
+➡️ Dùng nhiều nhất trong Java (JDBC, Hibernate, JPA...)
+
+b. Cơ sở dữ liệu phi quan hệ (NoSQL)
+Không dùng bảng, mà dùng:
+    Document (MongoDB)
+    Key-Value (Redis)
+    Column-Family (Cassandra)
+    Graph (Neo4j)
+    Không dùng SQL truyền thống
+
+➡️ Thích hợp cho Big Data, dữ liệu linh hoạt, tốc độ cao
+
+c. Cơ sở dữ liệu hướng đối tượng (Object-Oriented DB)
+    Lưu trữ đối tượng như trong lập trình OOP
+    Hỗ trợ kế thừa, đóng gói, đa hình
+    Ít phổ biến hơn, nhưng có thể tích hợp tốt với Java
+
+d. Cơ sở dữ liệu phân tán (Distributed DB)
+    Dữ liệu lưu trữ trên nhiều máy chủ khác nhau
+    Đảm bảo hiệu suất và tính sẵn sàng cao
+    Ví dụ: Google Spanner, Apache Cassandra
+
+
+Một số khái niệm cơ bản
+    Bảng (Table): Nơi chứa dữ liệu, gồm các hàng và cột
+    Bản ghi (Record/Row): Một hàng dữ liệu trong bảng
+    Thuộc tính (Field/Column): Một cột trong bảng, chứa giá trị của một loại thông tin
+    Khóa chính (Primary key): Dùng để phân biệt duy nhất mỗi bản ghi trong bảng
+    Khóa ngoại (Foreign key): Dùng để tạo liên kết giữa các bảng
+ 
+
+Mô hình CSDL
+    Mô hình quan hệ: Dữ liệu được mô tả dưới dạng các bảng
+    Mô hình phân cấp (Hierarchical), mô hình mạng (Network): Cũ, ít được sử dụng ngày nay
+    Mô hình hướng đối tượng: Kết hợp giữa lập trình hướng đối tượng và CSDL.
+
+
+
+ ➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️   
+    ✅ MÔ HÌNH QUAN HỆ THỰC THỂ (ER Model – Entity Relationship Model)
+
+Mô hình Quan hệ Thực thể (gọi tắt là ER) là mô hình khái niệm dùng để mô tả cấu trúc dữ liệu của một hệ thống – đặc biệt là trong thiết kế cơ sở dữ liệu quan hệ.
+
+🧠 1. Khái niệm cơ bản
+    Thực thể (Entity)	
+        Là một đối tượng cụ thể trong thế giới thực mà bạn muốn lưu thông tin, như: Sinh viên, Môn học, Giảng viên
+      
+    Thuộc tính (Attribute)	
+        Là thông tin mô tả cho thực thể, ví dụ: Tên, Mã sinh viên, Tuổi
+
+    Khóa chính (Primary Key)
+        Là thuộc tính duy nhất định danh một thực thể
+
+    Mối quan hệ (Relationship)
+        Là mối liên kết giữa các thực thể, ví dụ: Sinh viên - đăng ký - Môn học
+
+    Bội số (Cardinality)
+        Chỉ rõ số lượng thực thể tham gia trong mối quan hệ: 1-1, 1-N, N-N  
+
+
+🧱 2. Ví dụ đơn giản về mô hình ER
+Bài toán: Quản lý sinh viên đăng ký môn học.
+
+    ➤ Các thực thể:
+    SINH_VIEN (MaSV, HoTen, NgaySinh)
+
+    MON_HOC (MaMH, TenMH, SoTinChi)
+
+    ➤ Mối quan hệ:
+    DANG_KY(SINH_VIEN ↔ MON_HOC): một sinh viên có thể đăng ký nhiều môn học và một môn học có thể có nhiều sinh viên → N:N
+
+🧩 3. Biểu đồ ER (ER Diagram)
+    Biểu đồ ER thường có:
+
+    Hình chữ nhật đại diện cho Thực thể
+
+    Hình oval cho Thuộc tính
+
+    Hình hình thoi cho Mối quan hệ
+
+    Các đường nối giữa các hình thể hiện mối liên hệ
+
+    [SINH_VIEN] —— (Đăng_Ký) —— [MON_HOC]
+        |                             |
+    [MaSV, TenSV]         [MaMH, TenMH]
+
+
+
+
+
+➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️
+   ✅ Các dạng thiết kế mô hình ER model
+
+🎯 1. Mô hình ER mức khái niệm (Conceptual ER Model)
+    Là mức cao nhất của mô hình ER.
+    Tập trung vào thực thể, thuộc tính, mối quan hệ giữa các đối tượng trong hệ thống mà không quan tâm đến cách cài đặt.
+
+📌 Ví dụ:
+
+    SinhVien có MaSV, Ten, Tuoi.
+
+    SinhVien — Đăng ký — MonHoc.
+
+✔️ Dùng để trao đổi với người dùng hoặc phân tích yêu cầu ban đầu.
+
+
+🧩 2. Mô hình ER mức logic (Logical ER Model)
+    Là bản nâng cấp từ mô hình khái niệm, bổ sung:
+    Kiểu dữ liệu thuộc tính
+    Định nghĩa các khóa chính (primary keys), khóa ngoại (foreign keys) và các ràng buộc (constraints) khác.
+    Không phụ thuộc vào một DBMS cụ thể.
+
+📌 Ví dụ:
+
+    SinhVien (
+    MaSV INT PRIMARY KEY,
+    TenSV VARCHAR(100),
+    Tuoi INT
+    )
+
+    MonHoc (
+        MaMH INT PRIMARY KEY,
+        TenMH VARCHAR(100)
+    )
+
+    DangKy (
+        MaSV INT,
+        MaMH INT,
+        PRIMARY KEY (MaSV, MaMH),
+        FOREIGN KEY (MaSV) REFERENCES SinhVien(MaSV),
+        FOREIGN KEY (MaMH) REFERENCES MonHoc(MaMH)
+    )
+
+✔️ Dùng để chuyển sang CSDL quan hệ như MySQL, PostgreSQL..
+
+⚙️ 3. Mô hình ER mức vật lý (Physical ER Model)
+    Là mô hình gần nhất với cách cài đặt thực tế trong hệ quản trị CSDL (MySQL, SQL Server,...)
+    Có thêm:
+    Chỉ mục (Index)
+    Kiểu lưu trữ
+    Tên bảng thực tế
+    Cấu hình khóa ngoại chi tiết
+
+📌 Ví dụ:
+
+    CREATE TABLE `sinhvien` (
+    `masv` INT NOT NULL AUTO_INCREMENT,
+    `hoten` VARCHAR(255),
+    PRIMARY KEY (`masv`)
+    ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+✔️ Dùng cho DBA và developer backend để triển khai.
+
+🧠 4. Các mô hình mở rộng của ER (Enhanced ER – EER)
+Dùng để biểu diễn các khái niệm phức tạp như:
+
+        Mở rộng                                     	Mô tả
+    Tổng quát hóa (Generalization)	    Gom nhiều thực thể con thành thực thể cha
+    Chuyên biệt hóa (Specialization)	    Từ một thực thể tạo ra các thực thể con
+    Kế thừa (Inheritance)	                Thuộc tính được chia sẻ từ cha → con
+    Tập thực thể yếu (Weak Entity)	    Không có khóa chính riêng, phụ thuộc vào thực thể khác
+
+📌 Ví dụ:
+    Thực thể NhanVien có thể chia thành: NhanVienFullTime, NhanVienPartTime
+
+                      📝 Tóm tắt bảng so sánh
+    Mức ER Model	            Mục đích	              Chi tiết
+    Khái niệm           	Phân tích yêu cầu	    Tên, thực thể, quan hệ
+    Logic               	Thiết kế CSDL	        Khóa, kiểu dữ liệu
+    Vật lý	                    Triển khai      	Tối ưu hóa, engine
+    Mở rộng (EER)	            Nâng cao	        Thừa kế, đa hình
+
+
+
+🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯🎯
+🎯 Các bước thiết kế cơ sở dữ liệu
+   
+🧩 Bước 1: Phân tích yêu cầu hệ thống
+Hiểu rõ bài toán hoặc hệ thống cần xây dựng.
+    Xác định:
+    Thông tin nào cần lưu?
+    Ai sử dụng?
+    Các chức năng chính?
+
+📌 Ví dụ: Quản lý sinh viên đăng ký môn học → cần lưu Sinh viên, Môn học, và Đăng ký.
+
+🧱 Bước 2: Xác định các thực thể và thuộc tính
+    Mỗi thực thể (Entity) sẽ trở thành một bảng trong cơ sở dữ liệu.
+    Mỗi thuộc tính sẽ là một cột của bảng.
+
+📌 Ví dụ:
+
+Thực thể	Thuộc tính
+SinhVien	MaSV, TenSV, Tuoi
+MonHoc	MaMH, TenMH, SoTinChi
+
+🔗 Bước 3: Xác định mối quan hệ giữa các thực thể
+    Mối quan hệ 1-1, 1-N, N-N
+    Nếu là N-N → cần thêm bảng trung gian
+
+📌 Ví dụ:
+
+Một SinhVien có thể đăng ký nhiều MonHoc → Mối quan hệ N:N → tạo bảng DangKy(MaSV, MaMH)
+
+🧠 Bước 4: Thiết kế mô hình ER (ERD)
+Vẽ sơ đồ thể hiện:
+    Thực thể (hình chữ nhật)
+    Thuộc tính (hình oval)
+    Mối quan hệ (hình thoi)
+    Đánh dấu khóa chính và liên kết
+
+📌 Công cụ hỗ trợ vẽ:
+
+    dbdiagram.io
+
+    draw.io
+
+    Lucidchart
+
+🛠️ Bước 5: Thiết kế mô hình logic
+Chuyển thực thể & mối quan hệ thành bảng dữ liệu chuẩn:
+    CREATE TABLE SinhVien (
+        MaSV INT PRIMARY KEY,
+        TenSV VARCHAR(100),
+        Tuoi INT
+    );
+
+    CREATE TABLE MonHoc (
+        MaMH INT PRIMARY KEY,
+        TenMH VARCHAR(100),
+        SoTinChi INT
+    );
+
+    CREATE TABLE DangKy (
+        MaSV INT,
+        MaMH INT,
+        PRIMARY KEY (MaSV, MaMH),
+        FOREIGN KEY (MaSV) REFERENCES SinhVien(MaSV),
+        FOREIGN KEY (MaMH) REFERENCES MonHoc(MaMH)
+    );
+
+🔄 Bước 6: Chuẩn hóa (Normalization)
+    Đảm bảo không trùng lặp, không dư thừa:
+    Tách dữ liệu lặp thành bảng riêng
+    Đảm bảo các chuẩn 1NF, 2NF, 3NF để dữ liệu sạch, dễ quản lý
+
+⚙️ Bước 7: Thiết kế vật lý
+    Xác định kiểu dữ liệu cụ thể (INT, VARCHAR, DATE, FLOAT, ...)
+    Đặt chỉ mục (index), phân vùng (partition), engine phù hợp
+
+🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗
+🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗🔗
+    ✅ MỐI QUAN HỆ GIỮA CÁC THỰC THỂ✅ 
+
+🔗 1. Quan hệ 1 – 1 (One to One)
+    Một bản ghi trong bảng A chỉ liên kết với duy nhất một bản ghi trong bảng B, và ngược lại.
+
+📌 Ví dụ thực tế:
+    Mỗi người dùng có một hồ sơ chi tiết (profile).
+    Bảng User và bảng Profile.
+
+    User (UserID, Username)
+    Profile (ProfileID, UserID, Address, Phone)
+→ UserID trong bảng Profile là khóa ngoại và duy nhất (UNIQUE).
+
+    ALTER TABLE Profile ADD CONSTRAINT FK_User
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+    ON DELETE CASCADE;
+
+🔗 2. Quan hệ 1 – N (One to Many)
+    Một bản ghi trong bảng A có thể liên kết với nhiều bản ghi trong bảng B, nhưng bản ghi trong bảng B chỉ liên kết với một bản ghi duy nhất trong bảng A.
+
+ 📌 Ví dụ thực tế:
+    Một lớp học có nhiều sinh viên.
+    Bảng Lop và bảng SinhVien.   
+
+    Lop (MaLop, TenLop)
+    SinhVien (MaSV, HoTen, MaLop)
+→ MaLop trong SinhVien là khóa ngoại liên kết tới Lop.
+
+    ALTER TABLE SinhVien ADD CONSTRAINT FK_Lop
+    FOREIGN KEY (MaLop) REFERENCES Lop(MaLop);
+
+🔗 3. Quan hệ N – N (Many to Many).
+    Một bản ghi trong bảng A có thể liên kết với nhiều bản ghi trong bảng B và ngược lại.
+
+📌 Ví dụ thực tế:
+    Một sinh viên có thể đăng ký nhiều môn học, và một môn học có thể có nhiều sinh viên.
+✅ Cách xử lý:
+    Phải tạo bảng trung gian để biểu diễn mối quan hệ.
+
+    SinhVien (MaSV, HoTen)
+    MonHoc (MaMH, TenMH)
+    DangKy (MaSV, MaMH)
+→ Bảng DangKy có 2 khóa ngoại là MaSV, MaMH.
+
+    CREATE TABLE DangKy (
+        MaSV VARCHAR(10),
+        MaMH VARCHAR(10),
+        PRIMARY KEY (MaSV, MaMH),
+        FOREIGN KEY (MaSV) REFERENCES SinhVien(MaSV),
+        FOREIGN KEY (MaMH) REFERENCES MonHoc(MaMH)
+    );
+
+
+🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️🛠️
+🛠️ HỆ QUẢN TRỊ CƠ SỞ DỮ LIỆU MySQL
+
+  📚  SQL là ngôn ngữ chuẩn dùng để quản lý và thao tác với cơ sở dữ liệu quan hệ (RDBMS). Nó cho phép người dùng thực hiện các thao tác như truy vấn, chèn, cập nhật, và xóa dữ liệu trong cơ sở dữ liệu. 
+        Có rất nhiều CSDL khác nhau nhưng chúng đều sử dụng chung bộ ngôn ngữ SQL
+        Dữ liệu được lưu trữ trong các bảng, và các bảng có mối quan hệ với nhau.
+
+💡 4. Một số lệnh SQL cơ bản trong MySQL
+Mục đích	            Câu lệnh
+Tạo CSDL	        CREATE DATABASE TenCSDL;
+Chọn CSDL	            USE TenCSDL;
+Tạo bảng	            CREATE TABLE TenBang (...);
+Thêm dữ liệu	    INSERT INTO TenBang (...) VALUES (...);
+Hiển thị dữ liệu	SELECT * FROM TenBang;
+Xoá bảng	        DROP TABLE TenBang;
+Xoá CSDL        	DROP DATABASE TenCSDL;
+
+🧱 5. Ví dụ đơn giản với MySQL
+🎯 Bài toán: Quản lý sinh viên
+    -- Tạo CSDL
+    CREATE DATABASE QLSinhVien;
+    USE QLSinhVien;
+
+    -- Tạo bảng SinhVien
+    CREATE TABLE SinhVien (
+        MaSV VARCHAR(10) PRIMARY KEY,
+        HoTen VARCHAR(100),
+        Tuoi INT
+    );
+
+    -- Thêm sinh viên
+    INSERT INTO SinhVien VALUES ('SV001', 'Nguyễn Văn A', 20);
+
+    -- Xem danh sách sinh viên
+    SELECT * FROM SinhVien;
+
+
+
+✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+    CÁC CHỨC NĂNG CHÍNH CỦA SQL
+
+
+Khái niệm
+    SQL (Structured Query Language) là một ngôn ngữ máy tính được thiết kế để quản lý và thao tác cơ sở dữ liệu quan hệ. Nó cho phép người dùng tạo, truy vấn, cập nhật và quản lý dữ liệu trong hệ quản trị cơ sở dữ liệu (DBMS) như MySQL, SQL Server, PostgreSQL, Orac
+
+✅ 1. DDL – Data Definition Language (Ngôn ngữ định nghĩa dữ liệu)
+
+Dùng để tạo, sửa đổi, hoặc xóa cấu trúc bảng và cơ sở dữ liệu.
+
+    CREATE:     Tạo cơ sở dữ liệu, bảng, chỉ mục, view...
+    ALTER:      Thay đổi cấu trúc bảng (thêm, sửa, xóa cột)
+    DROP:       Xóa bảng hoặc cơ sở dữ liệu
+    TRUNCATE:	Xóa toàn bộ dữ liệu trong bảng (nhanh hơn DELETE)
+
+📌 Ví dụ:  
+    CREATE TABLE SinhVien (
+        MaSV VARCHAR(10) PRIMARY KEY,
+        HoTen VARCHAR(100),
+        Tuoi INT
+    );
+
+
+✅ 2. DML – Data Manipulation Language (Ngôn ngữ thao tác dữ liệu)
+
+Dùng để thao tác dữ liệu trong các bảng: thêm, sửa, xóa, truy xuất.
+
+    SELECT:	Truy vấn dữ liệu
+    INSERT: Thêm dữ liệu
+    UPDATE: Cập nhật dữ liệu
+    DELETE: Xóa dữ liệu
+
+📌 Ví dụ:
+    INSERT TO SinhVien (MaSV, HoTen, NamSinh)
+    VALUES (1, 'Nguyen Van A', 2000);
+
+📌 Ví dụ 2 :
+    INSERT INTO SinhVien VALUES ('SV001', 'Nguyễn Văn A', 20);
+    UPDATE SinhVien SET Tuoi = 21 WHERE MaSV = 'SV001';
+    DELETE FROM SinhVien WHERE MaSV = 'SV001';
+
+✅3.DQL (Data Query Language)
+
+Chủ yếu là lệnh SELECT dùng để truy vấn dữ liệu:   
+
+    SELECT * FROM SinhVien;
+
+
+✅ 4. DCL – Data Control Language (Ngôn ngữ kiểm soát dữ liệu)
+
+Dùng để phân quyền truy cập và bảo mật dữ liệu.
+
+    GRANT:	Cấp quyền
+    REVOKE:	Thu hồi quyền
+
+📌 Ví dụ:
+
+    GRANT SELECT ON SinhVien TO user1;
+    REVOKE SELECT ON SinhVien FROM user1;
+
+✅ 5. TCL – Transaction Control Language (Ngôn ngữ điều khiển giao dịch)   
+
+Dùng để quản lý các thao tác thay đổi dữ liệu như một khối lệnh.
+
+    COMMIT: 	Xác nhận và lưu các thay đổi
+    ROLLBACK:	Hủy bỏ các thay đổi chưa COMMIT
+    SAVEPOINT:	Đánh dấu vị trí khôi phục tạm trong giao dịch
+    SET TRANSACTION:	Thiết lập thuộc tính giao dịch
+
+📌 Ví dụ:
+
+    BEGIN;
+    UPDATE TAIKHOAN SET SoDu = SoDu - 500 WHERE MaKH = 'KH01';
+    UPDATE TAIKHOAN SET SoDu = SoDu + 500 WHERE MaKH = 'KH02';
+    COMMIT;
+
+✅ 5. Ngoài ra:
+    SQL còn hỗ trợ:
+
+    Tạo chỉ mục (INDEX): tăng tốc truy vấn
+
+    Tạo View: bảng ảo từ truy vấn
+
+    Stored Procedure / Function: thủ tục lưu sẵn để tái sử dụng
+
+
+📌 Tóm tắt các nhóm lệnh SQL
+    Nhóm	    Mục đích	         Ví dụ lệnh
+    DDL	        Tạo cấu trúc	    CREATE, ALTER, DROP
+    DML	        Thao tác dữ liệu	SELECT, INSERT, UPDATE, DELETE
+    DCL	        Phân quyền	        GRANT, REVOKE
+    TCL         Giao dịch	        COMMIT, ROLLBACK
+
+✅Đặc điểm của SQL
+    Không phân biệt chữ hoa – chữ thường, nhưng thường viết từ khóa bằng chữ hoa
+    Là ngôn ngữ khai báo, người dùng chỉ cần nói "muốn gì" thay vì "làm như thế nào"
+    Dễ học, dễ sử dụng đối với người mới bắt đầu làm việc với cơ sở dữ liệu
+    
+
+✅Ứng dụng của SQL
+    Quản lý dữ liệu trong các hệ thống phần mềm
+    Truy vấn báo cáo dữ liệu
+    Phân tích dữ liệu trong kinh doanh
+    Xây dựng ứng dụng web có tích hợp cơ sở dữ liệu
+
+🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱
+📘 I. Thiết kế Cơ sở dữ liệu (Database)
+1. Cơ sở dữ liệu (Database) là gì?
+    Là nơi chứa toàn bộ dữ liệu của hệ thống.
+    Gồm nhiều bảng (table) có mối quan hệ với nhau.
+
+🔎 Ví dụ: CSDL QLSinhVien có thể chứa các bảng: SinhVien, Lop, MonHoc, Diem.
+
+📗 II. Thiết kế bảng (Table)
+1. Bảng là gì?
+    Là nơi lưu dữ liệu cụ thể theo dòng (hàng) và cột (thuộc tính).
+    Mỗi bảng biểu diễn một thực thể (entity): Ví dụ: sinh viên, lớp, sản phẩm...
+TÊN BẢNG: 
+    Đặt rõ ràng, ngắn gọn, dễ hiểu
+    Thường đặt ở dạng danh từ số ít: Students, Classes, Products
+
+CỘT DỮ LIỆU (columns / fields)
+    Mỗi cột có tên và kiểu dữ liệu rõ ràng:
+        VARCHAR: Chuỗi ký tự
+        INT: Số nguyên
+        DATE: Ngày tháng
+        FLOAT: Số thực
+
+KHÓA CHÍNH: (Primary Key): Cột dùng để phân biệt từng dòng dữ liệu.
+    Là thuộc tính duy nhất định danh mỗi bản ghi
+    Không được trùng lặp hoặc rỗng
+    Ví dụ: student_id là khóa chính của bảng Students
+
+KHÓA NGOẠI: 
+    Là trường liên kết đến khóa chính của bảng khác
+    Dùng để tạo quan hệ giữa các bảng
+ 
+
+
+
+🧱 III. Tạo CSDL và bảng trong SQL
+✅ Tạo cơ sở dữ liệu
+
+    CREATE DATABASE QLSinhVien;
+    USE QLSinhVien;
+
+✅ Tạo bảng SinhVien
+
+    CREATE TABLE SinhVien (
+        MaSV VARCHAR(10) PRIMARY KEY,
+        HoTen VARCHAR(100),
+        NgaySinh DATE,
+        GioiTinh VARCHAR(10),
+        Email VARCHAR(100)
+    );
+🛠 IV. Thêm / Sửa / Xoá cột trong bảng
+➕ Thêm cột:
+
+    ALTER TABLE SinhVien
+    ADD DiaChi VARCHAR(255);
+
+📝 Sửa kiểu dữ liệu hoặc đổi tên cột:
+-- Đổi kiểu dữ liệu cột Email
+    ALTER TABLE SinhVien
+    MODIFY Email VARCHAR(150);
+
+-- Đổi tên cột (MySQL 8+)
+    ALTER TABLE SinhVien
+    RENAME COLUMN DiaChi TO DiaChiThuongTru;
+❌ Xoá cột:
+    ALTER TABLE SinhVien
+    DROP COLUMN DiaChiThuongTru;
+
+🧪 V. Thêm dữ liệu & truy vấn
+ -- Thêm sinh viên mới
+    INSERT INTO SinhVien (MaSV, HoTen, NgaySinh, GioiTinh, Email)
+    VALUES ('SV001', 'Nguyễn Văn A', '2000-05-12', 'Nam', 'a@gmail.com');
+
+-- Xem toàn bộ dữ liệu
+SELECT * FROM SinhVien;
+
+📌 Tóm tắt kiến thức cần nhớ
+Mục	                        Lệnh SQL
+Tạo CSDL	        CREATE DATABASE ...
+Sử dụng CSDL	        USE ...
+Tạo bảng	        CREATE TABLE ...
+Thêm cột	        ALTER TABLE ... ADD COLUMN ...
+Sửa cột         	ALTER TABLE ... MODIFY / RENAME COLUMN
+Xoá cột	            ALTER TABLE ... DROP COLUMN ...
+
+
+📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘
+CÁC CÂU LỆNH CƠ BẢN 
+
+📘INSERT 
+Lệnh INSERT được sử dụng để chèn một hoặc nhiều bản ghi mới vào một bảng. Bạn có thể chèn dữ liệu cho tất cả các cột hoặc chỉ những cột được chỉ định.
+
+    INSERT INTO table_name (column1, column2, column3...)
+    VALUES (value1, value2, value3...);
+
+table_name: tên bảng cần thêm mới dữ liệu
+column: tên các cột 
+value: các giá trị tương ứng cho các cột
+Chú ý: có bao nhiêu column phải có bấy nhiêu value. Nếu số lượng value nhập vào đúng bằng số cột của bản ghi thì có thể bỏ qua việc khai báo các column
+
+📘UPDATE 
+Lệnh UPDATE được dùng để cập nhật dữ liệu hiện có trong bảng. Nó thay đổi các giá trị của một hoặc nhiều cột dựa trên điều kiện xác định.
+
+    UPDATE table_name
+    SET colum1 = value1, colum2 = value2...
+    WHERE condition;
+
+table_name: tên bảng cần cập nhật dữ liệu
+column: tên các cột 
+value: các giá trị tương ứng cho các cột cần thay đổi dữ liệu trong bản ghi
+Chú ý: Mệnh đề WHERE sẽ chỉ định bản ghi nào được cập nhật thông qua condition, nếu không có mệnh đề WHERE thì mặc định toàn bộ bản ghi trong bảng sẽ được cập nhật
+
+📘DELETE
+Lệnh DELETE được sử dụng để xóa một hoặc nhiều bản ghi từ bảng dựa trên điều kiện cho trước. Nếu không có điều kiện nào được chỉ định, toàn bộ các bản ghi trong bảng sẽ bị xóa
+
+    DELETE FROM table_name WHERE condition;
+
+table_name: tên bảng cần xoá dữ liệu
+Chú ý: Mệnh đề WHERE sẽ chỉ định bản ghi nào được xoá thông qua condition, nếu không có mệnh đề WHERE thì mặc định toàn bộ bản ghi trong báng sẽ được cập nhật
+
+
+
+📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘
+📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘📘
+ Cấu trúc câu lệnh truy vấn SQL
+
+ ✅câu lệnh cơ bản:
+ 
+    SELECT tên_cột1, tên_cột2...
+    FROM tên_bảng
+    
+    vd: SELECT full_name, age
+    FROM students;
+ 
+ => Truy vấn trên sẽ lấy tên và tuổi của tất cả sinh viên trong bảng students
+ 
+
+ ✅ CẤU TRÚC CHUNG CỦA CÂU LỆNH SELECT:
+    SELECT [DISTINCT] tên_cột_hoặc_hàm
+    FROM tên_bảng
+    [WHERE điều_kiện]
+    [GROUP BY cột_nhóm]
+    [HAVING điều_kiện_nhóm]
+    [ORDER BY cột_sắp_xếp [ASC|DESC]]
+    [LIMIT số_lượng];
+
+    SELECT:	    Chọn cột cần hiển thị. Có thể dùng * để chọn tất cả.
+    DISTINCT:	Loại bỏ các dòng trùng lặp.
+    FROM:	    Chỉ định bảng lấy dữ liệu.
+    WHERE:	    Điều kiện lọc bản ghi (ví dụ: age > 18).
+    GROUP BY:	Nhóm dữ liệu theo một hoặc nhiều cột.
+    HAVING: 	Điều kiện lọc sau khi GROUP BY (áp dụng cho nhóm).
+    ORDER BY:	Sắp xếp kết quả theo cột, mặc định là ASC (tăng dần).
+    LIMIT:	    Giới hạn số dòng kết quả trả về.
+
+ ✅ VÍ DỤ CỤ THỂ:
+    SELECT name, COUNT(*) AS so_lan_mua
+    FROM orders
+    WHERE status = 'completed'
+    GROUP BY name
+    HAVING so_lan_mua > 2
+    ORDER BY so_lan_mua DESC --DESC là giảm dần, mặc định là tăng dần thì k ghi gì hoặc ghi ASC
+    LIMIT 10;
+COUNT(*) là hàm biến đếm tổng và AS so_lan_mua là sẽ tạo ra 1 cột, hiển thị giá trị của count
+
+➡️ Ý nghĩa: Lấy tên khách hàng và số lần mua hàng thành công, lọc những người mua hơn 2 lần, sắp xếp giảm dần theo số lần mua, và chỉ lấy 10 người đầu tiên.
