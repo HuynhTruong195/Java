@@ -738,6 +738,166 @@ keySet()	Chỉ duyệt key	            for (K key : map.keySet())
 values()	Chỉ duyệt value	            for (V val : map.values())
 
 
- 
+✅ Ví dụ tổng quát – HashMap trong Java
 
- 
+public class Example {
+    public static void main(String[] args) {
+        // Khai báo và khởi tạo HashMap
+        Map<String, Integer> ages = new HashMap<>();
+
+        // Thêm phần tử (key-value)
+        ages.put("An", 20);
+        ages.put("Bình", 25);
+        ages.put("Cường", 22);
+
+        // Truy xuất value theo key
+        System.out.println("Tuổi của An: " + ages.get("An"));  // 👉 20
+
+        // Duyệt qua toàn bộ map
+        System.out.println("\n--- Duyệt toàn bộ Map ---");
+        for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+            System.out.println(entry.getKey() + " → " + entry.getValue());
+        }
+
+        // Kiểm tra sự tồn tại của key hoặc value
+        System.out.println("\n--- Kiểm tra ---");
+        System.out.println("Có chứa key 'Bình'? " + ages.containsKey("Bình"));       // true
+        System.out.println("Có chứa value 22? " + ages.containsValue(22));           // true
+
+        // Xóa phần tử theo key
+        ages.remove("Cường");
+
+        // In lại sau khi xóa
+        System.out.println("\n--- Sau khi xóa 'Cường' ---");
+        for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+            System.out.println(entry.getKey() + " → " + entry.getValue());
+        }
+    }
+}
+
+✅ Kết quả khi chạy:
+    Tuổi của An: 20
+
+    --- Duyệt toàn bộ Map ---
+    An → 20
+    Bình → 25
+    Cường → 22
+
+    --- Kiểm tra ---
+    Có chứa key 'Bình'? true
+    Có chứa value 22? true
+
+    --- Sau khi xóa 'Cường' ---
+    An → 20
+    Bình → 25
+
+
+    
+
+ CÁC LOẠI EXCEPTION(NGOẠI LỆ) PHỔ BIẾN 
+
+ ✅ 1. Exception là gì?
+Exception (ngoại lệ) là lỗi xảy ra trong lúc chương trình đang chạy (runtime), làm chương trình bị dừng đột ngột nếu không xử lý.
+
+📌 Không giống lỗi biên dịch (compile error) – exception xảy ra khi chương trình đã chạy thành công.
+
+✅ 2. Ví dụ đơn giản về exception:
+int a = 10;
+int b = 0;
+int c = a / b;  // ❌ lỗi chia cho 0
+
+Khi chạy đoạn này, chương trình sẽ báo lỗi:
+    Exception in thread "main" java.lang.ArithmeticException: / by zero
+
+✅ 3. Các loại exception phổ biến:   
+Loại Exception	                    Khi nào xảy ra?
+ArithmeticException	                Chia cho 0
+NullPointerException	            Gọi hàm hoặc biến từ null
+ArrayIndexOutOfBoundsException	    Truy cập sai chỉ số mảng
+NumberFormatException	            Ép chuỗi sai định dạng số
+IOException                     	Lỗi khi đọc/ghi file
+
+✅ 4. Cách xử lý exception – dùng try...catch
+try {
+    int a = 10;
+    int b = 0;
+    int c = a / b; // sẽ ném lỗi
+    System.out.println("Kết quả: " + c);
+} catch (ArithmeticException e) {
+    System.out.println("Lỗi: không thể chia cho 0!");
+}
+⏱ Kết quả: Lỗi: không thể chia cho 0!
+
+✅ 5. Cấu trúc try-catch-finally
+
+try {
+    // mã dễ gây lỗi
+} catch (ExceptionType e) {
+    // xử lý khi lỗi xảy ra
+} finally {
+    // luôn chạy dù có lỗi hay không (thường để đóng tài nguyên)
+}
+
+✅ 6. Ví dụ tổng quát
+public class Test {
+    public static void main(String[] args) {
+        try {
+            String s = null;
+            System.out.println(s.length()); // NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Chuỗi đang null!");
+        } finally {
+            System.out.println("Luôn chạy dòng này!");
+        }
+    }
+}
+
+
+✅ 7. Vì sao cần exception?
+Tránh chương trình dừng đột ngột khi gặp lỗi.
+Cho phép xử lý lỗi một cách mượt mà (thông báo cho người dùng, thử lại...).
+Bắt buộc khi làm việc với file, mạng, cơ sở dữ liệu.
+
+
+🧨 1.(THROW) Bạn ném (throw) và tự xử lý bằng try-catch 
+Ví dụ: bạn kiểm tra đầu vào và nếu sai thì ném lỗi, rồi xử lý bằng try-catch.
+public class Demo {
+    public static void main(String[] args) {
+        try {
+            checkAge(15); // Thử truyền tuổi nhỏ hơn 18
+        } catch (IllegalArgumentException e) {
+            System.err.println("Lỗi: " + e.getMessage());
+        }
+        System.out.println("Chương trình tiếp tục...");
+    }
+
+    public static void checkAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Tuổi phải >= 18");
+        }
+        System.out.println("Tuổi hợp lệ: " + age);
+    }
+}
+Kết quả: 
+Chương trình tiếp tục...
+Lỗi: Tuổi phải >= 18
+
+🚨 2.[THROWS] Ném (throw) và báo cho bên ngoài bằng throws
+Dùng khi bạn không xử lý ngay mà muốn báo lỗi cho phương thức gọi nó xử lý:
+public class Demo {
+    public static void main(String[] args) {
+        try {
+            validateName(null);
+        } catch (Exception e) {
+            System.err.println("Có lỗi xảy ra: " + e.getMessage());
+        }
+    }
+
+    public static void validateName(String name) throws Exception {
+        if (name == null || name.isEmpty()) {
+            throw new Exception("Tên không được để trống");
+        }
+        System.out.println("Tên hợp lệ: " + name);
+    }
+}
+
