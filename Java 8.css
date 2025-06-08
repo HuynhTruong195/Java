@@ -27,7 +27,7 @@ Lý do sử dụng:
             Honda test = new Honda();
             test.start();
         }
-    }
+    } //Starting...
 
 
  ✅ 2. Phương thức tĩnh (Static method)
@@ -332,3 +332,239 @@ Có 4 loại chính:
     Function<String, Integer> toLength = s -> s.length();
     System.out.println(toLength.apply("Hello")); // Output: 5
     🧠 Dùng nhiều với .map(...) trong Stream để biến đổi dữ liệu.
+
+
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥 Stream API – Xử lý dữ liệu "kiểu dòng chảy"🔥
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+
+✅Phân loại thao tác Stream
+    Stream API cung cấp hai loại thao tác chính:
+    Intermediate Operations (Các thao tác trung gian):
+    Các thao tác này trả về một Stream mới
+    Không thực thi ngay lập tức
+    Ví dụ: filter, map, sorted
+    Terminal Operations (Các thao tác kết thúc):
+    Kết thúc Stream và trả về kết quả hoặc thực hiện hành động cuối cùng
+    Thực thi các thao tác trung gian trước đó
+    Ví dụ: forEach, collect, reduce
+
+
+🧠 Hiểu đơn giản:
+    🔹 Stream API giúp xử lý collection (List, Set, Array...) theo kiểu lập trình hàm, ngắn gọn, rõ ràng, không cần dùng for, if truyền thống.
+    🔹 Dữ liệu sẽ chảy qua từng bước như: lọc → biến đổi → tính toán → thu kết quả.
+
+✅ Cấu trúc 3 bước khi dùng Stream:
+    Nguồn dữ liệu (collection, array, file...)
+    Các bước trung gian (intermediate): filter, map, sorted, v.v.
+    Bước kết thúc (terminal): forEach, collect, count, sum...
+
+📌 Ví dụ thực tế đơn giản nhất:
+    Bài toán:
+    Từ danh sách tên, in ra những tên dài hơn 3 ký tự, và viết hoa toàn bộ.
+
+    import java.util.*;
+    import java.util.stream.*;
+
+    public class Main {
+        public static void main(String[] args) {
+            List<String> names = Arrays.asList("An", "Linh", "Hà", "Ngọc");
+
+            names.stream()                           // 1. Bắt đầu dòng chảy dữ liệu
+                .filter(name -> name.length() > 3) // 2. Giữ lại tên dài hơn 3 ký tự
+                .map(String::toUpperCase)          // 3. Chuyển sang viết hoa
+                .forEach(System.out::println);     // 4. In từng cái ra
+        }
+    }
+🟢 Kết quả: LINH
+            NGỌC
+
+  
+✅ Một số phương thức thường gặp trong Stream:
+Phương thức	            Mục đích
+filter()	    Lọc theo điều kiện
+map()	        Biến đổi từng phần tử
+sorted()	        Sắp xếp
+limit()     	Giới hạn số phần tử
+collect()	    Thu kết quả về List, Set, Map...
+count()	        Đếm số phần tử
+forEach()	    Lặp qua từng phần tử
+
+
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+✅ Optional – Xử lý giá trị có thể null trong Java 8
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+🧠 Vấn đề trước đây:
+    Trong Java cũ, khi một biến có thể null, bạn phải kiểm tra thủ công:
+    if (user != null && user.getName() != null) {
+        System.out.println(user.getName());
+    }
+    ⚠️ Nếu quên check null, bạn sẽ gặp NullPointerException (lỗi kinh điển nhất của Java).
+
+🎯 Giải pháp: Optional<T>
+    Optional là một "hộp" có thể chứa hoặc không chứa giá trị.
+    Giúp bạn tránh null mà không cần dùng nhiều if-else.
+
+📦 Cách tạo Optional
+    Optional<String> name1 = Optional.of("Linh");       // Có giá trị
+    Optional<String> name2 = Optional.empty();          // Không có giá trị
+    Optional<String> name3 = Optional.ofNullable(null); // Có thể null
+
+
+    ✅ Các phương thức hay dùng:
+    Phương thức                     	Mô tả
+    isPresent()	                 Trả về true nếu giá trị tồn tại, ngược lại trả về false
+    isEmpty() (Java 11+):        Trả về true nếu Optional rỗng
+    ifPresent(Consumer)	        Nếu có giá trị thì làm gì
+    map():               Biến đổi giá trị bên trong Optional và trả về một Optional mới  
+    get()	                Lấy giá trị (nếu không có sẽ lỗi) sẽ ném ra NoSuchElementException
+    filter():                Lọc giá trị trong Optional theo một điều kiện
+    orElse(T)	            Nếu không có thì trả giá trị mặc định (T)
+    orElseGet(Supplier) 	Nếu không có thì gọi hàm tạo giá trị        optional.orElseGet(() -> "Generated value");
+    orElseThrow()	            Nếu không có thì ném lỗi  orElseThrow(): Ném ngoại lệ nếu Optional rỗng
+
+
+📌 Ví dụ đơn giản:
+
+    Optional<String> name = Optional.ofNullable("Java");
+
+    // 1. Nếu có giá trị → in
+    name.ifPresent(n -> System.out.println("Tên: " + n));
+
+    // 2. Nếu không có → dùng mặc định
+    String result = name.orElse("Không có tên"); //nếu  k có thì trả giá trị mặc định ở đây là "Không có tên"
+    System.out.println(result);
+
+   🟢 Output:  Tên: Java
+                    Java
+
+
+❌ Nếu không dùng Optional (cách cũ):
+    String name = getName(); // có thể null
+
+    if (name != null) {
+        System.out.println(name);
+    } else {
+        System.out.println("Không có tên");
+    }
+
+✅ Nếu dùng Optional:
+    Optional<String> name = Optional.ofNullable(getName());
+    System.out.println(name.orElse("Không có tên"));
+
+
+
+🔒 Ghi nhớ:
+Sai lầm thường gặp                                  Cách đúng
+Dùng .get() mà không check	            Dùng orElse(), ifPresent() hoặc orElseThrow()
+Lạm dụng Optional trong                 Dùng Optional chủ yếu cho kết quả trả về
+field hoặc tham số constructor          	
+
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🕒 Date-Time API mới (java.time) trong Java 8
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+📦 Các class quan trọng
+Class	                Mô tả
+
+LocalDate	    Ngày (yyyy-MM-dd), không có giờ
+LocalTime	        Giờ (HH:mm:ss), không có ngày
+LocalDateTime	    Cả ngày và giờ
+ZonedDateTime	    Có cả ngày giờ và múi giờ
+Instant	        Mốc thời gian tính từ 1970-01-01 (UTC)
+Period	        Khoảng cách ngày/tháng/năm
+Duration	        Khoảng cách giờ/phút/giây
+
+✅ Ví dụ đơn giản:
+📅 LocalDate:
+
+import java.time.LocalDate;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.now();
+        LocalDate birthday = LocalDate.of(2000, 12, 25);
+
+        System.out.println("Hôm nay: " + today);
+        System.out.println("Sinh nhật: " + birthday);
+    }
+}
+
+
+⏰ LocalTime
+
+import java.time.LocalTime;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalTime now = LocalTime.now();
+        LocalTime fixed = LocalTime.of(14, 30); // 14:30
+
+        System.out.println("Bây giờ: " + now);
+        System.out.println("Giờ cố định: " + fixed);
+    }
+}
+
+
+🕒 LocalDateTime
+
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime meeting = LocalDateTime.of(2025, 6, 2, 9, 0);   //2025-06-02T09:00
+
+        System.out.println("Thời điểm hiện tại: " + now);
+        System.out.println("Cuộc họp lúc: " + meeting);
+    }
+}
+
+
+🧮 So sánh, cộng/trừ ngày, giờ
+
+LocalDate today = LocalDate.now();
+LocalDate nextWeek = today.plusWeeks(1);
+LocalDate lastMonth = today.minusMonths(1);
+
+System.out.println("Tuần sau: " + nextWeek);
+System.out.println("Tháng trước: " + lastMonth);
+
+🧠 Tính khoảng cách giữa 2 ngày:
+
+LocalDate start = LocalDate.of(2020, 1, 1);
+LocalDate end = LocalDate.of(2025, 1, 1);
+
+Period period = Period.between(start, end);
+
+System.out.println("Khoảng cách: " +
+    period.getYears() + " năm " +
+    period.getMonths() + " tháng " +
+    period.getDays() + " ngày");
+
+//Khoảng cách: 5 năm 0 tháng 0 ngày
+
+
+🕰 Format ngày giờ (dùng DateTimeFormatter)
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String formatted = now.format(formatter);
+
+        System.out.println("Định dạng đẹp: " + formatted);
+    }
+}
+    
+
+
