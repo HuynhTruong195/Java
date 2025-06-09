@@ -720,3 +720,376 @@ Chú ý: Mệnh đề WHERE sẽ chỉ định bản ghi nào được xoá thô
 COUNT(*) là hàm biến đếm tổng và AS so_lan_mua là sẽ tạo ra 1 cột, hiển thị giá trị của count
 
 ➡️ Ý nghĩa: Lấy tên khách hàng và số lần mua hàng thành công, lọc những người mua hơn 2 lần, sắp xếp giảm dần theo số lần mua, và chỉ lấy 10 người đầu tiên.
+
+➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️
+➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️
+🔹 1. Toán tử trong SQL
+📌 Toán tử so sánh:
+    Toán tử           Ý nghĩa
+    =	                 Bằng
+    != hoặc <>	          Khác
+    >	                  Lớn hơn
+    <	                  Nhỏ hơn
+    >=	                 Lớn hơn hoặc bằng
+    <=	                Nhỏ hơn hoặc bằng
+    BETWEEN a AND b	Trong khoảng từ a đến b (bao gồm a và b)
+    IN (a, b, c)	    Nằm trong tập giá trị
+    NOT IN (...)	    Không nằm trong tập
+    LIKE	            So khớp mẫu (dùng với %, _)
+    IS NULL, IS NOT NULL	Kiểm tra giá trị NULL
+
+
+ 📌Toán tử logic:
+    Toán tử	        Ý nghĩa
+    AND	Và   (tất cả điều kiện đều đúng)
+    OR	Hoặc (chỉ cần 1 điều kiện đúng)
+    NOT	        Phủ định điều kiện
+
+🔹 2. Các hàm thông dụng trong SQL
+📌 Hàm tổng hợp (Aggregate Functions):
+Hàm	            Ý nghĩa
+COUNT(*)	    Đếm số dòng
+SUM(column)	    Tổng giá trị trong cột
+AVG(column)	    Giá trị trung bình
+MAX(column)	    Giá trị lớn nhất
+MIN(column)	    Giá trị nhỏ nhất
+
+
+
+🔹 1. Toán tử trong SQL
+📌 Toán tử so sánh:
+Toán tử	Ý nghĩa
+=	Bằng
+!= hoặc <>	Khác
+>	Lớn hơn
+<	Nhỏ hơn
+>=	Lớn hơn hoặc bằng
+<=	Nhỏ hơn hoặc bằng
+BETWEEN a AND b	Trong khoảng từ a đến b (bao gồm a và b)
+IN (a, b, c)	Nằm trong tập giá trị
+NOT IN (...)	Không nằm trong tập
+LIKE	So khớp mẫu (dùng với %, _)
+IS NULL, IS NOT NULL	Kiểm tra giá trị NULL
+
+📌 Toán tử logic:
+Toán tử	Ý nghĩa
+AND	Và (tất cả điều kiện đều đúng)
+OR	Hoặc (chỉ cần 1 điều kiện đúng)
+NOT	Phủ định điều kiện
+
+🔹 2. Các hàm thông dụng trong SQL
+📌 Hàm tổng hợp (Aggregate Functions):
+Hàm	Ý nghĩa
+COUNT(*)	Đếm số dòng
+SUM(column)	Tổng giá trị trong cột
+AVG(column)	Giá trị trung bình
+MAX(column)	Giá trị lớn nhất
+MIN(column)	Giá trị nhỏ nhất
+
+📌 Hàm xử lý chuỗi:
+Hàm	                Ý nghĩa
+LOWER(text)	    Chuyển về chữ thường
+UPPER(text)	    Chuyển về chữ in hoa
+LENGTH(text)	    Độ dài chuỗi
+CONCAT(a, b)	    Nối chuỗi
+TRIM(text)  	Xóa khoảng trắng đầu/cuối
+SUBSTRING(text, start, length)	Cắt chuỗi
+
+📌 Hàm xử lý ngày tháng:
+Hàm	                Ý nghĩa
+NOW()	    Lấy thời gian hiện tại
+CURDATE()	Lấy ngày hiện tại
+YEAR(date)	Lấy năm từ ngày
+MONTH(date)	Lấy tháng từ ngày
+DATEDIFF(a, b)	Tính số ngày giữa 2 ngày
+
+📌 Hàm điều kiện:
+Hàm/Toán                tử	Ý nghĩa
+CASE WHEN ... THEN ... ELSE ... END	Điều kiện trong SELECT
+IF(condition, value_if_true, value_if_false)	(MySQL) giống hàm IF trong Excel
+
+🔸 Ví dụ tổng hợp:
+    SELECT 
+        name,
+        price,
+        CASE 
+            WHEN price >= 1000000 THEN 'Đắt'
+            ELSE 'Rẻ'
+        END AS loai_san_pham,
+        UPPER(name) AS ten_in_hoa
+    FROM products
+    WHERE price > 500000 AND name LIKE '%iphone%';
+
+
+📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌
+📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌
+CÁC KIỂU TRUY VẤN TỪ NHIỀU BẢNG
+❓ Mục đích:
+Dùng khi bạn muốn lấy dữ liệu từ nhiều bảng có liên hệ với nhau, thường thông qua khóa ngoại (foreign key).
+
+
+🔹 1. Sử dụng JOIN (Kết nối bảng)
+📌 Ví dụ: Có 2 bảng:
+-- Bảng sinhvien
+| id | ten         | lop_id |
+|----|-------------|--------|
+| 1  | An          | 101    |
+| 2  | Bình        | 102    |
+
+-- Bảng lop
+|lop_id| ten_lop   |
+|-----|------------|
+| 101 | CNTT       |
+| 102 | Kinh tế    |
+
+✅ Truy vấn tên sinh viên và tên lớp:
+SELECT sinhvien.ten, lop.ten_lop
+FROM sinhvien
+JOIN lop ON sinhvien.lop_id = lop.lop_id;
+👉 điều kiện là cho 2 khóa ngoại = nhau
+
+
+🟢 2. Subquery – Truy vấn lồng
+Dùng khi bạn muốn lấy dữ liệu từ một bảng dựa vào kết quả truy vấn từ bảng khác.
+✅ Ví dụ:
+    SELECT ten
+    FROM sinhvien
+    WHERE lop_id IN (
+        SELECT id
+        FROM lop
+        WHERE ten_lop = 'CNTT'
+    );
+🔍 Giải thích:
+Câu truy vấn bên trong () chạy trước: nó chọn ra id của lớp CNTT.
+Câu truy vấn ngoài sẽ lọc sinh viên có lop_id nằm trong kết quả đó.
+
+🟢 3. UNION – Gộp dữ liệu từ nhiều bảng
+Dùng khi bạn có nhiều bảng có cấu trúc giống nhau và muốn gộp kết quả lại.
+
+ ✅ Ví dụ:
+    SELECT ten FROM sinhvien
+    UNION
+    SELECT ten FROM giangvien;
+🔍 Giải thích:
+    Lấy tên từ cả bảng sinhvien và bảng giangvien.
+    UNION tự động bỏ dữ liệu trùng nhau.
+    Dùng UNION ALL nếu bạn muốn giữ nguyên tất cả, kể cả trùng.
+
+🟢 4. EXISTS – Kiểm tra có tồn tại hay không    
+Dùng để kiểm tra xem một điều kiện có tồn tại trong bảng khác hay không.
+
+✅ Ví dụ:
+        SELECT ten
+        FROM sinhvien s
+        WHERE EXISTS (
+            SELECT 1
+            FROM lop
+            WHERE lop.id = s.lop_id AND ten_lop = 'CNTT'
+        );
+🔍 Giải thích:
+Truy vấn sẽ trả về sinh viên nếu tồn tại lớp có tên là "CNTT" mà sinh viên đó học.
+
+✅ Tóm tắt cho bạn dễ nhớ:
+Cách dùng	                Dành cho mục đích gì?
+JOIN	      Lấy dữ liệu kết hợp từ nhiều bảng (quan hệ khóa ngoại)
+Subquery	    Lọc dữ liệu dựa vào truy vấn con
+UNION	        Gộp kết quả từ nhiều bảng giống nhau
+EXISTS/IN	    Kiểm tra điều kiện tồn tại trong bảng khác
+
+
+🧩 Giả sử bạn có 2 bảng:
+🔸 sinhvien:
+    id	ten	    lop_id
+    1	An	    101
+    2	Bình	102
+    3	Cường	999
+
+🔸 lop:
+    lop_id	ten_lop
+    101 	CNTT
+    102	    Kinh tế
+    103	    Xây dựng
+
+✅ 1. INNER JOIN — Dùng phổ biến nhất (~80%)
+📌 Khi dùng:
+Dùng khi bạn chỉ cần dữ liệu KHỚP từ cả hai bảng.
+
+Ví dụ: lấy sinh viên kèm lớp học (chỉ lấy sinh viên có lớp hợp lệ).
+    SELECT sv.ten, l.ten_lop
+    FROM sinhvien sv
+    INNER JOIN lop l ON sv.lop_id = l.lop_id;
+👉 Kết quả: chỉ hiện sinh viên nào có lớp tồn tại trong bảng lop.
+
+    ten	    ten_lop
+    An	    CNTT
+    Bình	Kinh tế
+
+
+🟢 Vì sao phổ biến?
+Tránh dữ liệu "rác" hoặc "không đầy đủ".
+
+Tối ưu tốc độ truy vấn vì bỏ bớt các dòng không khớp.
+
+
+✅ 2. LEFT JOIN — Dùng khá thường xuyên (~15%)
+📌 Khi dùng:
+Khi cần giữ toàn bộ dữ liệu bảng bên trái, kể cả khi không có dữ liệu bên phải.
+
+Ví dụ: lấy tất cả sinh viên, dù chưa được phân lớp.
+
+🟡 Thường dùng trong:
+Báo cáo kiểm tra dữ liệu thiếu.
+Thống kê số sinh viên chưa có lớp, đơn hàng chưa có khách...
+    SELECT sv.ten, l.ten_lop
+    FROM sinhvien sv
+    LEFT JOIN lop l ON sv.lop_id = l.lop_id;
+
+👉 Kết quả: lấy TẤT CẢ sinh viên, kể cả sinh viên không có lớp khớp.
+    ten	    ten_lop
+    An	    CNTT
+    Bình	Kinh tế
+    Cường	NULL
+🟡 Sinh viên Cường vẫn xuất hiện, vì JOIN theo bảng trái.
+
+
+
+🟠 3. RIGHT JOIN — Hiếm dùng (~<5%)
+📌 Khi dùng:
+Tương tự LEFT JOIN, nhưng giữ bảng bên phải.
+
+Dùng khi bảng quan trọng nằm bên phải.
+
+⚠️ Ghi nhớ:
+Hầu hết dev chọn đổi vị trí bảng và dùng LEFT JOIN cho dễ hiểu.
+
+🔴 4. FULL JOIN — Hiếm hơn nữa (MySQL không hỗ trợ)
+📌 Khi dùng:
+Dùng khi bạn muốn thấy mọi dữ liệu từ cả 2 bảng, kể cả không khớp.
+
+⚠️ Lưu ý:
+Không dùng được trong MySQL (trừ khi viết lại bằng UNION).
+
+Dùng trong các hệ như PostgreSQL, SQL Server, Oracle.
+
+🎯 Tóm lại cho thực tế:
+Loại JOIN	Tần suất dùng	Dùng khi
+INNER	🟢 Rất nhiều	Dữ liệu khớp giữa 2 bảng
+LEFT	🟡 Khá nhiều	Cần giữ hết dữ liệu bảng trái
+RIGHT	🔸 Ít dùng	Giống LEFT nhưng đảo bảng
+FULL	🔴 Hiếm dùng	Hiển thị mọi dữ liệu cả 2 bảng (MySQL không có)
+
+🎯 GỢI Ý LỘ TRÌNH
+Nếu bạn là người mới học SQL, bạn có thể học theo trình tự:
+
+    SELECT, WHERE, ORDER BY, LIMIT
+
+    JOIN, GROUP BY, HAVING
+
+    Các hàm tổng hợp: COUNT(), SUM(), AVG(), MAX(), MIN()
+
+    CASE WHEN, IN, BETWEEN, LIKE
+
+    LEFT JOIN, RIGHT JOIN, FULL JOIN (nâng cao)
+
+    Tạo bảng, thêm dữ liệu: CREATE TABLE, INSERT INTO, v.v.
+
+
+
+    🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 
+    🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 🚫 
+        TỐI ƯU HÓA TRUY VẤN
+
+Tối ưu hóa truy vấn (Query Optimization) là quá trình cải thiện hiệu suất thực thi câu lệnh SQL – giúp truy vấn chạy nhanh hơn, tốn ít tài nguyên hơn và xử lý tốt trên dữ liệu lớn.
+
+Tại sao cần tối ưu hóa
+Truy vấn chậm = hệ thống chậm
+Tốn CPU, RAM, băng thông → ảnh hưởng toàn bộ ứng dụng
+Khi dữ liệu tăng lên (hàng trăm nghìn bản ghi), câu lệnh chưa tối ưu sẽ “nghẽn cổ chai”
+
+✅ 1. Chỉ chọn cột cần thiết
+🚫 Sai:
+    SELECT * FROM sinhvien;
+✅ Đúng:
+    SELECT ten, tuoi FROM sinhvien;
+
+📘 Giải thích:
+
+Dấu * chọn tất cả cột, không nên dùng khi không cần.
+Gây tốn bộ nhớ và băng thông nếu bảng lớn.
+
+
+✅ 2. Dùng chỉ mục (INDEX) cho cột thường lọc hoặc JOIN
+CREATE INDEX idx_lop_id ON sinhvien(lop_id);
+    📘 Giải thích:
+
+INDEX giúp tăng tốc các truy vấn có WHERE, JOIN, ORDER BY...
+Không nên index tất cả cột → sẽ gây chậm khi ghi (INSERT, UPDATE).
+
+✅ 3. Tránh tính toán trong WHERE hoặc JOIN
+🚫 Sai:
+    SELECT * FROM sinhvien WHERE YEAR(CURDATE()) - tuoi > 21;
+✅ Đúng:
+    SELECT * FROM sinhvien WHERE tuoi < (YEAR(CURDATE()) - 21);
+
+ 📘 Giải thích:
+
+SQL sẽ tính toán từng dòng nếu bạn đặt hàm trong WHERE.
+Chuyển phép tính ra ngoài giúp dùng chỉ mục.
+
+✅ 4. Dùng EXISTS thay vì IN với subquery lớn
+🚫 Sai:
+    SELECT * FROM sinhvien
+    WHERE lop_id IN (SELECT lop_id FROM lop WHERE ten_lop LIKE 'CNTT%');
+✅ Đúng:
+    SELECT * FROM sinhvien sv
+    WHERE EXISTS (
+        SELECT 1 FROM lop l
+        WHERE l.lop_id = sv.lop_id AND l.ten_lop LIKE 'CNTT%'
+    );
+
+📘 Giải thích:
+EXISTS nhanh hơn IN khi subquery trả về nhiều dòng.
+
+✅ 5. Tránh dùng DISTINCT nếu không cần
+🚫 Sai:
+    SELECT DISTINCT ten FROM sinhvien;
+📘 Nếu dữ liệu không trùng → DISTINCT sẽ làm chậm truy vấn vô ích.
+
+✅ 6. Giới hạn dữ liệu trả về
+    SELECT ten FROM sinhvien ORDER BY tuoi DESC LIMIT 10;
+
+ 📘 Giải thích:
+
+LIMIT giúp giảm dữ liệu trả về → nhanh hơn, nhẹ hơn.
+Dùng nhiều trong phân trang (LIMIT x OFFSET y).
+
+✅ 7. Dùng EXPLAIN để phân tích truy vấn
+    EXPLAIN SELECT * FROM sinhvien WHERE lop_id = 101;
+
+ 📘 Giải thích:
+
+EXPLAIN giúp bạn xem truy vấn có đang dùng INDEX, đọc bao nhiêu dòng...
+Rất hữu ích khi cần kiểm tra hiệu suất.
+
+✅ 8. Tránh JOIN quá nhiều bảng nếu không cần
+📘 Mỗi bảng JOIN thêm → tốn thêm xử lý.
+Hãy chỉ JOIN bảng thật sự cần thiết.
+
+✅ 9. Dùng LIMIT kết hợp với chỉ mục để phân trang hiệu quả
+🚫 Sai (phân trang chậm với OFFSET lớn):
+    SELECT * FROM sinhvien ORDER BY id LIMIT 10000, 10;
+✅ Đúng (dùng ID để phân trang):
+    SELECT * FROM sinhvien WHERE id > 10000 ORDER BY id LIMIT 10;
+📘 Giải thích:
+
+Khi offset lớn (10.000 trở lên), truy vấn sẽ rất chậm.
+Giải pháp là dùng điều kiện WHERE id > ... để phân trang.
+
+
+🎯 Tổng kết mẹo tối ưu quan trọng:
+Mẹo	                                Tác dụng chính
+Tránh SELECT *	                Giảm tải hệ thống
+Dùng chỉ mục (INDEX)	    Tăng tốc WHERE, JOIN, ORDER BY
+Tính toán ngoài WHERE	    Tăng khả năng dùng chỉ mục
+Dùng EXISTS thay IN         	Nhanh hơn với bảng con lớn
+Dùng LIMIT, tránh OFFSET lớn	Phân trang hiệu quả
